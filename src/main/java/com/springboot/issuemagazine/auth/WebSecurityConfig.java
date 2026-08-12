@@ -22,7 +22,7 @@ public class WebSecurityConfig {
 			.cors((cors) -> cors.disable()) // CORS 비활성화
 			.authorizeHttpRequests(request -> request
 					.dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll() // 내부 포워드 요청 허용
-					.requestMatchers("/","/mainPage","/loginForm").permitAll()
+					.requestMatchers("/","/writeForm","/loginForm","/jusoPopup","/memberInsert").permitAll()
 					.requestMatchers("/css/**","/js/**","/images/**").permitAll() // 정적 리소스 모두 허용
 					.requestMatchers("/guest/**").permitAll() // guest 폴더는 모두 허용 (게스트페이지)
 					.requestMatchers("/member/**").hasAnyRole("USER","ADMIN") // member 폴더는 USER, ADMIN만 허용 (회원페이지)
@@ -36,8 +36,8 @@ public class WebSecurityConfig {
 				.loginProcessingUrl("/j_spring_security_check")
 				.defaultSuccessUrl("/")
 				.failureUrl("/loginError") // 로그인 실패했을때 가는 페이지
-				.usernameParameter("mid")
-				.passwordParameter("mpasswd")
+				.usernameParameter("m_id")
+				.passwordParameter("m_passwd")
 				.permitAll()
 				);
 		
