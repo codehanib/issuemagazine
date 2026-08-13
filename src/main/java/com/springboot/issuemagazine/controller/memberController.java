@@ -52,7 +52,7 @@ public class memberController {
 	
 	@RequestMapping("/memberInsert")
 	public String ownerInsert(HttpServletRequest request, memberDTO dto) {
-
+		 
 	    String m_id = request.getParameter("m_id");
 
 	    String m_tel = request.getParameter("m_tel");
@@ -202,4 +202,10 @@ public class memberController {
 			model.addAttribute("updateForm",dao.findById(m_id));
 			return "member/memberupdateForm";
 		}
+		
+		@RequestMapping("/member/mypage")
+		public String mymage() {
+		    return "member/mypage";
+		}
+		
 }
