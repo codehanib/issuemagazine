@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.springboot.issuemagazine.dao.one_inquiryDAO">
+    <select id="one_inquiryList" resultType="com.springboot.issuemagazine.dto.one_inquiryDTO">
+        select * from one_inquiry order by oi_no desc
+    </select>
+    <select id="one_inquiryView" resultType="com.springboot.issuemagazine.dto.one_inquiryDTO">
+        select * from one_inquiry where oi_no=#{oi_no}
+    </select>
+    <insert id="one_inquiryWrite">
+        insert into one_inquiry(oi_no,oi_title,oi_content,oi_reg_date,oi_status,m_no)
+         values(one_inquiry_seq.nextval,#{oi_title},#{oi_content},SYSDATE,'답변대기',#{m_no})
+    </insert>
+    <update id="one_inquiryUpdate">
+        update one_inquiry set oi_title=#{oi_title},oi_content=#{oi_content}
+            where oi_no=#{oi_no}
+    </update>
+    <update id="one_inquiryAnswer">
+        update one_inquiry set oi_answer=#{oi_answer},oi_status=#{oi_status}
+            where oi_no=#{oi_no}
+    </update>
+    <delete id="one_inquiryDelete">
+        delete from one_inquiry where oi_no=#{oi_no}
+    </delete>
+</mapper>
