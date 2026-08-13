@@ -17,6 +17,9 @@
 		update notice set n_title=#{n_title},n_content=#{n_content},n_reg_date=SYSDATE
 			where n_no=#{n_no}
 	</update>
+	<update id="noticeCountUp">
+    update notice set n_count = n_count + 1 where n_no = #{n_no}
+	</update>
 	<delete id="noticeDelete">
 		delete from notice where n_no=#{n_no}
 	</delete>

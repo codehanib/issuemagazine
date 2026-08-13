@@ -32,12 +32,13 @@ public class noticeController {
 	}
 
 	// 공지 상세보기
-	@RequestMapping("/notice/view")
-	public String noticeView(@RequestParam("n_no") int n_no, Model model) {
-		noticeDTO dto = noticeDAO.noticeView(n_no);
-		model.addAttribute("dto", dto);
-		return "notice/view";
-	}
+		@RequestMapping("/notice/view")
+		public String noticeView(@RequestParam("n_no") int n_no, Model model) {
+			noticeDAO.noticeCountUp(n_no);            // 조회수 +1 (먼저 실행)
+			noticeDTO dto = noticeDAO.noticeView(n_no); // 증가된 값으로 다시 조회
+			model.addAttribute("dto", dto);
+			return "notice/view";
+		}
 
 	// 공지 작성 폼
 	@RequestMapping("/notice/writeForm")
@@ -69,7 +70,7 @@ public class noticeController {
 	@RequestMapping(value = "/notice/update", method = RequestMethod.POST)
 	public String noticeUpdate(noticeDTO dto) {
 		noticeDAO.noticeUpdate(dto);
-		return "redirect:/notice/view?n_no=" + dto.getN_no();
+		return "redirect:/notice/list?n_no=" + dto.getN_no();
 	}
 
 	// 공지 삭제 확인 화면
@@ -86,4 +87,5 @@ public class noticeController {
 		noticeDAO.noticeDelete(n_no);
 		return "redirect:/notice/list";
 	}
+	
 }
