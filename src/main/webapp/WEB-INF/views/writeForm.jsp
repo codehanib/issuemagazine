@@ -72,7 +72,8 @@
 			</tr>
 		</table>
 		<div>
-		    <input type="submit" value="회원가입" onclick="return check()">
+		 	<input type="reset" value="✕ 취소">
+		    <input type="submit" value="✓ 회원가입" onclick="return check()">
 		</div>
 	</form>
 </body>

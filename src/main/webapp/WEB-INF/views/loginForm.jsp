@@ -14,13 +14,14 @@
     <h3>LOGIN</h3>
 		<table border="0" width="300">
 			<tr>
+				<td>ID</td>
 				<td><input type="text" name="m_id"></td>
+				<td rowspan="2"><input type="submit" value="로그인" onclick="return check()"></td>
+				<td rowspan="2"><a href="/writeForm"><input type="button" value="회원가입"></a></td>
 			</tr>
 			<tr>
+				<td>PASSWORD</td>
 				<td><input type="password" name="m_passwd"></td>
-			</tr>
-			<tr>
-				<td><input type="submit" value="로그인" onclick="return check()"><a href="/writeForm"><input type="button" value="회원가입"></a></td>
 			</tr>
 		</table>
 	</form>
