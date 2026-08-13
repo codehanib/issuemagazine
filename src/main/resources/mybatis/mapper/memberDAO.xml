@@ -17,12 +17,22 @@
 				            #{m_addr},
 				            #{m_tel},
 				            #{m_email},
-				            'USER'
-			 		  )
+				            'USER')
 	</insert>
+	<select id="memberList"
+        resultType="com.springboot.issuemagazine.dto.memberDTO">
+		SELECT m_no, m_id, m_name, m_tel, m_email
+			FROM member 
+			ORDER BY m_no ASC
+	</select>
 	<delete id="memberDelete">
 		delete from member where m_id = #{m_id}
 	</delete>
+	
+	<delete id="adminMemberDelete">
+		delete from member where m_no = #{m_no}
+	</delete>
+
 		<update id="memberUpdate">
 		update member set m_passwd=#{m_passwd},m_zipno=#{m_zipno},m_addr=#{m_addr},m_tel=#{m_tel},m_email=#{m_email}
 			where m_id=#{m_id}

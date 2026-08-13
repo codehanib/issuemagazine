@@ -22,11 +22,12 @@ public class WebSecurityConfig {
 			.cors((cors) -> cors.disable()) // CORS 비활성화
 			.authorizeHttpRequests(request -> request
 					.dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll() // 내부 포워드 요청 허용
-					.requestMatchers("/","/writeForm","/loginForm","/jusoPopup","/memberInsert").permitAll()
+					.requestMatchers("/","/writeForm","/loginForm","/jusoPopup","/memberInsert",
+									"/product/**").permitAll()
 					.requestMatchers("/css/**","/js/**","/images/**").permitAll() // 정적 리소스 모두 허용
 					.requestMatchers("/guest/**").permitAll() // guest 폴더는 모두 허용 (게스트페이지)
 					.requestMatchers("/member/**").hasAnyRole("USER","ADMIN") // member 폴더는 USER, ADMIN만 허용 (회원페이지)
-					.requestMatchers("/admin/**","/product/**").hasAnyRole("ADMIN") // admin 폴더는 ADMIN만 허용 (관리자페이지)
+					.requestMatchers("/admin/**").hasAnyRole("ADMIN") // admin 폴더는 ADMIN만 허용 (관리자페이지)
 					.anyRequest().authenticated() // 나머지는 모두 인증 필요
 			);
 		
