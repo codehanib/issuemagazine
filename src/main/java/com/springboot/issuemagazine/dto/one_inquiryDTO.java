@@ -13,4 +13,5 @@ public class one_inquiryDTO {
 	private Date oi_reg_date;
 	private String oi_status;
 	private int m_no;
+	private String m_id;
 }

@@ -11,7 +11,6 @@
 <body>
     <div class="list-wrapper">
         <h3>공지 목록</h3>
-        
         <table class="member-table">
             <thead>
                 <tr>
@@ -27,9 +26,9 @@
                 <c:forEach var="notice" items="${list}">
                     <tr>
                         <td>${notice.n_no}</td>
-                        <td>${notice.n_title}<a href="/notice/updateForm?n_no=${notice.n_no}">수정</a>
-                        <a href="/notice/deleteForm?n_no=${notice.n_no}">상품 삭제</a></td>
-                        <td>${notice.n_content}</td>
+                        <td><a href="/notice/view?n_no=${notice.n_no}">
+            ${notice.n_title}</a></td>
+                        <td>${notice.n_content}</td> <!-- 나중에 내용 지워야함 이유 : 상세보기에서 내용을 봐야함 -->
                         <td>${notice.n_reg_date}</td>
                         <td>${notice.n_count}</td>
                         <td>${notice.m_no}</td>

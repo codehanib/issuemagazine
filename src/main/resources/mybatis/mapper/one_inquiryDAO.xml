@@ -4,11 +4,17 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.springboot.issuemagazine.dao.one_inquiryDAO">
     <select id="one_inquiryList" resultType="com.springboot.issuemagazine.dto.one_inquiryDTO">
-        select * from one_inquiry order by oi_no desc
-    </select>
+    select o.oi_no, o.oi_title, o.oi_content, o.oi_answer, o.oi_reg_date, o.oi_status, o.m_no, m.m_id
+    	from one_inquiry o
+    	join member m on o.m_no = m.m_no
+    	order by o.oi_no desc
+	</select>
     <select id="one_inquiryView" resultType="com.springboot.issuemagazine.dto.one_inquiryDTO">
-        select * from one_inquiry where oi_no=#{oi_no}
-    </select>
+    select o.oi_no, o.oi_title, o.oi_content, o.oi_answer, o.oi_reg_date, o.oi_status, o.m_no, m.m_id
+    from one_inquiry o
+    join member m on o.m_no = m.m_no
+    where o.oi_no = #{oi_no}
+</select>
     <insert id="one_inquiryWrite">
         insert into one_inquiry(oi_no,oi_title,oi_content,oi_reg_date,oi_status,m_no)
          values(one_inquiry_seq.nextval,#{oi_title},#{oi_content},SYSDATE,'답변대기',#{m_no})

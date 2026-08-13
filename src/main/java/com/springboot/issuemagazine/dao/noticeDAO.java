@@ -16,6 +16,8 @@ public interface noticeDAO {
 	public int noticeWrite(noticeDTO dto);
 	// 공지정보수정
 	public int noticeUpdate(noticeDTO dto);
+	// 공지 조회수 증가
+	public int noticeCountUp(int n_no);
 	// 공지삭제
 	public int noticeDelete(int n_no);
 }

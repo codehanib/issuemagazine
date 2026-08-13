@@ -9,18 +9,17 @@
 <body>
  <div class="login-wrapper">
     <h3>후기수정</h3>
-    <form name="review" method="post" action="/review/update">
-        <input type="hidden" name="r_no" value="${dto.r_no}">
-        <input type="hidden" name="p_no" value="${dto.p_no}">
+    <form name="one_inquiry" method="post" action="/one_inquiry/update">
+        <input type="hidden" name="oi_no" value="${dto.oi_no}">
 
         <div class="form-row">
             <label class="title">제목</label>
-            <div class="input-content"><input type="text" name="r_title" value="${dto.r_title}"></div>
+            <div class="input-content"><input type="text" name="oi_title" value="${dto.oi_title}"></div>
         </div>
 
         <div class="form-row">
             <label class="title">내용</label>
-            <div class="input-content"><input type="text" name="r_content" value="${dto.r_content}"></div>
+            <div class="input-content"><input type="text" name="oi_content" value="${dto.oi_content}"></div>
         </div>
 
         <div class="form-row">
