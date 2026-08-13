@@ -1,0 +1,1091 @@
+/* =========================================================
+   제품 상세페이지 전용 CSS
+
+   product-detail-main 안쪽만 적용되도록 만들었음
+   → HEADER / NAV / FOOTER에는 영향 거의 없음
+========================================================= */
+
+
+/* =========================================================
+   1. 상세페이지 MAIN 전체
+========================================================= */
+
+.product-detail-main {
+    width: 1200px;
+    max-width: calc(100% - 60px);
+    margin: 35px auto 80px;
+    color: #222222;
+}
+
+
+/* =========================================================
+   2. 상품 상세 상단 영역
+
+   왼쪽 : 이미지
+   오른쪽 : 상품정보
+========================================================= */
+
+.product-detail-main .product-detail {
+    width: 100%;
+    display: grid;
+
+    /*
+        왼쪽 이미지 45%
+        오른쪽 상품정보 55%
+    */
+    grid-template-columns: 45% 55%;
+    gap: 50px;
+    padding: 30px;
+    background-color: #ffffff;
+    border: 1px solid #e7e7e7;
+    border-radius: 12px;
+}
+
+
+/* =========================================================
+   3. 왼쪽 상품 이미지 영역
+========================================================= */
+
+.product-detail-main .product-image-area {
+    width: 100%;
+}
+
+
+/* 큰 대표 이미지 */
+.product-detail-main .product-main-image {
+    width: 100%;
+
+    height: 520px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    background-color: #f7f7f7;
+
+    overflow: hidden;
+
+    border-radius: 5px;
+}
+
+
+/* 실제 이미지 */
+.product-detail-main .product-main-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+}
+
+
+/* =========================================================
+   4. 아래 작은 썸네일
+========================================================= */
+
+.product-detail-main .product-thumbnails {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.product-detail-main .thumbnail-list {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    width: 320px;
+    overflow: hidden;
+}
+/* 썸네일 이미지 */
+.product-detail-main .product-thumbnails img {
+    width: 70px;
+    height: 90px;
+
+    object-fit: cover;
+
+    border: 1px solid #dddddd;
+
+    cursor: pointer;
+
+    background-color: white;
+
+    transition: 0.2s;
+    
+    flex-shrink: 0;
+}
+
+
+/* 마우스 올렸을 때 */
+.product-detail-main .product-thumbnails img:hover {
+    border: 2px solid #0874df;
+}
+
+
+/* 좌우 버튼 */
+.product-detail-main .product-thumbnails button {
+    width: 35px;
+    height: 90px;
+
+    border: none;
+
+    background-color: transparent;
+
+    color: #777777;
+
+    font-size: 28px;
+
+    cursor: pointer;
+}
+
+
+.product-detail-main .product-thumbnails button:hover {
+    color: #0874df;
+}
+
+
+
+/* =========================================================
+   5. 오른쪽 상품 정보
+========================================================= */
+
+.product-detail-main .product-info-area {
+    width: 100%;
+
+    padding: 5px 10px;
+}
+
+
+
+/* =========================================================
+   6. 현재 위치
+   홈 > 패션/여성 > 상품명
+========================================================= */
+
+.product-detail-main .product-location {
+    margin-bottom: 20px;
+
+    color: #999999;
+
+    font-size: 12px;
+}
+
+
+.product-detail-main .product-location a {
+    color: #777777;
+}
+
+
+.product-detail-main .product-location a:hover {
+    color: #0874df;
+}
+
+
+
+/* =========================================================
+   7. 상품 제목
+========================================================= */
+
+.product-detail-main .product-title {
+    padding-bottom: 20px;
+
+    border-bottom: 1px solid #eeeeee;
+}
+
+
+.product-detail-main .product-title h1 {
+    font-size: 28px;
+
+    font-weight: 700;
+
+    color: #222222;
+}
+
+
+
+/* =========================================================
+   8. 가격 영역
+========================================================= */
+
+.product-detail-main .product-price {
+    padding: 22px 0;
+
+    border-bottom: 1px solid #eeeeee;
+}
+
+
+/* 정가 */
+.product-detail-main .original-price {
+    margin-bottom: 8px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+
+    color: #999999;
+}
+
+
+.product-detail-main .original-price span {
+    width: 80px;
+
+    color: #777777;
+
+    font-size: 13px;
+}
+
+
+.product-detail-main .original-price del {
+    color: #aaaaaa;
+
+    font-size: 14px;
+}
+
+
+/* 할인가 */
+.product-detail-main .sale-price {
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+}
+
+
+.product-detail-main .sale-price span {
+    width: 80px;
+
+    color: #555555;
+
+    font-size: 13px;
+}
+
+
+/* 가장 크게 보일 가격 */
+.product-detail-main .sale-price strong {
+    color: #0874df;
+
+    font-size: 26px;
+
+    font-weight: 700;
+}
+
+
+
+/* =========================================================
+   9. 상품 기본정보
+
+   출판사 / 카테고리 / 국가 / 코드 등
+========================================================= */
+
+.product-detail-main .product-basic-info {
+    padding: 20px 0;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    column-gap: 30px;
+
+    border-bottom: 1px solid #eeeeee;
+}
+
+
+/* 정보 한 줄 */
+.product-detail-main .info-item {
+    min-height: 38px;
+
+    display: grid;
+
+    grid-template-columns: 110px 1fr;
+
+    align-items: center;
+}
+
+
+/* 왼쪽 항목명 */
+.product-detail-main .info-title {
+    color: #777777;
+
+    font-size: 13px;
+}
+
+
+/* DB에서 나오는 실제 값 */
+.product-detail-main .info-value {
+    color: #333333;
+
+    font-size: 13px;
+
+    font-weight: 500;
+}
+
+
+
+/* =========================================================
+   10. 수량 / 구독기간 / 배송방법
+========================================================= */
+
+.product-detail-main .product-option-area {
+    padding: 20px 0;
+
+    display: grid;
+
+    grid-template-columns: 1fr 250px;
+
+    gap: 30px;
+}
+
+
+/* 왼쪽 옵션 */
+.product-detail-main .product-options {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+}
+
+
+/* 옵션 한 줄 */
+.product-detail-main .product-options > div {
+    display: grid;
+
+    grid-template-columns: 100px 1fr;
+
+    align-items: center;
+}
+
+
+.product-detail-main .product-options label {
+    color: #666666;
+
+    font-size: 13px;
+}
+
+
+/* 수량 */
+.product-detail-main .product-options input {
+    width: 90px;
+    height: 36px;
+
+    padding: 0 10px;
+
+    border: 1px solid #cccccc;
+
+    border-radius: 4px;
+
+    outline: none;
+}
+
+
+/* select */
+.product-detail-main .product-options select {
+    width: 100%;
+    max-width: 220px;
+
+    height: 36px;
+
+    padding: 0 10px;
+
+    border: 1px solid #cccccc;
+
+    border-radius: 4px;
+
+    background-color: white;
+
+    outline: none;
+}
+
+
+
+/* =========================================================
+   11. QR / E-BOOK 미리보기
+========================================================= */
+
+.product-detail-main .product-preview {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 15px;
+
+    border: 1px solid #eeeeee;
+
+    border-radius: 7px;
+
+    background-color: #fafafa;
+}
+
+
+.product-detail-main .product-preview img {
+    width: 80px;
+    height: 80px;
+
+    object-fit: contain;
+}
+
+
+.product-detail-main .product-preview strong {
+    display: block;
+
+    margin-bottom: 7px;
+
+    font-size: 13px;
+}
+
+
+.product-detail-main .product-preview p {
+    color: #777777;
+
+    font-size: 11px;
+
+    line-height: 1.6;
+}
+
+
+
+/* =========================================================
+   12. 바로구매 / 장바구니 / 관심상품
+========================================================= */
+
+.product-detail-main .product-buttons {
+    margin-top: 15px;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr 1fr;
+
+    gap: 10px;
+}
+
+
+/* 공통 */
+.product-detail-main .product-buttons button {
+    height: 52px;
+
+    border-radius: 5px;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+/* 바로구매 */
+.product-detail-main .buy-button {
+    border: 1px solid #0874df;
+
+    background-color: #0874df;
+
+    color: white;
+}
+
+
+.product-detail-main .buy-button:hover {
+    background-color: #0066c8;
+}
+
+
+/* 장바구니 */
+.product-detail-main .cart-button {
+    border: 1px solid #0874df;
+
+    background-color: white;
+
+    color: #0874df;
+}
+
+
+.product-detail-main .cart-button:hover {
+    background-color: #f1f7ff;
+}
+
+
+/* 관심상품 */
+.product-detail-main .wish-button {
+    border: 1px solid #bbbbbb;
+
+    background-color: white;
+
+    color: #555555;
+}
+
+
+.product-detail-main .wish-button:hover {
+    border-color: #0874df;
+
+    color: #0874df;
+}
+
+
+
+/* =========================================================
+   13. 상품 상세 TAB
+
+   상세정보 / 교환환불 / 후기 / Q&A / 관련상품
+========================================================= */
+
+.product-detail-main .product-tabs {
+    width: 100%;
+
+    margin-top: 35px;
+
+    display: grid;
+
+    grid-template-columns: repeat(5, 1fr);
+
+    border: 1px solid #dddddd;
+
+    border-bottom: none;
+}
+
+
+/* 탭 하나 */
+.product-detail-main .product-tabs a {
+    height: 55px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    border-right: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
+
+    background-color: #fafafa;
+
+    color: #555555;
+
+    font-size: 14px;
+}
+
+
+.product-detail-main .product-tabs a:last-child {
+    border-right: none;
+}
+
+
+/* 현재 선택된 상세정보 */
+.product-detail-main .product-tabs a.active {
+    background-color: white;
+
+    color: #0874df;
+
+    font-weight: bold;
+
+    border-top: 3px solid #0874df;
+
+    border-bottom: 1px solid white;
+}
+
+
+.product-detail-main .product-tabs a:hover {
+    color: #0874df;
+}
+
+
+
+/* =========================================================
+   14. 상품 상세 내용
+========================================================= */
+
+.product-detail-main .product-description {
+    width: 100%;
+
+    padding: 45px 30px;
+
+    border: 1px solid #e5e5e5;
+
+    border-top: none;
+
+    background-color: white;
+}
+
+
+
+/* =========================================================
+   15. DB 상세 이미지 목록
+
+   이미지가 1장이든 10장이든
+   세로로 계속 출력
+========================================================= */
+
+.product-detail-main .detail-image-list {
+    width: 100%;
+
+    text-align: center;
+}
+
+
+/* DB에서 반복되는 이미지 */
+.product-detail-main .detail-image-list img {
+    display: block;
+
+    width: auto;
+    max-width: 100%;
+
+    height: auto;
+
+    margin: 0 auto 20px;
+}
+
+
+/*
+   예전에 detail-image class를 사용한 경우도
+   같이 작동하도록 추가
+*/
+.product-detail-main .detail-image {
+    width: 100%;
+
+    text-align: center;
+}
+
+
+.product-detail-main .detail-image img {
+    max-width: 100%;
+
+    height: auto;
+
+    margin: 0 auto;
+}
+
+
+
+/* =========================================================
+   16. DB 상세 텍스트
+========================================================= */
+
+.product-detail-main .detail-text {
+    width: 100%;
+
+    margin-top: 35px;
+
+    padding: 25px;
+
+    color: #444444;
+
+    font-size: 14px;
+
+    line-height: 1.9;
+
+
+    /*
+       DB에 저장된 줄바꿈 유지
+    */
+    white-space: pre-line;
+}
+
+
+.product-detail-main .detail-text h2 {
+    margin-bottom: 20px;
+
+    color: #222222;
+
+    font-size: 24px;
+}
+
+
+.product-detail-main .detail-text p {
+    margin-bottom: 15px;
+}
+
+
+.product-detail-main .detail-text ul {
+    margin: 20px 0 0 20px;
+}
+
+
+
+/* =========================================================
+   17. 구독 / 환불 / 배송 안내
+========================================================= */
+
+.product-detail-main .product-guide {
+    width: 100%;
+
+    margin-top: 60px;
+
+    border-top: 2px solid #555555;
+
+    border-left: 1px solid #dddddd;
+
+    border-right: 1px solid #dddddd;
+
+    background-color: white;
+}
+
+
+
+/* =========================================================
+   18. 안내 상단 설명
+========================================================= */
+
+.product-detail-main .guide-intro {
+    padding: 25px 30px;
+
+    border-bottom: 1px solid #dddddd;
+
+    font-size: 13px;
+
+    line-height: 1.8;
+
+    color: #444444;
+}
+
+
+.product-detail-main .guide-intro p + p {
+    margin-top: 8px;
+}
+
+
+
+/* =========================================================
+   19. 안내 한 줄
+
+   왼쪽 제목 / 오른쪽 내용
+========================================================= */
+
+.product-detail-main .guide-row {
+    display: grid;
+
+    grid-template-columns: 160px 1fr;
+
+    border-bottom: 1px solid #dddddd;
+}
+
+
+
+/* =========================================================
+   20. 왼쪽 안내 제목
+========================================================= */
+
+.product-detail-main .guide-title {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 25px 15px;
+
+    background-color: #f7f7f7;
+
+    border-right: 1px solid #dddddd;
+
+    text-align: center;
+}
+
+
+.product-detail-main .guide-title h3 {
+    font-size: 14px;
+
+    font-weight: 500;
+
+    line-height: 1.6;
+
+    color: #555555;
+}
+
+
+
+/* =========================================================
+   21. 오른쪽 상세 안내
+========================================================= */
+
+.product-detail-main .guide-content {
+    padding: 25px 30px;
+}
+
+
+/* 안내 안의 각 내용 */
+.product-detail-main .guide-section {
+    margin-bottom: 25px;
+}
+
+
+.product-detail-main .guide-section:last-child {
+    margin-bottom: 0;
+}
+
+
+.product-detail-main .guide-section h4 {
+    margin-bottom: 10px;
+
+    font-size: 14px;
+
+    color: #222222;
+}
+
+
+.product-detail-main .guide-section p {
+    margin-bottom: 6px;
+
+    color: #444444;
+
+    font-size: 12px;
+
+    line-height: 1.8;
+}
+
+
+
+/* =========================================================
+   22. 후기 / Q&A 공통
+========================================================= */
+
+.product-detail-main .product-review,
+.product-detail-main .product-qna {
+    margin-top: 60px;
+}
+
+
+/*
+   상세페이지 안에 있는 section-title만 적용
+   메인페이지 section-title에는 영향 없음
+*/
+.product-detail-main .section-title {
+    min-height: 55px;
+
+    margin-bottom: 0;
+
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    border-bottom: 2px solid #333333;
+}
+
+
+.product-detail-main .section-title h2 {
+    font-size: 20px;
+
+    color: #222222;
+}
+
+
+.product-detail-main .section-title button {
+    padding: 9px 16px;
+
+    border: 1px solid #cccccc;
+
+    background-color: white;
+
+    border-radius: 4px;
+}
+
+
+.product-detail-main .section-title button:hover {
+    border-color: #0874df;
+
+    color: #0874df;
+}
+
+
+
+/* 후기 없는 경우 */
+.product-detail-main .empty-content {
+    min-height: 110px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    border-bottom: 1px solid #dddddd;
+
+    color: #999999;
+
+    font-size: 13px;
+}
+
+
+
+/* =========================================================
+   23. 관련상품
+========================================================= */
+
+.product-detail-main .related-product {
+    margin-top: 70px;
+}
+
+
+
+/* 관련 상품 제목 */
+.product-detail-main .related-product .section-title {
+    margin-bottom: 25px;
+}
+
+
+
+/* 관련상품 목록 */
+.product-detail-main .related-product-list {
+    display: grid;
+
+    grid-template-columns: repeat(5, 1fr);
+
+    gap: 22px;
+}
+
+
+
+/* 관련 상품 하나 */
+.product-detail-main .related-item {
+    padding: 12px;
+
+    border: 1px solid #eeeeee;
+
+    background-color: white;
+
+    text-align: center;
+
+    transition: 0.2s;
+}
+
+
+.product-detail-main .related-item:hover {
+    transform: translateY(-4px);
+
+    box-shadow: 0 7px 18px rgba(0, 0, 0, 0.08);
+}
+
+
+
+/* 관련상품 이미지 */
+.product-detail-main .related-item img {
+    width: 100%;
+    height: 190px;
+
+    object-fit: contain;
+
+    margin-bottom: 12px;
+}
+
+
+.product-detail-main .related-item p {
+    color: #444444;
+
+    font-size: 13px;
+}
+
+
+
+/* =========================================================
+   24. 태블릿 / 화면이 조금 작아질 때
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .product-detail-main {
+        width: calc(100% - 40px);
+    }
+
+
+    /* 상품 상단을 한 줄 → 세로 배치 */
+    .product-detail-main .product-detail {
+        grid-template-columns: 1fr;
+    }
+
+
+    .product-detail-main .product-main-image {
+        height: 500px;
+    }
+
+
+    /* 상품정보 2열 → 1열 */
+    .product-detail-main .product-basic-info {
+        grid-template-columns: 1fr;
+    }
+
+
+    /* 주문 옵션 */
+    .product-detail-main .product-option-area {
+        grid-template-columns: 1fr;
+    }
+
+
+    /* 관련상품 */
+    .product-detail-main .related-product-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+
+
+/* =========================================================
+   25. 모바일 정도 화면
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .product-detail-main {
+        width: calc(100% - 20px);
+
+        margin-top: 20px;
+    }
+
+
+    .product-detail-main .product-detail {
+        padding: 15px;
+
+        gap: 25px;
+    }
+
+
+    .product-detail-main .product-main-image {
+        height: 400px;
+    }
+
+
+    /* 구매버튼 세로 */
+    .product-detail-main .product-buttons {
+        grid-template-columns: 1fr;
+    }
+
+
+    /* 탭은 가로 스크롤 가능 */
+    .product-detail-main .product-tabs {
+        display: flex;
+
+        overflow-x: auto;
+    }
+
+
+    .product-detail-main .product-tabs a {
+        min-width: 150px;
+
+        flex-shrink: 0;
+    }
+
+
+    /* 환불 안내 */
+    .product-detail-main .guide-row {
+        grid-template-columns: 1fr;
+    }
+
+
+    .product-detail-main .guide-title {
+        border-right: none;
+
+        border-bottom: 1px solid #dddddd;
+
+        justify-content: flex-start;
+
+        text-align: left;
+    }
+
+
+    /* 관련상품 */
+    .product-detail-main .related-product-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
