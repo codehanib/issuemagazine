@@ -286,7 +286,7 @@
 
     display: grid;
 
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
 
     column-gap: 30px;
 
@@ -673,16 +673,19 @@
     padding: 25px;
 
     color: #444444;
+    
+    text-align: center;
 
     font-size: 14px;
 
-    line-height: 1.9;
-
+    line-height: 2.5;
 
     /*
        DB에 저장된 줄바꿈 유지
     */
     white-space: pre-line;
+    
+    word-break: break-all;
 }
 
 

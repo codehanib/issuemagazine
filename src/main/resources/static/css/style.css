@@ -1040,7 +1040,7 @@ main {
 
 
 /* =========================================================
-   13. 공지 / 배송안내 / 문의 / FAQ
+   13. 공지 / 배송안내 / 문의
 ========================================================= */
 
 .info-area {
@@ -1048,7 +1048,7 @@ main {
 
     display: grid;
 
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
 
     border: 1px solid #e8ebef;
 

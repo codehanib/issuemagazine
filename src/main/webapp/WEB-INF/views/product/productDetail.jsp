@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -54,6 +55,13 @@
             =============================== -->
             <div class="product-info-area">
 				<form action="/payment" method="post" name="productDetail">
+                    <!-- 회원 정보 -->
+				    <input type="hidden"
+				           name="m_no"
+				           value="${product.p_no}">
+				    <!-- 상품 이미지 -->
+				    <input type="hidden" name="p_image"
+				    	value="${product.p_image}">
                     <!-- 상품 번호 -->
 				    <input type="hidden"
 				           name="p_no"
@@ -62,10 +70,6 @@
 				    <input type="hidden"
 				           name="p_name"
 				           value="${product.p_name}">
-				    <!-- 정가 -->
-				    <input type="hidden"
-				           name="p_price"
-				           value="${product.p_price}">
 				    <!-- 할인가 -->
 				    <input type="hidden"
 				           name="p_price2"
@@ -88,20 +92,26 @@
 
                 <!-- 가격 -->
                 <div class="product-price">
-                   판매가 : ${product.p_price2}원
-                   <br>
-                   정가 : ${product.p_price}원
+                	<div class="sale-price">
+	                   <span>판매가 : </span><strong>${product.p_price2}원</strong>
+					</div>
+					<div class="original-price">
+	                   <span>정가 : </span><del>${product.p_price}원</del>
+	                </div>
                 </div>
-
                 <!-- ==========================
                     기본 상품 정보
                 =========================== -->
                 <div class="product-basic-info">
-                    발행사/형태 : ${product.p_publisher}
-			        <br>
-			        발행국/언어 : ${product.p_country}
-			        <br>
-			        잡지코드 : ${product.p_code}
+                <div class="info-item">
+                    <span class="info-title">발행사/형태 :</span>
+                    <span class="info-value">${product.p_publisher}</span></div>
+                <div class="info-item">
+			        <span class="info-title">발행국/언어 :</span>
+			        <span class="info-value">${product.p_country}</span></div>
+			    <div class="info-item">
+			        <span class="info-title">잡지코드 :</span>
+			        <span class="info-value">${product.p_code}</span></div>
                 </div>
                 <!-- ==========================
                     주문 옵션
@@ -153,11 +163,13 @@
                         바로구매
                     </button>
                     <button type="button"
-                            class="cart-button">
+                            class="cart-button"
+                            onclick="add_cart()">
                         장바구니
                     </button>
                     <button type="button"
-                            class="wish-button">
+                            class="wish-button"
+                            onclick="add_wish()">
                         관심상품
                     </button>
 				</div>
@@ -193,14 +205,21 @@
 
             <!-- DB 상세 이미지 출력 영역 -->
                 <div class="detail-image-list">
-
+				<img src="${productDetails[0].pdi_image}">
                 </div>
 
             <!-- DB 상세 텍스트 출력 영역 -->
                 <div class="detail-text">
-
+				<p>
+				 ${fn:substring(productDetails[0].pd_content, 48, fn:length(productDetails[0].pd_content))}
+				</p>
                 </div>
-
+				
+				<div class="detail-image-list">
+				<c:forEach var="detail" items="${productDetails}" begin="1">
+    				<img src="${detail.pdi_image}">
+				</c:forEach>
+                </div>
         </section>
 
         <!-- =========================================
@@ -477,9 +496,11 @@
                 <h2>
                     상품 사용 후기
                 </h2>
+                <form action="/review/writeForm" method="post" name="goReview">
                 <button type="button">
                     사용후기 쓰기
                 </button>
+                </form>
             </div>
             <div class="empty-content">
                 등록된 상품 후기가 없습니다.
@@ -539,6 +560,11 @@
     // ==========================================
 
     updateThumbnails();
+    
+    function add_cart(){};
+    
+    function add_wish(){};
+    
 	</script>
 </body>
 </html>
