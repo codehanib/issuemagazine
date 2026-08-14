@@ -64,9 +64,8 @@
 				<input type="text" name="m_tel3" size="4" maxlength="4" value="${fn:split(updateForm.m_tel,'-')[2] }"></td>
 		</tr>
 	</table>
-	
-		<input type="submit" value="수정하기" onclick="return check()">
 		<input type="reset" value="수정취소">
+		<input type="submit" value="수정하기" onclick="return check()">
 </form>
 </body>
 </html>

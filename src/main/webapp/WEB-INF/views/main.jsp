@@ -68,6 +68,9 @@
         </div>
 
         <div >
+            <a href="/admin/memberList">
+                <input type="button" value="회원관리">
+            </a>
             <a href="/logout">
                 <input type="button" value="로그아웃">
             </a>

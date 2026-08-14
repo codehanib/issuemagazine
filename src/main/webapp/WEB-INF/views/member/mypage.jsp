@@ -204,7 +204,7 @@ body {
         </a>
 
         <!-- 관심상품 -->
-        <a href="/member/wishlist" class="menu-item">
+        <a href="/member/wishlistList" class="menu-item">
             <div class="menu-title">
                 wishlist
                 <span>관심상품</span>
@@ -230,7 +230,7 @@ body {
         </a>
 
         <!-- 1:1 문의 -->
-        <a href="/member/inquiryList" class="menu-item">
+       <a href="/one_inquiry/list" class="menu-item">
             <div class="menu-title">
                 inquiry
                 <span>1:1 문의</span>
@@ -243,7 +243,7 @@ body {
         </a>
 
     </div>
-
+         (나중에 주문 내역 안으로 옮기기)<a href="/member/shipmentMemberList">배송정보확인</a>
 </div>
 
 </body>

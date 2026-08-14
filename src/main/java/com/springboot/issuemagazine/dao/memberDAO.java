@@ -23,4 +23,7 @@ public interface memberDAO {
 	
 	//회원 탈퇴
 	public int memberDelete(String m_id);
+	
+	//관리자가 회원 삭제
+	public int adminMemberDelete(String m_no);
 }

@@ -1,5 +1,7 @@
 package com.springboot.issuemagazine.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -106,11 +108,21 @@ public class memberController {
 		return "member/memberviewForm";
 	}
 	
-	@RequestMapping("/member/memberdelete")
-	public String ownerDelete(HttpServletRequest request) {
-		String m_id = request.getParameter("m_id");
-		dao.memberDelete(m_id);
-		return "redirect:/logout";
+	//회원본인이 회원 탈퇴
+	@RequestMapping("/member/memberDelete")
+	public String memberDelete(HttpServletRequest request) {
+	    String m_id = request.getParameter("m_id");
+	    dao.memberDelete(m_id);
+	    return "redirect:/logout";
+	}
+	
+	//관리자가 회원목록에서 회원 삭제
+	@RequestMapping("/admin/memberDelete")
+	public String adminMemberDelete(HttpServletRequest request) {
+	    String m_no = request.getParameter("m_no");
+	    dao.adminMemberDelete(m_no);
+
+	    return "redirect:/admin/memberList";
 	}
 	
 	// 비밀번호 확인폼 (수정/탈퇴 공용)
@@ -206,6 +218,21 @@ public class memberController {
 		@RequestMapping("/member/mypage")
 		public String mymage() {
 		    return "member/mypage";
+		}
+		
+		
+		
+		
+		
+		
+		@RequestMapping("/admin/memberList")
+		public String memberList(Model model) {
+
+		    List<memberDTO> memberList = dao.memberList();
+
+		    model.addAttribute("memberList", memberList);
+
+		    return "admin/memberList";
 		}
 		
 }
