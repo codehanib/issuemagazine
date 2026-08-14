@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.springboot.issuemagazine.dao.IproductDAO;
 import com.springboot.issuemagazine.dto.productDTO;
@@ -33,7 +34,6 @@ public class productController {
     @RequestMapping("/product/detail")
     public String productDetail(@RequestParam("p_no") int p_no,
                                 Model model) {
-
         // 상품 기본정보
         productDTO product =
                 productDAO.productdetail(p_no);
@@ -47,4 +47,7 @@ public class productController {
 
         return "productDetail";
     }
+	    
+
+    
 }

@@ -1,0 +1,1303 @@
+/* =========================================================
+   0. 전체 기본 설정
+========================================================= */
+
+/* 모든 태그 기본 여백 제거 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* 홈페이지 전체 */
+body {
+    font-family: Arial, "Noto Sans KR", sans-serif;
+
+    color: #222222;
+    background-color: #ffffff;
+
+    font-size: 14px;
+}
+
+
+/* 링크 기본 설정 */
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+/* 이미지 기본 설정 */
+img {
+    display: block;
+
+    max-width: 100%;
+}
+
+
+/* 버튼 기본 설정 */
+button {
+    font-family: inherit;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   1. HEADER - 최상단 안내바
+========================================================= */
+
+.top-bar {
+    height: 40px;
+
+    background-color: #f4f8fd;
+
+    border-bottom: 1px solid #e8edf3;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+
+    /*
+        화면 가운데 1200px 영역에
+        내용을 맞추기 위한 여백
+    */
+    padding-left: max(30px, calc((100% - 1200px) / 2));
+    padding-right: max(30px, calc((100% - 1200px) / 2));
+
+    font-size: 12px;
+
+    color: #666666;
+}
+
+
+/* 신규회원 쿠폰 링크 */
+.top-bar > div:first-child a {
+    color: #0874df;
+
+    font-weight: bold;
+
+    margin-right: 12px;
+}
+
+
+/* 최상단 오른쪽 링크 */
+.top-bar > div:last-child a {
+    margin: 0 7px;
+
+    transition: 0.2s;
+}
+
+
+/* 마우스 올렸을 때 */
+.top-bar > div:last-child a:hover {
+    color: #0874df;
+}
+
+
+
+/* =========================================================
+   2. HEADER - 메인 헤더
+========================================================= */
+
+.main-header {
+    width: 1200px;
+    max-width: calc(100% - 60px);
+
+    height: 120px;
+
+    margin: 0 auto;
+
+
+    /*
+        검색 / 로고 / 회원메뉴
+        3칸으로 나눈다
+    */
+    display: grid;
+
+    grid-template-columns: 1fr 1fr 1fr;
+
+    align-items: center;
+}
+
+
+
+/* =========================================================
+   2-1. 검색창
+========================================================= */
+
+.search-area {
+    width: 260px;
+    height: 42px;
+
+    border: 1px solid #d9dee5;
+
+    border-radius: 25px;
+
+    overflow: hidden;
+
+    display: flex;
+
+    background-color: #ffffff;
+}
+
+
+/* 검색 input */
+.search-area input {
+    flex: 1;
+
+    min-width: 0;
+
+    border: none;
+    outline: none;
+
+    padding-left: 18px;
+
+    font-size: 14px;
+
+    color: #333333;
+
+    background-color: transparent;
+}
+
+
+/* 검색창 안내 문구 */
+.search-area input::placeholder {
+    color: #aaaaaa;
+}
+
+
+/* 검색 버튼 */
+.search-area button {
+    width: 65px;
+
+    border: none;
+
+    background-color: #ffffff;
+
+    color: #0874df;
+
+    font-size: 13px;
+
+    font-weight: bold;
+}
+
+
+/* 검색버튼 hover */
+.search-area button:hover {
+    background-color: #f3f7fc;
+}
+
+
+
+/* =========================================================
+   2-2. 로고
+========================================================= */
+
+.logo {
+    text-align: center;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* 로고 이미지 */
+.logo img {
+    max-width: 240px;
+    max-height: 75px;
+
+    margin: 0 auto;
+}
+
+
+
+/* =========================================================
+   2-3. 로그인 / 회원가입 / 장바구니
+========================================================= */
+
+.member-menu {
+    display: flex;
+
+    justify-content: flex-end;
+    align-items: center;
+
+    gap: 22px;
+
+    font-size: 14px;
+
+    color: #333333;
+}
+
+
+.member-menu a {
+    transition: 0.2s;
+}
+
+
+.member-menu a:hover {
+    color: #0874df;
+}
+
+
+
+/* =========================================================
+   3. NAV - 파란색 메뉴바
+========================================================= */
+
+.nav {
+    width: 100%;
+    height: 56px;
+
+    background-color: #0874df;
+
+
+    display: flex;
+
+    align-items: center;
+
+
+    /*
+        main-header의 1200px 선과 맞춘다
+    */
+    padding-left: max(30px, calc((100% - 1200px) / 2));
+    padding-right: max(30px, calc((100% - 1200px) / 2));
+
+    position: relative;
+
+    z-index: 100;
+}
+
+
+
+/* =========================================================
+   3-1. 전체 카테고리
+========================================================= */
+
+.all-category {
+    width: 210px;
+    height: 56px;
+
+    position: relative;
+
+    flex-shrink: 0;
+}
+
+
+/* 햄버거 + 전체 카테고리 */
+.category-button {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 0 20px;
+
+    color: #ffffff;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.category-button:hover {
+    background-color: #0066c8;
+}
+
+
+
+/* =========================================================
+   3-2. 햄버거 아이콘
+========================================================= */
+
+.hamburger {
+    width: 23px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+
+/* 햄버거 선 하나 */
+.hamburger span {
+    display: block;
+
+    width: 23px;
+    height: 2px;
+
+    background-color: #ffffff;
+}
+
+
+
+/* =========================================================
+   3-3. 펼쳐지는 전체 카테고리
+========================================================= */
+
+.category-menu {
+    position: absolute;
+
+    top: 56px;
+    left: 0;
+
+    width: 270px;
+
+    background-color: #ffffff;
+
+    border: 1px solid #e0e0e0;
+
+    border-top: none;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+
+
+    /*
+        처음에는 숨김
+    */
+    display: none;
+
+    z-index: 1000;
+}
+
+
+/*
+    나중에 JavaScript가
+    open class를 붙이면 보임
+*/
+.category-menu.open {
+    display: block;
+}
+
+
+/* 카테고리 하나 */
+.category-menu a {
+    display: block;
+
+    padding: 15px 20px;
+
+    border-bottom: 1px solid #eeeeee;
+
+    color: #333333;
+
+    font-size: 14px;
+
+    transition: 0.2s;
+}
+
+
+.category-menu a:last-child {
+    border-bottom: none;
+}
+
+
+.category-menu a:hover {
+    background-color: #f3f7fd;
+
+    color: #0874df;
+
+    padding-left: 25px;
+}
+
+
+
+/* =========================================================
+   3-4. 오른쪽 메인 메뉴
+========================================================= */
+
+.main-menu {
+    flex: 1;
+
+    height: 56px;
+
+    display: flex;
+
+    align-items: center;
+}
+
+
+/* 메뉴 하나하나 */
+.main-menu a {
+    flex: 1;
+
+    height: 56px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    color: #ffffff;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    white-space: nowrap;
+
+    transition: 0.2s;
+}
+
+
+.main-menu a:hover {
+    background-color: #0066c8;
+}
+
+
+
+/* =========================================================
+   4. MAIN 전체
+========================================================= */
+
+main {
+    width: 1200px;
+
+    max-width: calc(100% - 60px);
+
+    margin: 0 auto;
+}
+
+
+
+/* =========================================================
+   5. 메인 자동 배너
+========================================================= */
+
+.main-banner {
+    width: 100%;
+
+    height: 400px;
+
+    margin-top: 35px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: 14px;
+
+    background: linear-gradient(
+        135deg,
+        #eaf5ff,
+        #d8ecff
+    );
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+
+/* 각 배너 */
+.slide {
+    width: 100%;
+    height: 100%;
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+}
+
+
+/*
+    현재는 첫 번째 것만 화면에 보이게 한다.
+    나중에 JavaScript에서 변경
+*/
+.slide:not(:first-child) {
+    display: none;
+}
+
+
+/* 배너 이미지 */
+.slide img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+
+
+/* =========================================================
+   6. 분야별 카테고리 아이콘
+========================================================= */
+
+.category-icons {
+    width: 100%;
+
+    margin: 35px 0 70px;
+
+    padding: 25px 15px;
+
+    background-color: #ffffff;
+
+    border: 1px solid #edf0f4;
+
+    border-radius: 12px;
+
+    display: grid;
+
+    grid-template-columns: repeat(9, 1fr);
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+}
+
+
+/* 카테고리 하나 */
+.category-icons > a {
+    min-height: 90px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 10px;
+
+    text-align: center;
+
+    border-right: 1px solid #eeeeee;
+
+    transition: 0.2s;
+}
+
+
+/* 마지막 오른쪽 선 제거 */
+.category-icons > a:last-child {
+    border-right: none;
+}
+
+
+/* 아이콘 */
+.category-icons span {
+    font-size: 28px;
+}
+
+
+/* 카테고리 이름 */
+.category-icons p {
+    font-size: 12px;
+
+    color: #555555;
+
+    line-height: 1.4;
+}
+
+
+/* hover */
+.category-icons > a:hover {
+    color: #0874df;
+
+    transform: translateY(-4px);
+}
+
+
+.category-icons > a:hover p {
+    color: #0874df;
+}
+
+
+
+/* =========================================================
+   7. 공통 SECTION 설정
+========================================================= */
+
+.recommend-magazine,
+.category-best,
+.digital-magazine {
+    margin-bottom: 90px;
+}
+
+
+
+/* =========================================================
+   8. 각 영역의 제목
+========================================================= */
+
+.section-title {
+    min-height: 55px;
+
+    margin-bottom: 28px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 25px;
+
+    border-bottom: 2px solid #222222;
+}
+
+
+/* 제목 */
+.section-title h2 {
+    font-size: 26px;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+
+    padding-bottom: 15px;
+}
+
+
+/* 더보기 */
+.section-title > div:last-child {
+    margin-left: auto;
+}
+
+
+.section-title > div:last-child a {
+    color: #777777;
+
+    font-size: 13px;
+
+    transition: 0.2s;
+}
+
+
+.section-title > div:last-child a:hover {
+    color: #0874df;
+}
+
+
+
+/* =========================================================
+   9. 일반 상품 목록
+========================================================= */
+
+.product-list {
+    display: grid;
+
+    grid-template-columns: repeat(5, 1fr);
+
+    gap: 24px;
+}
+
+
+/*
+    추천 매거진은 4개 상품이므로
+    4칸으로 표시
+*/
+.recommend-magazine .product-list {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+
+
+/* =========================================================
+   10. 상품 카드
+========================================================= */
+
+.product {
+    min-width: 0;
+
+    background-color: #ffffff;
+
+    border: 1px solid #eeeeee;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    padding: 14px;
+
+    transition: 0.25s;
+}
+
+
+/* 상품에 마우스 올리기 */
+.product:hover {
+    transform: translateY(-5px);
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.10);
+
+    border-color: #d9e6f5;
+}
+
+
+/* 상품 이미지 링크 */
+.product > a:first-child {
+    width: 100%;
+
+    height: 270px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+
+    background-color: #f6f7f9;
+
+    margin-bottom: 16px;
+
+    border-radius: 7px;
+}
+
+
+/* 상품 이미지 */
+.product > a:first-child img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    transition: 0.3s;
+}
+
+
+.product:hover > a:first-child img {
+    transform: scale(1.03);
+}
+
+
+/* 상품 이름 */
+.product > a:nth-of-type(2) {
+    display: block;
+
+    min-height: 42px;
+
+    margin-bottom: 8px;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    line-height: 1.5;
+
+    color: #333333;
+}
+
+
+/* 가격 */
+.product p {
+    margin: 10px 0 15px;
+
+    font-size: 17px;
+
+    color: #0874df;
+
+    font-weight: bold;
+}
+
+
+/* 구매하기 */
+.product > a:nth-of-type(3) {
+    width: calc(50% - 4px);
+    height: 35px;
+
+    display: inline-flex;
+
+    justify-content: center;
+    align-items: center;
+
+    border: 1px solid #0874df;
+
+    border-radius: 5px;
+
+    color: #0874df;
+
+    font-size: 12px;
+}
+
+
+/* 장바구니 */
+.product button {
+    width: calc(50% - 4px);
+    height: 35px;
+
+    margin-left: 4px;
+
+    border: none;
+
+    border-radius: 5px;
+
+    background-color: #0874df;
+
+    color: white;
+
+    font-size: 12px;
+}
+
+
+.product button:hover {
+    background-color: #0066c8;
+}
+
+
+
+/* =========================================================
+   11. 분야별 베스트 카테고리 버튼
+========================================================= */
+
+.category-best .section-title {
+    flex-wrap: wrap;
+
+    padding-bottom: 12px;
+}
+
+
+/* 카테고리 버튼 부모 */
+.category-buttons {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 7px;
+
+    flex: 1;
+}
+
+
+/* 카테고리 버튼 */
+.category-buttons button {
+    padding: 7px 13px;
+
+    border: 1px solid #dddddd;
+
+    border-radius: 20px;
+
+    background-color: #ffffff;
+
+    color: #555555;
+
+    font-size: 11px;
+
+    transition: 0.2s;
+}
+
+
+.category-buttons button:hover {
+    border-color: #0874df;
+
+    background-color: #0874df;
+
+    color: #ffffff;
+}
+
+
+/* 첫 번째 카테고리 활성화 느낌 */
+.category-buttons button:first-child {
+    background-color: #0874df;
+
+    border-color: #0874df;
+
+    color: #ffffff;
+}
+
+
+
+/* =========================================================
+   12. 디지털 매거진
+========================================================= */
+
+.digital-product-list {
+    display: grid;
+
+    grid-template-columns: repeat(5, 1fr);
+
+    gap: 24px;
+}
+
+
+/* 디지털 상품 */
+.digital-product {
+    min-width: 0;
+
+    padding: 15px;
+
+    background-color: #ffffff;
+
+    border-radius: 12px;
+
+    border: 1px solid #eeeeee;
+
+    transition: 0.25s;
+}
+
+
+.digital-product:hover {
+    transform: translateY(-5px);
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.10);
+}
+
+
+/* 디지털 이미지 */
+.digital-product > a:first-child {
+    height: 250px;
+
+    padding: 13px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    background-color: #252525;
+
+    border: 6px solid #111111;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    margin-bottom: 15px;
+}
+
+
+/* 내부 이미지 */
+.digital-product > a:first-child img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+}
+
+
+/* 상품 이름 */
+.digital-product > a:nth-of-type(2) {
+    display: block;
+
+    min-height: 40px;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    line-height: 1.5;
+}
+
+
+/* 가격 */
+.digital-product p {
+    margin: 8px 0 14px;
+
+    color: #0874df;
+
+    font-size: 16px;
+
+    font-weight: bold;
+}
+
+
+/* 구매하기 */
+.digital-product > a:nth-of-type(3) {
+    width: calc(50% - 4px);
+    height: 34px;
+
+    display: inline-flex;
+
+    justify-content: center;
+    align-items: center;
+
+    border: 1px solid #0874df;
+
+    border-radius: 5px;
+
+    color: #0874df;
+
+    font-size: 11px;
+}
+
+
+/* 장바구니 */
+.digital-product button {
+    width: calc(50% - 4px);
+    height: 34px;
+
+    margin-left: 4px;
+
+    border: none;
+
+    border-radius: 5px;
+
+    background-color: #0874df;
+
+    color: white;
+
+    font-size: 11px;
+}
+
+
+
+/* =========================================================
+   13. 공지 / 배송안내 / 문의 / FAQ
+========================================================= */
+
+.info-area {
+    margin-bottom: 70px;
+
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    border: 1px solid #e8ebef;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    background-color: #fafbfc;
+}
+
+
+/* 각각의 박스 */
+.info-area > div {
+    min-height: 180px;
+
+    padding: 28px 25px;
+
+    border-right: 1px solid #e8ebef;
+
+    color: #666666;
+
+    line-height: 1.8;
+}
+
+
+/* 마지막 오른쪽 선 제거 */
+.info-area > div:last-child {
+    border-right: none;
+}
+
+
+/* 제목 */
+.info-area h3 {
+    margin-bottom: 15px;
+
+    color: #222222;
+
+    font-size: 18px;
+}
+
+
+/* 링크 */
+.info-area a {
+    display: block;
+
+    margin-top: 8px;
+
+    font-size: 12px;
+
+    color: #666666;
+
+    transition: 0.2s;
+}
+
+
+.info-area a:hover {
+    color: #0874df;
+}
+
+
+
+/* =========================================================
+   14. FOOTER
+========================================================= */
+
+.footer {
+    width: 100%;
+
+    background-color: #f4f5f7;
+
+    border-top: 1px solid #e0e0e0;
+
+    padding: 45px max(30px, calc((100% - 1200px) / 2)) 20px;
+
+
+    display: grid;
+
+    grid-template-columns: 220px 1fr 380px;
+
+    column-gap: 40px;
+
+    color: #777777;
+
+    font-size: 12px;
+
+    line-height: 1.9;
+}
+
+
+
+/* =========================================================
+   14-1. Footer 로고
+========================================================= */
+
+.footer-logo {
+    display: flex;
+
+    align-items: flex-start;
+}
+
+
+.footer-logo img {
+    max-width: 190px;
+
+    max-height: 80px;
+}
+
+
+
+/* =========================================================
+   14-2. 회사정보
+========================================================= */
+
+.footer-company h3 {
+    margin-bottom: 10px;
+
+    font-size: 18px;
+
+    color: #222222;
+}
+
+
+.footer-company b {
+    color: #0874df;
+
+    font-size: 15px;
+}
+
+
+
+/* =========================================================
+   14-3. Footer 이용안내
+========================================================= */
+
+.footer-menu {
+    text-align: right;
+}
+
+
+.footer-menu > div:first-child {
+    display: flex;
+
+    justify-content: flex-end;
+
+    flex-wrap: wrap;
+
+    gap: 16px;
+
+    margin-bottom: 25px;
+}
+
+
+.footer-menu a {
+    color: #444444;
+
+    font-weight: bold;
+}
+
+
+.footer-menu a:hover {
+    color: #0874df;
+}
+
+
+/* 안내 로고 */
+.footer-menu img {
+    max-width: 250px;
+
+    margin-left: auto;
+}
+
+
+
+/* =========================================================
+   14-4. Copyright
+========================================================= */
+
+.footer-bottom {
+    grid-column: 1 / -1;
+
+    margin-top: 35px;
+
+    padding-top: 18px;
+
+    border-top: 1px solid #dddddd;
+
+    text-align: center;
+
+    color: #999999;
+
+    font-size: 11px;
+}
+
+
+
+/* =========================================================
+   15. 화면이 조금 작을 때
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .main-header,
+    main {
+        width: calc(100% - 40px);
+    }
+
+
+    .category-icons {
+        grid-template-columns: repeat(5, 1fr);
+    }
+
+
+    .category-icons > a {
+        border-bottom: 1px solid #eeeeee;
+    }
+
+
+    .product-list,
+    .recommend-magazine .product-list,
+    .digital-product-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+
+    .info-area {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+
+    .footer {
+        grid-template-columns: 1fr 2fr;
+    }
+
+
+    .footer-menu {
+        grid-column: 1 / -1;
+
+        text-align: left;
+
+        margin-top: 30px;
+    }
+
+
+    .footer-menu > div:first-child {
+        justify-content: flex-start;
+    }
+
+
+    .footer-menu img {
+        margin-left: 0;
+    }
+}
