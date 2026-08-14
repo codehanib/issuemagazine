@@ -3,20 +3,49 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.springboot.issuemagazine.dao.reviewDAO">
+
+	<!-- 후기 전체 개수 조회 (p_no 조건 포함) -->
+	<select id="reviewListCount" resultType="int">
+		select count(*)
+		from review r
+		<where>
+			<if test="p_no != null">
+				r.p_no = #{p_no}
+			</if>
+		</where>
+	</select>
+
+	<!-- 후기 목록 (페이징 적용) -->
 	<select id="reviewList" resultType="com.springboot.issuemagazine.dto.reviewDTO">
-		select * from review order by r_no desc
+		select r.r_no, r.r_title, r.r_content, r.r_reg_date, r.m_no, m.m_id, r.p_no
+		from review r
+		join member m on r.m_no = m.m_no
+		<where>
+			<if test="p_no != null">
+				r.p_no = #{p_no}
+			</if>
+		</where>
+		order by r.r_no desc
+		offset #{offset} rows fetch next #{recordPerPage} rows only
 	</select>
+
 	<select id="reviewView" resultType="com.springboot.issuemagazine.dto.reviewDTO">
-		select * from review where r_no=#{r_no}
+		select r.r_no, r.r_title, r.r_content, r.r_reg_date, r.m_no, m.m_id, r.p_no
+		from review r
+		join member m on r.m_no = m.m_no
+		where r.r_no = #{r_no}
 	</select>
+
 	<insert id="reviewWrite">
 		insert into review(r_no,r_title,r_content,r_reg_date,m_no,p_no)
 		 values(review_seq.nextval,#{r_title},#{r_content},SYSDATE,#{m_no},#{p_no})
 	</insert>
+
 	<update id="reviewUpdate">
 		update review set r_title=#{r_title},r_content=#{r_content}
 			where r_no=#{r_no}
 	</update>
+
 	<delete id="reviewDelete">
 		delete from review where r_no=#{r_no}
 	</delete>

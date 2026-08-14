@@ -47,6 +47,21 @@
 </sec:authorize>
 
 <a href="/notice/list">목록으로</a>
+<div class="prev-next-wrap">
+    <c:if test="${prevDto != null}">
+        <div class="prev-row">
+            <span class="label">이전글 ^</span>
+            <a href="/notice/view?n_no=${prevDto.n_no}">${prevDto.n_title}</a>
+        </div>
+    </c:if>
+
+    <c:if test="${nextDto != null}">
+        <div class="next-row">
+            <span class="label">다음글 v</span>
+            <a href="/notice/view?n_no=${nextDto.n_no}">${nextDto.n_title}</a>
+        </div>
+    </c:if>
+</div>
 
 </body>
 </html>

@@ -16,76 +16,93 @@ import com.springboot.issuemagazine.dto.memberDTO;
 import com.springboot.issuemagazine.dto.noticeDTO;
 
 @Controller
+@RequestMapping("/notice")
 public class noticeController {
 
-	@Autowired
-	private noticeDAO noticeDAO;
+    @Autowired
+    private noticeDAO noticeDAO;
 
-	@Autowired
-	private memberDAO memberdao;   
-	// 공지 목록
-	@RequestMapping("/notice/list")
-	public String noticeList(Model model) {
-		List<noticeDTO> list = noticeDAO.noticeList();
-		model.addAttribute("list", list);
-		return "notice/list";
-	}
+    @Autowired
+    private memberDAO memberdao;
 
-	// 공지 상세보기
-		@RequestMapping("/notice/view")
-		public String noticeView(@RequestParam("n_no") int n_no, Model model) {
-			noticeDAO.noticeCountUp(n_no);            // 조회수 +1 (먼저 실행)
-			noticeDTO dto = noticeDAO.noticeView(n_no); // 증가된 값으로 다시 조회
-			model.addAttribute("dto", dto);
-			return "notice/view";
-		}
+    // 공지 목록 (페이징 & 검색)
+    @RequestMapping("/list")
+    public String noticeList(
+            @RequestParam(value = "page", defaultValue = "1") int page,
+            @RequestParam(value = "searchType", required = false) String searchType,
+            @RequestParam(value = "keyword", required = false) String keyword,
+            Model model) {
 
-	// 공지 작성 폼
-	@RequestMapping("/notice/writeForm")
-	public String noticeWriteForm() {
-		return "notice/write";
-	}
+        int recordPerPage = 10;
+        int pageBlock = 10;
+        int offset = (page - 1) * recordPerPage;
 
-	// 공지 작성 처리
-	@RequestMapping(value = "/notice/write", method = RequestMethod.POST)
-	public String noticeWrite(noticeDTO dto, Principal principal) {   
+        int totalCount = noticeDAO.noticeSearchCount(searchType, keyword);
+        List<noticeDTO> list = noticeDAO.noticeSearch(searchType, keyword, offset, recordPerPage);
 
-		String m_id = principal.getName();         
-		memberDTO mdto = memberdao.findById(m_id);
-		dto.setM_no(mdto.getM_no());
+        int totalPage = (int) Math.ceil((double) totalCount / recordPerPage);
+        int startPage = ((page - 1) / pageBlock) * pageBlock + 1;
+        int endPage = Math.min(startPage + pageBlock - 1, totalPage);
 
-		noticeDAO.noticeWrite(dto);
-		return "redirect:/notice/list";
-	}
+        model.addAttribute("list", list);
+        model.addAttribute("page", page);
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
+        model.addAttribute("totalPage", totalPage);
+        model.addAttribute("prev", startPage > 1);
+        model.addAttribute("next", endPage < totalPage);
+        model.addAttribute("searchType", searchType);
+        model.addAttribute("keyword", keyword);
 
-	// 공지 수정 폼
-	@RequestMapping("/notice/updateForm")
-	public String noticeUpdateForm(@RequestParam("n_no") int n_no, Model model) {
-		noticeDTO dto = noticeDAO.noticeView(n_no);
-		model.addAttribute("dto", dto);
-		return "notice/update";
-	}
+        return "notice/list";
+    }
 
-	// 공지 수정 처리
-	@RequestMapping(value = "/notice/update", method = RequestMethod.POST)
-	public String noticeUpdate(noticeDTO dto) {
-		noticeDAO.noticeUpdate(dto);
-		return "redirect:/notice/list?n_no=" + dto.getN_no();
-	}
+    // 공지 상세보기
+    @RequestMapping("/view")
+    public String noticeView(@RequestParam("n_no") int n_no, Model model) {
+        noticeDAO.noticeCountUp(n_no);
+        
+        model.addAttribute("dto", noticeDAO.noticeView(n_no));
+        model.addAttribute("prevDto", noticeDAO.noticePrev(n_no));
+        model.addAttribute("nextDto", noticeDAO.noticeNext(n_no));
 
-	// 공지 삭제 확인 화면
-	@RequestMapping("/notice/deleteForm")
-	public String noticeDeleteForm(@RequestParam("n_no") int n_no, Model model) {
-		noticeDTO dto = noticeDAO.noticeView(n_no);
-		model.addAttribute("dto", dto);
-		return "notice/delete";
-	}
+        return "notice/view";
+    }
 
-	// 공지 삭제 처리
-	@RequestMapping(value = "/notice/delete", method = RequestMethod.POST)
-	public String noticeDelete(@RequestParam("n_no") int n_no) {
-		noticeDAO.noticeDelete(n_no);
-		return "redirect:/notice/list";
-	}
-	
+    // 공지 작성 폼
+    @RequestMapping("/writeForm")
+    public String noticeWriteForm() {
+        return "notice/write";
+    }
+
+    // 공지 작성 처리
+    @RequestMapping(value = "/write", method = RequestMethod.POST)
+    public String noticeWrite(noticeDTO dto, Principal principal) {
+        memberDTO mdto = memberdao.findById(principal.getName());
+        dto.setM_no(mdto.getM_no());
+
+        noticeDAO.noticeWrite(dto);
+        return "redirect:/notice/list";
+    }
+
+    // 공지 수정 폼
+    @RequestMapping("/updateForm")
+    public String noticeUpdateForm(@RequestParam("n_no") int n_no, Model model) {
+        model.addAttribute("dto", noticeDAO.noticeView(n_no));
+        return "notice/update";
+    }
+
+    // 공지 수정 처리
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public String noticeUpdate(noticeDTO dto) {
+        noticeDAO.noticeUpdate(dto);
+        return "redirect:/notice/view?n_no=" + dto.getN_no();
+    }
+
+    // 공지 삭제 처리 (GET/POST 모두 대응)
+    @RequestMapping("/delete")
+    public String noticeDelete(@RequestParam("n_no") int n_no) {
+        noticeDAO.noticeDelete(n_no);
+        return "redirect:/notice/list";
+    }
 }

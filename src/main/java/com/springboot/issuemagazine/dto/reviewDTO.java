@@ -12,4 +12,5 @@ public class reviewDTO {
 	private Date r_reg_date;
 	private int m_no;
 	private int p_no;
+	private String m_id;
 }
