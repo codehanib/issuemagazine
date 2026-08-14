@@ -5,9 +5,11 @@
 <mapper namespace="com.springboot.issuemagazine.dao.IproductDAO">
 	
 	<select id="productList" resultType="com.springboot.issuemagazine.dto.productDTO">
-		select * from product order by p_no asc
-			OFFSET #{start} ROWS
-    		FETCH NEXT #{pageSize} ROWS ONLY
+	    SELECT *
+	    FROM product
+	    ORDER BY p_no ASC
+	    OFFSET #{start} ROWS
+	    FETCH NEXT #{pageSize} ROWS ONLY
 	</select>
 	<select id="productListCategory" resultType="com.springboot.issuemagazine.dto.productDTO">
 	    select * from product where c_no = #{c_no}
