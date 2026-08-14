@@ -1,0 +1,362 @@
+@charset "UTF-8";
+/* =========================================================
+   HEADER - 최상단 안내바
+========================================================= */
+
+.top-bar {
+    height: 40px;
+
+    background-color: #f4f8fd;
+    border-bottom: 1px solid #e8edf3;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding-left: max(30px, calc((100% - 1200px) / 2));
+    padding-right: max(30px, calc((100% - 1200px) / 2));
+
+    font-size: 12px;
+    color: #666666;
+}
+
+
+.top-bar > div:first-child a {
+    color: #0874df;
+    font-weight: bold;
+
+    margin-right: 12px;
+}
+
+
+.top-bar > div:last-child a {
+    margin: 0 7px;
+
+    transition: 0.2s;
+}
+
+
+.top-bar > div:last-child a:hover {
+    color: #0874df;
+}
+
+
+/* =========================================================
+   HEADER - 메인 헤더
+========================================================= */
+
+.main-header {
+    width: 1200px;
+    max-width: calc(100% - 60px);
+
+    height: 120px;
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr 1fr;
+
+    align-items: center;
+}
+
+
+/* =========================================================
+   검색창
+========================================================= */
+
+.search-area {
+    width: 260px;
+    height: 42px;
+
+    border: 1px solid #d9dee5;
+    border-radius: 25px;
+
+    overflow: hidden;
+
+    display: flex;
+
+    background-color: #ffffff;
+}
+
+
+.search-area input {
+    flex: 1;
+
+    min-width: 0;
+
+    border: none;
+    outline: none;
+
+    padding-left: 18px;
+
+    font-size: 14px;
+
+    color: #333333;
+
+    background-color: transparent;
+}
+
+
+.search-area input::placeholder {
+    color: #aaaaaa;
+}
+
+
+.search-area button {
+    width: 65px;
+
+    border: none;
+
+    background-color: #ffffff;
+
+    color: #0874df;
+
+    font-size: 13px;
+    font-weight: bold;
+}
+
+
+.search-area button:hover {
+    background-color: #f3f7fc;
+}
+
+
+/* =========================================================
+   로고
+========================================================= */
+
+.logo {
+    text-align: center;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+}
+
+
+.logo img {
+    max-width: 240px;
+    max-height: 75px;
+
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   로그인 / 회원가입 / 장바구니
+========================================================= */
+
+.member-menu {
+    display: flex;
+
+    justify-content: flex-end;
+    align-items: center;
+
+    gap: 22px;
+
+    font-size: 14px;
+
+    color: #333333;
+}
+
+
+.member-menu a {
+    transition: 0.2s;
+}
+
+
+.member-menu a:hover {
+    color: #0874df;
+}
+
+
+/* =========================================================
+   NAV
+========================================================= */
+
+.nav {
+    width: 100%;
+    height: 56px;
+
+    background-color: #0874df;
+
+    display: flex;
+    align-items: center;
+
+    padding-left: max(30px, calc((100% - 1200px) / 2));
+    padding-right: max(30px, calc((100% - 1200px) / 2));
+
+    position: relative;
+
+    z-index: 100;
+}
+
+
+/* =========================================================
+   전체 카테고리
+========================================================= */
+
+.all-category {
+    width: 210px;
+    height: 56px;
+
+    position: relative;
+
+    flex-shrink: 0;
+}
+
+
+.category-button {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 0 20px;
+
+    color: #ffffff;
+
+    font-size: 15px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.category-button:hover {
+    background-color: #0066c8;
+}
+
+
+/* =========================================================
+   햄버거
+========================================================= */
+
+.hamburger {
+    width: 23px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+
+.hamburger span {
+    display: block;
+
+    width: 23px;
+    height: 2px;
+
+    background-color: #ffffff;
+}
+
+
+/* =========================================================
+   펼쳐지는 카테고리 메뉴
+========================================================= */
+
+.category-menu {
+    display: none;
+
+    position: absolute;
+
+    top: 56px;
+    left: 0;
+
+    width: 270px;
+
+    background-color: #ffffff;
+
+    border: 1px solid #e0e0e0;
+    border-top: none;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+
+    z-index: 1000;
+}
+
+
+/* JS에서 show가 붙으면 펼쳐짐 */
+.category-menu.show {
+    display: block;
+}
+
+
+.category-menu a {
+    display: block;
+
+    padding: 15px 20px;
+
+    border-bottom: 1px solid #eeeeee;
+
+    color: #333333;
+
+    font-size: 14px;
+
+    transition: 0.2s;
+}
+
+
+.category-menu a:last-child {
+    border-bottom: none;
+}
+
+
+.category-menu a:hover {
+    background-color: #f3f7fd;
+
+    color: #0874df;
+
+    padding-left: 25px;
+}
+
+
+/* =========================================================
+   오른쪽 메인 메뉴
+========================================================= */
+
+.main-menu {
+    flex: 1;
+
+    height: 56px;
+
+    display: flex;
+
+    align-items: center;
+}
+
+
+.main-menu a {
+    flex: 1;
+
+    height: 56px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    color: #ffffff;
+
+    font-size: 15px;
+    font-weight: bold;
+
+    white-space: nowrap;
+
+    transition: 0.2s;
+}
+
+
+.main-menu a:hover {
+    background-color: #0066c8;
+}

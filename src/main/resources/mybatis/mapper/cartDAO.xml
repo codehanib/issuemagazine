@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.springboot.issuemagazine.dao.IcartDAO">
+	<!-- 장바구니 상풍 등록 -->
+	<insert id="cartInsert">
+		insert into cart(
+			cart_no,
+            cart_quantity,
+            cart_price,
+            m_no,
+            p_no,
+            p_image
+		)
+		values(
+		cart_seq.nextval,
+		#{cart_quantity},
+        #{cart_price},
+        #{m_no},
+        #{p_no}
+		)
+	</insert>
+	
+	<!-- 장바구니 목록 불러오기 -->
+	<select id="cartList" resultType="com.springboot.issuemagazine.dto.cartDTO">
+		select 
+			c.cart_no,
+			c.cart_quantity,
+			c.cart_price,
+        	c.m_no,
+        	c.p_no,
+        	p.p_name,
+        	p.p_price,
+        	p.p_image
+		from cart c
+		join product p
+			 on c.p_no = p.p_no 
+		where m_no = #{m_no}
+		order by cart_no asc
+	</select>
+	
+	<!-- 선택 삭제하기 -->
+	<delete id="cartDelete">
+		delete from cart where cart_no=#{cart_no}
+	</delete>
+	
+	<!-- 전체 삭제하기 -->
+	<delete id="cartDeleteAll">
+		delete from cart where m_no=#{m_no}
+	</delete>
+	
+	<!-- 수량 변경 -->
+	<update id="cartUpdate">
+		update cart 
+		set cart_quantity = #{cart_quantity}
+		where cart_no = #{cart_no}
+	</update>
+</mapper>
