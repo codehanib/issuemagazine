@@ -30,6 +30,7 @@ public class WebSecurityConfig {
 					.requestMatchers("/admin/**").hasAnyRole("ADMIN") // admin 폴더는 ADMIN만 허용 (관리자페이지)
 					.anyRequest().authenticated() // 나머지는 모두 인증 필요
 			);
+			
 		
 		// 로그인
 		http.formLogin((formLogin) -> formLogin
