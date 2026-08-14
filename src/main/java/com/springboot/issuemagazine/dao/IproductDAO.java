@@ -14,6 +14,9 @@ public interface IproductDAO {
 	public List<productDTO> productList(@Param("start") int start,
 	        							@Param("pageSize") int pageSize);
 	
+	// 오류수정용DAO
+	public List<productDTO> productList();
+	
 	// 카테고리별 상품 목록 보기 select
 	public List<productDTO> productListCategory(
 	        @Param("c_no") int c_no,
