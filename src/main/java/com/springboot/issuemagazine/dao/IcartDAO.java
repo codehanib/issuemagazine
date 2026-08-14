@@ -8,6 +8,7 @@ import com.springboot.issuemagazine.dto.cartDTO;
 
 @Mapper
 public interface IcartDAO {
+	
 	// 장바구니 등록 insert
 	public int cartInsert(cartDTO cdto);
 	

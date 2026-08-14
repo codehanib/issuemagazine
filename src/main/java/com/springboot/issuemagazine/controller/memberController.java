@@ -9,8 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.springboot.issuemagazine.dao.IproductDAO;
 import com.springboot.issuemagazine.dao.memberDAO;
 import com.springboot.issuemagazine.dto.memberDTO;
+import com.springboot.issuemagazine.dto.productDTO;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -22,13 +24,25 @@ public class memberController {
 	@Autowired
     private PasswordEncoder passwordEncoder;
 	
+	@Autowired
+	private IproductDAO productDAO;
+
 	@RequestMapping("/")
 	public String root() {
 		return "redirect:/main";
 	}
 	
+
 	@RequestMapping("/main")
-	public String main() {
+	public String main(Model model) {
+		
+		List<productDTO> productList = productDAO.productList();
+		
+		 System.out.println("상품 개수 : " + productList.size());
+		
+		model.addAttribute("productList", productList);
+		
+		
 	    return "main";
 	}
 	

@@ -1,0 +1,1559 @@
+/* =========================================================
+   0. 전체 기본 설정
+========================================================= */
+
+/* 모든 태그 기본 여백 제거 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* 홈페이지 전체 */
+body {
+    font-family: Arial, "Noto Sans KR", sans-serif;
+
+    color: #222222;
+    background-color: #ffffff;
+
+    font-size: 14px;
+}
+
+
+/* 링크 */
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+/* 이미지 */
+img {
+    display: block;
+
+    max-width: 100%;
+}
+
+
+/* 버튼 */
+button {
+    font-family: inherit;
+
+    cursor: pointer;
+}
+
+
+
+/* =========================================================
+   1. MAIN 공통 레이아웃
+========================================================= */
+
+main {
+    width: 1200px;
+    max-width: calc(100% - 60px);
+
+    margin: 0 auto;
+}
+
+
+
+/* =========================================================
+   2. 메인 자동 배너
+========================================================= */
+
+.main-banner {
+    width: 100%;
+    height: 400px;
+
+    margin-top: 35px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: 14px;
+
+    background: linear-gradient(
+        135deg,
+        #eaf5ff,
+        #d8ecff
+    );
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+
+/* 모든 배너 */
+.slide {
+    width: 100%;
+    height: 100%;
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    display: none;
+}
+
+
+/* 현재 배너 */
+.slide.active {
+    display: block;
+}
+
+
+.slide a {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+}
+
+
+.slide img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+
+/* 이전 / 다음 버튼 */
+.banner-prev,
+.banner-next {
+    width: 45px;
+    height: 60px;
+
+    position: absolute;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    border: none;
+    border-radius: 5px;
+
+    background-color: rgba(255, 255, 255, 0.70);
+
+    color: #333333;
+
+    font-size: 32px;
+
+    z-index: 10;
+
+    cursor: pointer;
+}
+
+
+.banner-prev {
+    left: 20px;
+}
+
+
+.banner-next {
+    right: 20px;
+}
+
+
+.banner-prev:hover,
+.banner-next:hover {
+    background-color: rgba(255, 255, 255, 0.95);
+
+    color: #0874df;
+}
+
+
+
+/* =========================================================
+   3. 메인 카테고리 아이콘
+========================================================= */
+
+.category-icons {
+    width: 100%;
+
+    margin: 35px 0 70px;
+
+    padding: 25px 15px;
+
+    display: grid;
+
+    grid-template-columns: repeat(9, 1fr);
+
+    background-color: #ffffff;
+
+    border: 1px solid #edf0f4;
+    border-radius: 12px;
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+}
+
+
+/* 카테고리 하나 */
+.category-icons > a {
+    min-height: 90px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 10px;
+
+    text-align: center;
+
+    border-right: 1px solid #eeeeee;
+
+    transition: 0.2s;
+}
+
+
+.category-icons > a:last-child {
+    border-right: none;
+}
+
+
+/* 아이콘 */
+.category-icons span {
+    font-size: 28px;
+}
+
+
+/* 카테고리 이름 */
+.category-icons p {
+    color: #555555;
+
+    font-size: 12px;
+
+    line-height: 1.4;
+}
+
+
+.category-icons > a:hover {
+    color: #0874df;
+
+    transform: translateY(-4px);
+}
+
+
+.category-icons > a:hover p {
+    color: #0874df;
+}
+
+
+
+/* =========================================================
+   4. 메인 SECTION 공통
+========================================================= */
+
+.recommend-magazine,
+.category-best,
+.digital-magazine {
+    margin-bottom: 90px;
+}
+
+
+
+/* =========================================================
+   5. SECTION 제목
+========================================================= */
+
+.section-title {
+    min-height: 55px;
+
+    margin-bottom: 28px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 25px;
+
+    border-bottom: 2px solid #222222;
+}
+
+
+/* 제목 */
+.section-title h2 {
+    padding-bottom: 15px;
+
+    font-size: 26px;
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+
+/* 더보기 영역 */
+.section-title > div:last-child {
+    margin-left: auto;
+}
+
+
+.section-title > div:last-child a {
+    color: #777777;
+
+    font-size: 13px;
+
+    transition: 0.2s;
+}
+
+
+.section-title > div:last-child a:hover {
+    color: #0874df;
+}
+
+
+
+/* =========================================================
+   6. 일반 상품 목록
+========================================================= */
+
+.product-list {
+    display: grid;
+
+    grid-template-columns: repeat(5, 1fr);
+
+    gap: 24px;
+}
+
+
+/* 일반 상품 카드 */
+.product {
+    min-width: 0;
+
+    padding: 14px;
+
+    overflow: hidden;
+
+    background-color: #ffffff;
+
+    border: 1px solid #eeeeee;
+    border-radius: 12px;
+
+    transition: 0.25s;
+}
+
+
+.product:hover {
+    transform: translateY(-5px);
+
+    border-color: #d9e6f5;
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.10);
+}
+
+
+/* 이미지 영역 */
+.product > a:first-child {
+    width: 100%;
+    height: 270px;
+
+    margin-bottom: 16px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+
+    background-color: #f6f7f9;
+
+    border-radius: 7px;
+}
+
+
+.product > a:first-child img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    transition: 0.3s;
+}
+
+
+.product:hover > a:first-child img {
+    transform: scale(1.03);
+}
+
+
+/* 상품명 */
+.product > a:nth-of-type(2) {
+    min-height: 42px;
+
+    margin-bottom: 8px;
+
+    display: block;
+
+    color: #333333;
+
+    font-size: 15px;
+    font-weight: bold;
+
+    line-height: 1.5;
+}
+
+
+/* 가격 */
+.product p {
+    margin: 10px 0 15px;
+
+    color: #0874df;
+
+    font-size: 17px;
+    font-weight: bold;
+}
+
+
+/* 구매하기 */
+.product > a:nth-of-type(3) {
+    width: calc(50% - 4px);
+    height: 36px;
+
+    display: inline-flex;
+
+    justify-content: center;
+    align-items: center;
+
+    border: 1px solid #0874df;
+    border-radius: 5px;
+
+    color: #0874df;
+
+    font-size: 12px;
+
+    transition: 0.2s;
+}
+
+
+.product > a:nth-of-type(3):hover {
+    background-color: #f1f7ff;
+}
+
+
+/* 장바구니 */
+.product button {
+    width: calc(50% - 4px);
+    height: 36px;
+
+    margin-left: 4px;
+
+    border: none;
+    border-radius: 5px;
+
+    background-color: #0874df;
+
+    color: #ffffff;
+
+    font-size: 12px;
+
+    transition: 0.2s;
+}
+
+
+.product button:hover {
+    background-color: #0066c8;
+}
+
+
+
+/* =========================================================
+   7. 메인 상품 카드 공통
+   추천 / 분야별 베스트 / 디지털
+========================================================= */
+
+.recommend-product,
+.category-recommend-product,
+.digital-product {
+    padding: 15px;
+
+    border: 1px solid #eeeeee;
+    border-radius: 10px;
+
+    background-color: #ffffff;
+
+    box-sizing: border-box;
+
+    transition: 0.25s;
+}
+
+
+/* 카드 Hover */
+.recommend-product:hover,
+.category-recommend-product:hover,
+.digital-product:hover {
+    transform: translateY(-5px);
+
+    border-color: #d9e6f5;
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+
+/* 상품 이미지 */
+.recommend-product img,
+.category-recommend-product img,
+.digital-product img {
+    width: 100%;
+    height: 260px;
+
+    display: block;
+
+    margin-bottom: 15px;
+
+    object-fit: contain;
+}
+
+
+/* 상품명 */
+.recommend-name,
+.category-recommend-name,
+.digital-product-name {
+    min-height: 45px;
+
+    margin-bottom: 10px;
+
+    display: block;
+
+    color: #222222;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    line-height: 1.5;
+}
+
+
+/* 가격 */
+.recommend-product p,
+.category-recommend-product p,
+.digital-product p {
+    margin: 10px 0 15px;
+
+    color: #0874df;
+
+    font-size: 17px;
+    font-weight: 700;
+}
+
+
+/* 구매하기 버튼 */
+.recommend-product > a:nth-of-type(3),
+.category-recommend-product > a:nth-of-type(3),
+.digital-product > a:nth-of-type(3) {
+    width: calc(50% - 4px);
+    height: 36px;
+
+    display: inline-flex;
+
+    justify-content: center;
+    align-items: center;
+
+    vertical-align: middle;
+
+    border: 1px solid #0874df;
+    border-radius: 5px;
+
+    background-color: #ffffff;
+
+    color: #0874df;
+
+    font-size: 13px;
+
+    transition: 0.2s;
+}
+
+
+.recommend-product > a:nth-of-type(3):hover,
+.category-recommend-product > a:nth-of-type(3):hover,
+.digital-product > a:nth-of-type(3):hover {
+    background-color: #f1f7ff;
+}
+
+
+/* 장바구니 버튼 */
+.recommend-product button,
+.category-recommend-product button,
+.digital-product button {
+    width: calc(50% - 4px);
+    height: 36px;
+
+    margin-left: 4px;
+
+    padding: 0;
+
+    vertical-align: middle;
+
+    border: none;
+    border-radius: 5px;
+
+    background-color: #0874df;
+
+    color: #ffffff;
+
+    font-size: 13px;
+
+    transition: 0.2s;
+}
+
+
+.recommend-product button:hover,
+.category-recommend-product button:hover,
+.digital-product button:hover {
+    background-color: #0066c8;
+}
+
+
+
+/* =========================================================
+   8. 추천 매거진
+========================================================= */
+
+.recommend-wrap {
+    width: 100%;
+
+    overflow: hidden;
+}
+
+
+.recommend-track {
+    display: flex;
+
+    gap: 20px;
+
+    transition: transform 0.6s ease;
+}
+
+
+/* 화면에 4개 */
+.recommend-product {
+    flex: 0 0 calc((100% - 60px) / 4);
+
+    min-width: 0;
+}
+
+
+
+/* =========================================================
+   9. 분야별 베스트
+========================================================= */
+
+/* 카테고리 버튼 영역 */
+.category-buttons {
+    display: flex;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 7px;
+}
+
+
+/* 카테고리 버튼 */
+.category-best-btn {
+    padding: 7px 13px;
+
+    border: 1px solid #dddddd;
+    border-radius: 18px;
+
+    background-color: #ffffff;
+
+    color: #555555;
+
+    font-size: 12px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.category-best-btn:hover {
+    border-color: #0874df;
+
+    color: #0874df;
+}
+
+
+/* 현재 선택된 카테고리 */
+.category-best-btn.active {
+    border-color: #0874df;
+
+    background-color: #0874df;
+
+    color: #ffffff;
+}
+
+
+/* 상품 영역 */
+.category-recommend-wrap {
+    width: 100%;
+
+    margin-top: 25px;
+
+    overflow: hidden;
+}
+
+
+.category-recommend-track {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 20px;
+}
+
+
+/* 기본 숨김 */
+.category-recommend-product {
+    display: none;
+}
+
+
+/* JS에서 선택된 상품 */
+.category-recommend-product.show {
+    display: block;
+}
+
+
+
+/* =========================================================
+   10. 디지털 매거진
+========================================================= */
+
+.digital-wrap {
+    width: 100%;
+
+    margin-top: 25px;
+
+    overflow: hidden;
+}
+
+
+.digital-track {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 20px;
+}
+
+
+/* 기본 숨김 */
+.digital-product {
+    display: none;
+}
+
+
+/* JS에서 현재 상품만 표시 */
+.digital-product.show {
+    display: block;
+}
+
+
+
+/* =========================================================
+   11. 공지 / 배송안내 / 문의 / FAQ
+========================================================= */
+
+.info-area {
+    margin-bottom: 70px;
+
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    overflow: hidden;
+
+    border: 1px solid #e8ebef;
+    border-radius: 12px;
+
+    background-color: #fafbfc;
+}
+
+
+/* 각각의 박스 */
+.info-area > div {
+    min-height: 180px;
+
+    padding: 28px 25px;
+
+    border-right: 1px solid #e8ebef;
+
+    color: #666666;
+
+    line-height: 1.8;
+}
+
+
+.info-area > div:last-child {
+    border-right: none;
+}
+
+
+/* 제목 */
+.info-area h3 {
+    margin-bottom: 15px;
+
+    color: #222222;
+
+    font-size: 18px;
+}
+
+
+/* 링크 */
+.info-area a {
+    margin-top: 8px;
+
+    display: block;
+
+    color: #666666;
+
+    font-size: 12px;
+
+    transition: 0.2s;
+}
+
+
+.info-area a:hover {
+    color: #0874df;
+}
+
+
+
+/* =========================================================
+   12. 고객센터
+========================================================= */
+
+/* 고객센터 전체 */
+.info {
+    width: 1100px;
+    max-width: calc(100% - 60px);
+
+    margin: 0 auto;
+
+    padding: 70px 0 90px;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 30px;
+}
+
+
+/* CS CENTER 제목 */
+.info_title {
+    grid-column: 1 / -1;
+
+    margin-bottom: 20px;
+
+    text-align: center;
+}
+
+
+.info_title h1 {
+    margin: 0;
+
+    color: #222222;
+
+    font-size: 46px;
+    font-weight: 700;
+
+    letter-spacing: -1px;
+}
+
+
+/* 제목 아래 파란 선 */
+.info_title h1::after {
+    content: "";
+
+    width: 38px;
+    height: 3px;
+
+    margin: 15px auto 18px;
+
+    display: block;
+
+    background-color: #0874df;
+}
+
+
+.info_title p {
+    margin: 0;
+
+    color: #555555;
+
+    font-size: 15px;
+
+    line-height: 1.8;
+}
+
+
+/* 공지사항 / 1:1 문의 공통 카드 */
+.announcement,
+.Inquiry {
+    min-height: 350px;
+
+    position: relative;
+
+    padding: 28px 30px;
+
+    border: 1px solid #e1e5ea;
+    border-radius: 12px;
+
+    background-color: #ffffff;
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+
+/* 제목 */
+.announcement h3,
+.Inquiry h3 {
+    margin: 0 0 20px;
+
+    padding-bottom: 17px;
+
+    border-bottom: 1px dashed #c9d0d8;
+
+    color: #222222;
+
+    font-size: 22px;
+    font-weight: 700;
+}
+
+
+/* 제목 앞 파란 점 */
+.announcement h3::before,
+.Inquiry h3::before {
+    content: "";
+
+    width: 10px;
+    height: 10px;
+
+    margin-right: 10px;
+
+    display: inline-block;
+
+    border-radius: 50%;
+
+    background-color: #0874df;
+
+    vertical-align: middle;
+}
+
+
+/* MORE 버튼 */
+.announcement button,
+.Inquiry button {
+    position: absolute;
+
+    top: 25px;
+    right: 30px;
+
+    padding: 5px 14px;
+
+    border: 1px solid #d7dce3;
+    border-radius: 5px;
+
+    background-color: #ffffff;
+
+    color: #555555;
+
+    font-size: 12px;
+}
+
+
+.announcement button:hover,
+.Inquiry button:hover {
+    border-color: #0874df;
+
+    color: #0874df;
+}
+
+
+/* 공지사항 게시글 */
+.announcement > a {
+    padding: 12px 5px;
+
+    display: block;
+
+    border-bottom: 1px solid #f1f1f1;
+
+    color: #444444;
+
+    font-size: 14px;
+}
+
+
+.announcement > a::before {
+    content: "›";
+
+    margin-right: 8px;
+
+    color: #0874df;
+
+    font-weight: bold;
+}
+
+
+.announcement > a:hover {
+    color: #0874df;
+}
+
+
+/* 문의 전체 기본 텍스트 */
+.Inquiry {
+    color: #555555;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+}
+
+
+/* 문의 게시글 */
+.Inquiry > a:not(:last-child) {
+    padding: 10px 5px;
+
+    display: block;
+
+    border-bottom: 1px solid #f1f1f1;
+
+    color: #444444;
+
+    font-size: 14px;
+}
+
+
+.Inquiry > a:not(:last-child)::before {
+    content: "›";
+
+    margin-right: 8px;
+
+    color: #0874df;
+
+    font-weight: bold;
+}
+
+
+.Inquiry > a:not(:last-child):hover {
+    color: #0874df;
+}
+
+
+.Inquiry > a:nth-of-type(3) {
+    margin-bottom: 20px;
+}
+
+
+/* 문의하기 버튼 */
+.Inquiry > a:last-child {
+    width: 135px;
+    height: 42px;
+
+    margin-top: 25px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    border: 1px solid #0874df;
+    border-radius: 5px;
+
+    background-color: #ffffff;
+
+    color: #0874df;
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
+.Inquiry > a:last-child:hover {
+    background-color: #0874df;
+
+    color: #ffffff;
+}
+
+
+
+/* =========================================================
+   13. 장바구니 페이지
+========================================================= */
+
+/* 장바구니 제목 */
+.cart_title {
+    margin: 45px 0 30px;
+
+    padding-bottom: 15px;
+
+    border-bottom: 1px solid #dddddd;
+
+    color: #222222;
+
+    font-size: 28px;
+    font-weight: 600;
+}
+
+
+.cart_title::after {
+    content: "";
+
+    width: 85px;
+    height: 2px;
+
+    margin-top: 14px;
+
+    display: block;
+
+    background-color: #222222;
+}
+
+
+/* 장바구니 전체 박스 */
+.cart_box {
+    width: 100%;
+
+    padding: 30px;
+
+    border: 1px solid #e1e5ea;
+    border-radius: 10px;
+
+    background-color: #ffffff;
+}
+
+
+/* 장바구니 상품 목록 */
+.cart_list {
+    width: 100%;
+
+    display: block;
+}
+
+
+/* 장바구니 테이블 */
+.cart-table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    table-layout: fixed;
+}
+
+
+/* 테이블 제목 */
+.cart-table th {
+    height: 50px;
+
+    padding: 10px;
+
+    border-top: 2px solid #222222;
+    border-bottom: 1px solid #dddddd;
+
+    color: #222222;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    text-align: center;
+}
+
+
+/* 상품 한 줄 */
+.cart-table td {
+    min-height: 80px;
+
+    padding: 20px 15px;
+
+    border-bottom: 1px solid #eeeeee;
+
+    color: #444444;
+
+    font-size: 14px;
+
+    vertical-align: middle;
+}
+
+
+/* 선택 */
+.cart-table th:nth-child(1),
+.cart-table td:nth-child(1) {
+    width: 80px;
+
+    text-align: center;
+}
+
+
+/* 상품정보 */
+.cart-table th:nth-child(2),
+.cart-table td:nth-child(2) {
+    width: auto;
+
+    text-align: left;
+}
+
+
+/* 수량 */
+.cart-table th:nth-child(3),
+.cart-table td:nth-child(3) {
+    width: 140px;
+
+    text-align: center;
+}
+
+
+/* 가격 */
+.cart-table th:nth-child(4),
+.cart-table td:nth-child(4) {
+    width: 180px;
+
+    text-align: right;
+}
+
+
+.cart-table td:nth-child(2) {
+    line-height: 1.6;
+}
+
+
+/* 체크박스 */
+.cart-table input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+
+    cursor: pointer;
+}
+
+
+/* 상품정보 */
+.product-info {
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+}
+
+
+/* 상품 이미지 */
+.cart-product-image {
+    width: 90px;
+    height: 120px;
+
+    object-fit: contain;
+
+    border: 1px solid #eeeeee;
+
+    background-color: #ffffff;
+}
+
+
+/* 상품 텍스트 */
+.cart-product-text {
+    flex: 1;
+
+    line-height: 1.7;
+}
+
+
+/* 총가격 */
+.cart_total {
+    width: 100%;
+    min-height: 70px;
+
+    padding: 0 20px;
+
+    display: flex;
+
+    justify-content: flex-end;
+    align-items: center;
+
+    border-bottom: 1px solid #dddddd;
+
+    color: #222222;
+
+    font-size: 17px;
+    font-weight: 600;
+}
+
+
+/* 장바구니 버튼 영역 */
+.cart_buttons {
+    width: 100%;
+
+    margin-top: 20px;
+
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.cart_buttons_left,
+.cart_buttons_right {
+    display: flex;
+
+    gap: 8px;
+}
+
+
+/* 장바구니 공통 버튼 */
+.cart_buttons button {
+    min-width: 120px;
+    height: 42px;
+
+    padding: 0 18px;
+
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+
+    background-color: #ffffff;
+
+    color: #444444;
+
+    font-size: 13px;
+
+    transition: 0.2s;
+}
+
+
+.cart_buttons button:hover {
+    border-color: #0874df;
+
+    color: #0874df;
+}
+
+
+/* 쇼핑 계속하기 */
+.cart_buttons_right button:first-child {
+    min-width: 140px;
+}
+
+
+/* 전체 상품 주문 */
+.cart_buttons_right button:last-child {
+    min-width: 150px;
+
+    border-color: #0874df;
+
+    background-color: #0874df;
+
+    color: #ffffff;
+
+    font-weight: 600;
+}
+
+
+.cart_buttons_right button:last-child:hover {
+    border-color: #0565c5;
+
+    background-color: #0565c5;
+
+    color: #ffffff;
+}
+
+
+/* 장바구니 이용안내 */
+.cart_Information {
+    width: 100%;
+
+    margin-top: 25px;
+
+    padding: 28px 30px;
+
+    border: 1px solid #e1e5ea;
+    border-radius: 8px;
+
+    background-color: #fafbfc;
+
+    color: #666666;
+
+    font-size: 12px;
+
+    line-height: 2;
+}
+
+
+.cart_Information h2 {
+    margin: 0 0 18px;
+
+    color: #222222;
+
+    font-size: 18px;
+    font-weight: 600;
+}
+
+
+
+/* =========================================================
+   14. 반응형 - 1100px 이하
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    main {
+        width: calc(100% - 40px);
+        max-width: none;
+    }
+
+
+    .category-icons {
+        grid-template-columns: repeat(5, 1fr);
+    }
+
+
+    .category-icons > a {
+        border-bottom: 1px solid #eeeeee;
+    }
+
+
+    .product-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+
+    .info-area {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+
+/* =========================================================
+   15. 반응형 - 900px 이하
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .info {
+        grid-template-columns: 1fr;
+    }
+
+
+    .info_title {
+        grid-column: 1;
+    }
+
+
+    .category-buttons {
+        gap: 5px;
+    }
+
+
+    .category-best-btn {
+        padding: 6px 10px;
+
+        font-size: 11px;
+    }
+}
+
+
+
+/* =========================================================
+   16. 반응형 - 768px 이하
+========================================================= */
+
+@media (max-width: 768px) {
+
+    main {
+        width: auto;
+        max-width: none;
+
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+
+    .main-banner {
+        height: 300px;
+    }
+
+
+    .cart_box {
+        padding: 15px;
+    }
+
+
+    .cart-table th:nth-child(1),
+    .cart-table td:nth-child(1) {
+        width: 50px;
+    }
+
+
+    .cart-table th:nth-child(3),
+    .cart-table td:nth-child(3) {
+        width: 80px;
+    }
+
+
+    .cart-table th:nth-child(4),
+    .cart-table td:nth-child(4) {
+        width: 110px;
+    }
+}
+
+
+
+/* =========================================================
+   17. 반응형 - 600px 이하
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .info {
+        max-width: calc(100% - 30px);
+
+        padding: 45px 0 60px;
+    }
+
+
+    .info_title h1 {
+        font-size: 34px;
+    }
+
+
+    .info_title p {
+        font-size: 13px;
+    }
+
+
+    .announcement,
+    .Inquiry {
+        min-height: 300px;
+
+        padding: 22px;
+    }
+
+
+    .announcement h3,
+    .Inquiry h3 {
+        font-size: 19px;
+    }
+
+
+    .announcement button,
+    .Inquiry button {
+        top: 20px;
+        right: 20px;
+    }
+
+
+    .product-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+
+    .info-area {
+        grid-template-columns: 1fr;
+    }
+}
