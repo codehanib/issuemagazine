@@ -17,7 +17,10 @@ public interface IcartDAO {
 	// 수량 변경 update
 	public int cartUpdate(cartDTO cdto);
 	
-	// 장바구니 목록 삭제 delete
-	public int cartDelete(int c_no);
+	// 장바구니 선택 삭제 delete
+	public int cartDelete(int cart_no);
+	
+	// 장바구니 전체 삭제 delete
+	public int cartDeleteAll(int m_no);
 	
 }

@@ -1,0 +1,303 @@
+/* =========================================
+   기본 설정
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body.login-error-body {
+    min-height: 100vh;
+
+    font-family: Arial, "Noto Sans KR", sans-serif;
+
+    background: linear-gradient(
+        135deg,
+        #f8faff,
+        #eef3fa
+    );
+
+    color: #222;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+
+
+/* =========================================
+   배경 장식
+========================================= */
+
+body.login-error-body::before {
+    content: "";
+
+    position: absolute;
+
+    top: -80px;
+    left: -80px;
+
+    width: 230px;
+    height: 230px;
+
+    border-radius: 50%;
+
+    background-color: rgba(31, 109, 240, 0.07);
+}
+
+
+body.login-error-body::after {
+    content: "";
+
+    position: absolute;
+
+    right: -100px;
+    bottom: -100px;
+
+    width: 280px;
+    height: 280px;
+
+    border-radius: 50%;
+
+    background-color: rgba(31, 109, 240, 0.07);
+}
+
+
+
+/* =========================================
+   전체 영역
+========================================= */
+
+.error-wrapper {
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+
+    z-index: 10;
+}
+
+
+
+/* =========================================
+   에러 카드
+========================================= */
+
+.error-card {
+    width: 520px;
+
+    max-width: calc(100% - 40px);
+
+    padding: 55px 45px 45px;
+
+    background-color: #ffffff;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 15px 40px
+        rgba(0, 0, 0, 0.09);
+
+    text-align: center;
+}
+
+
+
+/* =========================================
+   에러 아이콘
+========================================= */
+
+.error-icon {
+    width: 75px;
+    height: 75px;
+
+    margin: 0 auto 28px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 50%;
+
+    background-color: #fff2f2;
+
+    color: #e24a4a;
+
+    font-size: 40px;
+
+    font-weight: bold;
+}
+
+
+
+/* =========================================
+   제목
+========================================= */
+
+.error-card h1 {
+    margin-bottom: 20px;
+
+    color: #102948;
+
+    font-size: 28px;
+
+    font-weight: 800;
+}
+
+
+
+/* =========================================
+   안내 문구
+========================================= */
+
+.error-message {
+    margin-bottom: 8px;
+
+    color: #444444;
+
+    font-size: 16px;
+
+    font-weight: bold;
+}
+
+
+.error-sub-message {
+    margin-bottom: 35px;
+
+    color: #89909c;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+}
+
+
+
+/* =========================================
+   버튼 영역
+========================================= */
+
+.error-buttons {
+    display: flex;
+
+    gap: 12px;
+}
+
+
+
+/* 링크를 버튼처럼 사용 */
+.error-buttons a {
+    flex: 1;
+
+    height: 52px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    transition: 0.2s;
+}
+
+
+
+/* =========================================
+   다시 로그인 버튼
+========================================= */
+
+.retry-button {
+    background-color: #1f6df0;
+
+    border: 1px solid #1f6df0;
+
+    color: white;
+}
+
+
+.retry-button:hover {
+    background-color: #155ed4;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 7px 16px
+        rgba(31, 109, 240, 0.20);
+}
+
+
+
+/* =========================================
+   메인으로 버튼
+========================================= */
+
+.home-button {
+    background-color: white;
+
+    border: 1px solid #cfd6e1;
+
+    color: #555555;
+}
+
+
+.home-button:hover {
+    border-color: #1f6df0;
+
+    color: #1f6df0;
+
+    background-color: #f5f9ff;
+}
+
+
+
+/* =========================================
+   Copyright
+========================================= */
+
+.error-copyright {
+    margin-top: 45px;
+
+    color: #89909c;
+
+    font-size: 13px;
+}
+
+
+
+/* =========================================
+   작은 화면
+========================================= */
+
+@media (max-width: 600px) {
+
+    .error-card {
+        padding: 40px 25px 30px;
+    }
+
+
+    .error-buttons {
+        flex-direction: column;
+    }
+
+
+    .error-card h1 {
+        font-size: 23px;
+    }
+}
