@@ -6,6 +6,14 @@
 	
 	<select id="productList" resultType="com.springboot.issuemagazine.dto.productDTO">
 		select * from product order by p_no asc
+			OFFSET #{start} ROWS
+    		FETCH NEXT #{pageSize} ROWS ONLY
+	</select>
+	<select id="productListCategory" resultType="com.springboot.issuemagazine.dto.productDTO">
+	    select * from product where c_no = #{c_no}
+	    order by p_no asc
+	    OFFSET #{start} ROWS
+	    FETCH NEXT #{pageSize} ROWS ONLY
 	</select>
 	<select id="productdetail"
         resultType="com.springboot.issuemagazine.dto.productDTO">
@@ -27,7 +35,18 @@
 			     WHERE pd.p_no = #{p_no}
 			     ORDER BY pdi.pdi_order ASC
 	</select>
+	<select id="productCount"
+        resultType="int">	
+		    SELECT COUNT(p_no)
+		    FROM product
+	</select>
+	<select id="productCountCategory"
+        resultType="int">	
+		    SELECT COUNT(p_no)
+		    FROM product
+		    WHERE c_no= #{c_no}
+	</select>
 	<delete id="productDelete">
-		delete from product where p_no=#{p_no}
+			delete from product where p_no=#{p_no}
 	</delete>
 </mapper>
