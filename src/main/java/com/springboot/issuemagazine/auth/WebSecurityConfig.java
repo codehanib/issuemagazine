@@ -24,6 +24,11 @@ public class WebSecurityConfig {
 					.dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll() // 내부 포워드 요청 허용
 					.requestMatchers("/","/writeForm","/loginForm","/jusoPopup","/memberInsert",
 									"/product/**").permitAll()
+					
+					// WebSecurityConfig.java 내 authorizeHttpRequests 부분
+					.requestMatchers("/notice/list", "/notice/view").permitAll()               // 공지 목록/보기는 누구나 가능
+					.requestMatchers("/notice/write*", "/notice/update*", "/notice/delete*").hasRole("ADMIN") // 공지 작성/수정/삭제는 관리자만 가능
+										
 					.requestMatchers("/css/**","/js/**","/images/**").permitAll() // 정적 리소스 모두 허용
 					.requestMatchers("/guest/**").permitAll() // guest 폴더는 모두 허용 (게스트페이지)
 					.requestMatchers("/member/**").hasAnyRole("USER","ADMIN") // member 폴더는 USER, ADMIN만 허용 (회원페이지)

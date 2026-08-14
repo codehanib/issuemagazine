@@ -1,0 +1,191 @@
+@charset "UTF-8";
+
+/* 폰트 및 기본 초기화 */
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+* {
+    box-sizing: border-box;
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #f8f9fa;
+    color: #333333;
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+/* 전체 컨테이너 */
+.list-wrapper {
+    width: 100%;
+    max-width: 1000px;
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.list-wrapper h3 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #111111;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #222222;
+}
+
+/* 테이블 스타일링 */
+.member-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+    font-size: 15px;
+}
+
+.member-table th {
+    background-color: #f1f3f5;
+    color: #495057;
+    font-weight: 600;
+    padding: 14px 12px;
+    text-align: center;
+    border-top: 1px solid #dee2e6;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.member-table td {
+    padding: 16px 12px;
+    text-align: center;
+    border-bottom: 1px solid #e9ecef;
+    color: #495057;
+}
+
+.member-table tbody tr:hover {
+    background-color: #f8f9fa;
+    transition: background-color 0.2s ease;
+}
+
+/* 제목 영역 및 비밀글 스타일 */
+.title-cell {
+    text-align: left !important;
+    padding-left: 20px !important;
+}
+
+.title-link {
+    color: #212529;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.title-link:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+.secret-title {
+    color: #868e96;
+    cursor: pointer;
+    user-select: none;
+}
+
+.secret-title:hover {
+    color: #495057;
+}
+
+/* 답변 상태 태그 (Badge) */
+.badge {
+    display: inline-block;
+    padding: 4px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 20px;
+}
+
+.badge-waiting {
+    background-color: #e9ecef;
+    color: #495057;
+}
+
+.badge-completed {
+    background-color: #e6fcf5;
+    color: #0ca678;
+}
+
+/* 페이징 */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    margin-top: 24px;
+}
+
+.pagination a, .pagination span {
+    display: inline-block;
+    padding: 8px 14px;
+    font-size: 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: #495057;
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    transition: all 0.2s ease;
+}
+
+.pagination a:hover {
+    background-color: #e9ecef;
+    border-color: #ced4da;
+}
+
+.pagination .active {
+    background-color: #222222;
+    color: #ffffff;
+    border-color: #222222;
+    font-weight: 600;
+}
+
+/* 검색 박스 */
+.search-box {
+    margin-top: 24px;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+.search-box select, 
+.search-box input[type="text"] {
+    padding: 8px 12px;
+    font-size: 14px;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    outline: none;
+}
+
+.search-box select:focus, 
+.search-box input[type="text"]:focus {
+    border-color: #222222;
+}
+
+.search-box button, .btn-main {
+    padding: 8px 18px;
+    font-size: 14px;
+    font-weight: 500;
+    background-color: #222222;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.search-box button:hover, .btn-main:hover {
+    background-color: #444444;
+}
+
+.bottom-bar {
+    margin-top: 30px;
+    display: flex;
+    justify-content: flex-end;
+}

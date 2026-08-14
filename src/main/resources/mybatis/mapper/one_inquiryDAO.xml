@@ -3,31 +3,86 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.springboot.issuemagazine.dao.one_inquiryDAO">
+
     <select id="one_inquiryList" resultType="com.springboot.issuemagazine.dto.one_inquiryDTO">
-    select o.oi_no, o.oi_title, o.oi_content, o.oi_answer, o.oi_reg_date, o.oi_status, o.m_no, m.m_id
-    	from one_inquiry o
-    	join member m on o.m_no = m.m_no
-    	order by o.oi_no desc
+        select o.oi_no, o.oi_title, o.oi_content, o.oi_answer, o.oi_reg_date, o.oi_status, o.m_no, m.m_id
+        	from one_inquiry o
+        	join member m on o.m_no = m.m_no
+        	order by o.oi_no desc
 	</select>
+
     <select id="one_inquiryView" resultType="com.springboot.issuemagazine.dto.one_inquiryDTO">
-    select o.oi_no, o.oi_title, o.oi_content, o.oi_answer, o.oi_reg_date, o.oi_status, o.m_no, m.m_id
-    from one_inquiry o
-    join member m on o.m_no = m.m_no
-    where o.oi_no = #{oi_no}
-</select>
+        select o.oi_no, o.oi_title, o.oi_content, o.oi_answer, o.oi_reg_date, o.oi_status, o.m_no, m.m_id
+        from one_inquiry o
+        join member m on o.m_no = m.m_no
+        where o.oi_no = #{oi_no}
+    </select>
+
     <insert id="one_inquiryWrite">
         insert into one_inquiry(oi_no,oi_title,oi_content,oi_reg_date,oi_status,m_no)
          values(one_inquiry_seq.nextval,#{oi_title},#{oi_content},SYSDATE,'답변대기',#{m_no})
     </insert>
+
     <update id="one_inquiryUpdate">
         update one_inquiry set oi_title=#{oi_title},oi_content=#{oi_content}
             where oi_no=#{oi_no}
     </update>
+
     <update id="one_inquiryAnswer">
         update one_inquiry set oi_answer=#{oi_answer},oi_status=#{oi_status}
             where oi_no=#{oi_no}
     </update>
+
     <delete id="one_inquiryDelete">
         delete from one_inquiry where oi_no=#{oi_no}
     </delete>
+
+    <!-- 검색 조건별 총 개수 조회 -->
+    <select id="one_inquirySearchCount" resultType="int">
+        select count(*)
+        from one_inquiry o
+        join member m on o.m_no = m.m_no
+        <where>
+            <if test="keyword != null and keyword != ''">
+                <choose>
+                    <when test="searchType == 'writer'">
+                        and m.m_id like '%' || #{keyword} || '%'
+                    </when>
+                    <when test="searchType == 'title'">
+                        and o.oi_title like '%' || #{keyword} || '%'
+                    </when>
+                    <otherwise>
+                        and (o.oi_title like '%' || #{keyword} || '%'
+                            or m.m_id like '%' || #{keyword} || '%')
+                    </otherwise>
+                </choose>
+            </if>
+        </where>
+    </select>
+
+    <!-- 페이징 처리 검색 목록 -->
+    <select id="one_inquirySearch" resultType="com.springboot.issuemagazine.dto.one_inquiryDTO">
+        select o.oi_no, o.oi_title, o.oi_content, o.oi_answer, o.oi_reg_date, o.oi_status, o.m_no, m.m_id
+        from one_inquiry o
+        join member m on o.m_no = m.m_no
+        <where>
+            <if test="keyword != null and keyword != ''">
+                <choose>
+                    <when test="searchType == 'writer'">
+                        and m.m_id like '%' || #{keyword} || '%'
+                    </when>
+                    <when test="searchType == 'title'">
+                        and o.oi_title like '%' || #{keyword} || '%'
+                    </when>
+                    <otherwise>
+                        and (o.oi_title like '%' || #{keyword} || '%'
+                            or m.m_id like '%' || #{keyword} || '%')
+                    </otherwise>
+                </choose>
+            </if>
+        </where>
+        order by o.oi_no desc
+        OFFSET #{offset} ROWS FETCH NEXT #{recordPerPage} ROWS ONLY
+    </select>
+
 </mapper>

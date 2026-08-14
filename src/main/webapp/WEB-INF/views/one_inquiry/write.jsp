@@ -12,7 +12,18 @@
     <form name="one_inquiry" method="post" action="/one_inquiry/write">
     <div class="form-row">
         <label class="title">제목</label>
-        <div class="input-content"><input type="text" name="oi_title"></div>
+        <div class="input-content"><select name="oi_title">
+            <option value="주소지변경/회원정보수정 신청">주소지변경/회원정보수정 신청</option>
+            <option value="사은품/부록 문의">사은품/부록 문의</option>
+            <option value="배송 문의">배송 문의</option>
+            <option value="결제관계 문의">결제관계 문의</option>
+            <option value="잡지내용 문의">잡지내용 문의</option>
+            <option value="견적의뢰 및 일괄구독 문의">견적의뢰 및 일괄구독 문의</option>
+            <option value="영수증/계산서/기타서류 발행요청">영수증/계산서/기타서류 발행요청</option>
+            <option value="정기구독/재구독 문의">정기구독/재구독 문의</option>
+            <option value="입점/제휴 문의">입점/제휴 문의</option>
+            <option value="기타 문의">기타 문의</option>
+        </select></div>
     </div>
     <div class="form-row">
         <label class="title">내용</label>
