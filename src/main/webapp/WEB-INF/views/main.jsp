@@ -11,7 +11,7 @@
     <title>ISSUEMAGAZINE</title>
 
 	<!-- 메인 css -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style_LDH.css">
     
      <!-- 헤더 CSS -->
     <link rel="stylesheet" href="/css/header.css">
@@ -122,42 +122,42 @@
         =================================================== -->
         <div class="category-icons">
 
-            <a href="/productList?c_no=1">
+            <a href="/product/list?c_no=1">
                 <span>👗</span>
                 <p>패션/여성</p>
             </a>
 
-            <a href="/productList?c_no=2">
+            <a href="/product/list?c_no=2">
                 <span>🏠</span>
                 <p>인테리어/건축/디자인</p>
             </a>
 
-            <a href="/productList?c_no=3">
+            <a href="/product/list?c_no=3">
                 <span>🔬</span>
                 <p>과학/논술</p>
             </a>
 
-            <a href="/productList?c_no=4">
+            <a href="/product/list?c_no=4">
                 <span>📚</span>
                 <p>교육/어학</p>
             </a>
 
-            <a href="/productList?c_no=5">
+            <a href="/product/list?c_no=5">
                 <span>💼</span>
                 <p>시사/경제/경영</p>
             </a>
 
-            <a href="/productList?c_no=6">
+            <a href="/product/list?c_no=6">
                 <span>✈️</span>
                 <p>여행/레저/취미</p>
             </a>
 
-            <a href="/productList?c_no=7">
+            <a href="/product/list?c_no=7">
                 <span>🌿</span>
                 <p>라이프/힐링</p>
             </a>
 
-            <a href="/productList?c_no=8">
+            <a href="/product/list?c_no=8">
                 <span>🌍</span>
                 <p>해외잡지/해외신문</p>
             </a>
