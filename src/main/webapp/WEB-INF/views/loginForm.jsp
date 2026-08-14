@@ -5,25 +5,66 @@
 <head>
 <meta charset="UTF-8">
 <script src="/"></script>
-<link rel="stylesheet" href="/">
-
 <title>LOGIN</title>
+
+<link rel="stylesheet" href="/css/loginForm_LDH.css">
+<script src="/js/write.js"></script>
 </head>
-<body>
-	<form action="/j_spring_security_check" method="post" name="loginForm">
-    <h3>LOGIN</h3>
-		<table border="0" width="300">
-			<tr>
-				<td>ID</td>
-				<td><input type="text" name="m_id"></td>
-				<td rowspan="2"><input type="submit" value="로그인" onclick="return check()"></td>
-				<td rowspan="2"><a href="/writeForm"><input type="button" value="회원가입"></a></td>
-			</tr>
-			<tr>
-				<td>PASSWORD</td>
-				<td><input type="password" name="m_passwd"></td>
-			</tr>
-		</table>
-	</form>
+<body class="login-body">
+
+    <div class="login-wrapper">
+
+        <form action="/j_spring_security_check" method="post" name="loginForm" class="login-card">
+
+            <!-- 로고 -->
+            <div class="login-brand">
+                <img src="/images/logo.png" alt="로고">
+                
+            </div>
+
+            <!-- 제목 -->
+            <div class="login-title">
+                <h2>LOGIN</h2>
+                <div class="title-line"></div>
+            </div>
+
+            <!-- 아이디 -->
+            <div class="input-box id-box">
+                <input type="text" name="m_id" placeholder="아이디">
+            </div>
+
+            <!-- 비밀번호 -->
+            <div class="input-box pw-box">
+                <input type="password" name="m_passwd" placeholder="비밀번호">
+            </div>
+
+            <!-- 부가 메뉴 -->
+            <div class="login-sub">
+                <label class="save-id">
+                    <input type="checkbox" name="saveId">
+                    아이디 저장
+                </label>
+
+                <a href="#" class="find-link">비밀번호 찾기</a>
+            </div>
+
+            <!-- 버튼 -->
+            <input type="submit" value="로그인" class="btn-login" onclick="return check()">
+
+            <a href="/writeForm" class="btn-join">회원가입</a>
+
+            <!-- 하단 안내 -->
+            <p class="login-guide">
+                회원이 아니신가요?
+                <a href="/writeForm">회원가입</a>
+                후 다양한 서비스를 이용해 보세요.
+            </p>
+
+        </form>
+
+        <p class="copyright">© 2026 ISSUEMAGAZINE. All rights reserved.</p>
+
+    </div>
+
 </body>
 </html>
