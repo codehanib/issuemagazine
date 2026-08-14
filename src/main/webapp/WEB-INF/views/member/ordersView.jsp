@@ -7,6 +7,6 @@
 <title>주문 내역 상세</title>
 </head>
 <body>
-
+주문내역상세?
 </body>
 </html>

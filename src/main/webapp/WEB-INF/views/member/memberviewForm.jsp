@@ -103,6 +103,7 @@ body {
 
 </head>
 <body>
+<!-- <%@ include file="../header.jsp" %> -->
 <div class="container">
 
     <!-- 제목 -->
@@ -156,6 +157,6 @@ body {
         </a>
     </div>
 </div>
-
+<!-- <%@ include file="../footer.jsp" %> -->
 </body>
 </html>
