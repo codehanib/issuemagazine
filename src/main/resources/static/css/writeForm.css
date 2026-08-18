@@ -1,0 +1,191 @@
+/*회원가입 전체 폼 */
+.join-form {
+    width: 850px;
+    margin: 50px auto 70px;
+
+    padding: 40px 50px;
+
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+
+    background-color: #ffffff;
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+/*main-title */
+.join-main-title,
+.join-main-text {
+    text-align: center;
+}
+
+.join-main-title {
+    margin-top: 45px;
+}
+
+.join-main-text {
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+/* 기존 table */
+.join-form table {
+    width: 100%;
+
+    border-collapse: separate;
+    border-spacing: 0 12px;
+}
+
+/* 각 입력 한 줄 */
+.join-form tr {
+    height: 50px;
+}
+
+/* 왼쪽 제목 */
+.join-form td:first-child {
+    width: 150px;
+
+    color: #222222;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    vertical-align: middle;
+}
+
+/* 오른쪽 입력영역 */
+.join-form td:nth-child(2) {
+    width: auto;
+
+    vertical-align: middle;
+}
+
+/* input / select 공통 */
+.join-form input[type="text"],
+.join-form input[type="password"],
+.join-form select {
+    height: 44px;
+
+    padding: 0 13px;
+
+    border: 1px solid #d5d9df;
+    border-radius: 5px;
+
+    background-color: #ffffff;
+
+    font-size: 14px;
+
+    outline: none;
+}
+
+/* 기본 text/password는 넓게 */
+.join-form input[type="text"],
+.join-form input[type="password"] {
+    width: 100%;
+}
+
+/* 포커스 */
+.join-form input[type="text"]:focus,
+.join-form input[type="password"]:focus,
+.join-form select:focus {
+    border-color: #0874df;
+
+    box-shadow: 0 0 0 2px rgba(8, 116, 223, 0.08);
+
+}
+
+/* 우편번호 버튼 */
+.join-form input[type="button"] {
+    height: 44px;
+
+    padding: 0 18px;
+
+    border: 1px solid #0874df;
+    border-radius: 5px;
+
+    background-color: #ffffff;
+
+    color: #0874df;
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+/* 우편번호 버튼 hover */
+.join-form input[type="button"]:hover{
+    background-color: #0874df;
+
+    color: #ffffff
+}
+
+/* 맨 아래 버튼 영역 */
+.join-form > div {
+    margin-top: 30px;
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 12px;
+}
+
+/* 취소/회원가입 */
+.join-form input[type="reset"],
+.join-form input[type="submit"] {
+    width: 170px;
+    height: 48px;
+
+    border-radius: 5px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+/* 취소 */
+.join-form input[type="reset"] {
+    border: 1px solid #cccccc;
+
+    background-color: #ffffff;
+
+    color: #555555;
+}
+
+/* 회원가입 */
+.join-form input[type="submit"] {
+    border: 1px solid #0874df;
+
+    background-color: #0874df;
+
+    color: #ffffff;
+}
+
+.join-form input[type="submit"]:hover {
+    background-color: #0066c8;
+}
+
+/* 우편번호 */
+.join-address input[name="m_zipno"] {
+    width: 230px;
+}
+
+/* 휴대전화 */
+.join-form select {
+    width: 100px;
+}
+
+.join-form input[name="m_tel2"],
+.join-form input[name="m_tel3"] {
+    width: 180px;
+}
+
+/* 이메일 */
+.join-email input[name="m_email"] {
+    width: 280px;
+}
+
+.join-email select {
+    width: 180px;
+}
