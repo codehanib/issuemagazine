@@ -36,15 +36,17 @@ body {
         배송정보확인
     </div>
     <table border="1">
-	   <tr>
+	   <tr>	
+	   		<th>배송번호</th>
+	   		<th>택배사</th>
             <th>운송장번호</th>
-            <th>택배사</th>
             <th>배송상태</th>
         </tr>
        <c:forEach var="shipment" items="${shipmentMemberList}">
             <tr>
-                <td>${shipment.s_d_no}</td>
+                <td>${shipment.s_no}</td>
                 <td>${shipment.s_delivery}</td>
+                <td>${shipment.s_d_no}</td>
                 <td>${shipment.s_status}</td>
             </tr>
 		</c:forEach>

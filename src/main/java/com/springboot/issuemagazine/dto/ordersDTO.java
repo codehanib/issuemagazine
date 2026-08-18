@@ -16,4 +16,5 @@ public class ordersDTO {
     private String p_image;
     private String od_name;
     private int od_price;
+    private int od_quantity;
 }

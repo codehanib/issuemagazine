@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <!DOCTYPE html>
 <html>
@@ -19,19 +20,11 @@ body {
     color: #222;
 }
 
-/* =========================
-   마이페이지 전체
-========================= */
-
 .mypage-container {
     width: 90%;
     max-width: 1100px;
     margin: 40px auto 80px;
 }
-
-/* =========================
-   제목
-========================= */
 
 .mypage-title {
     font-size: 18px;
@@ -39,10 +32,6 @@ body {
     padding-bottom: 10px;
     margin-bottom: 30px;
 }
-
-/* =========================
-   회원 정보
-========================= */
 
 .member-info {
     border: 10px solid #DCE6F1;
@@ -52,8 +41,6 @@ body {
     align-items: center;
     margin-bottom: 50px;
 }
-
-/* MY SHOP */
 
 .member-info .mypage-logo {
     width: 45%;
@@ -71,35 +58,6 @@ body {
     margin-top: 10px;
     line-height: 1.6;
 }
-
-/* =========================
-   주문 / 관심상품 / 문의
-========================= */
-
-.mypage-point {
-    width: 40%;
-}
-
-.mypage-point table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.mypage-point td {
-    padding: 7px;
-}
-
-.mypage-point td:first-child {
-    text-align: left;
-}
-
-.mypage-point td:last-child {
-    text-align: right;
-}
-
-/* =========================
-   마이페이지 메뉴
-========================= */
 
 .mypage-menu {
     display: grid;
@@ -123,8 +81,6 @@ body {
     background-color: #fafafa;
 }
 
-/* 메뉴 제목 */
-
 .mypage-menu-title {
     font-size: 28px;
     margin-bottom: 15px;
@@ -137,17 +93,11 @@ body {
     margin-left: 5px;
 }
 
-/* 메뉴 설명 */
-
 .mypage-menu-desc {
     font-size: 13px;
     color: #aaa;
     line-height: 1.6;
 }
-
-/* =========================
-   배송정보
-========================= */
 
 .shipment-link {
     display: inline-block;
@@ -160,10 +110,6 @@ body {
 .shipment-link:hover {
     text-decoration: underline;
 }
-
-/* =========================
-   모바일
-========================= */
 
 @media(max-width: 700px) {
 
@@ -191,7 +137,110 @@ body {
 
 <body>
 
-<!-- <%@ include file="../header.jsp" %>  -->
+<%@ include file="../header.jsp" %>
+
+
+<!-- 관리자 -->
+<sec:authorize access="hasRole('ADMIN')">
+
+<div class="mypage-container">
+
+    <div class="mypage-title">
+        관리자 페이지
+    </div>
+
+    <div class="member-info">
+
+        <div class="mypage-logo">
+
+            ADMIN<span> PAGE</span>
+
+            <div class="mypage-text">
+                관리자페이지에서는 회원, 주문, 상품, 배송리스트를<br>
+                확인하고 수정하실 수 있습니다.
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="mypage-menu">
+
+        <!-- 회원관리 -->
+        <a href="/admin/memberList" class="mypage-menu-item">
+
+            <div class="mypage-menu-title">
+                member
+                <span>회원관리</span>
+            </div>
+
+            <div class="mypage-menu-desc">
+                회원 목록을 확인하고<br>
+                회원 정보를 관리하실 수 있습니다.
+            </div>
+
+        </a>
+
+
+        <!-- 주문관리 -->
+        <a href="/admin/adminOrdersList" class="mypage-menu-item">
+
+            <div class="mypage-menu-title">
+                order
+                <span>주문관리</span>
+            </div>
+
+            <div class="mypage-menu-desc">
+                전체 주문내역을 확인하고<br>
+                주문 정보를 관리하실 수 있습니다.
+            </div>
+
+        </a>
+
+
+        <!-- 배송관리 -->
+        <a href="/admin/shipmentList" class="mypage-menu-item">
+
+            <div class="mypage-menu-title">
+                shipment
+                <span>배송관리</span>
+            </div>
+
+            <div class="mypage-menu-desc">
+                배송정보를 확인하고<br>
+                배송상태를 수정하실 수 있습니다.
+            </div>
+
+        </a>
+
+
+        <!-- 상품관리 -->
+        <a href="/product/list" class="mypage-menu-item">
+
+            <div class="mypage-menu-title">
+                product
+                <span>상품관리</span>
+            </div>
+
+            <div class="mypage-menu-desc">
+                상품 목록을 확인하고<br>
+                상품 정보를 관리하실 수 있습니다.
+            </div>
+
+        </a>
+
+    </div>
+
+</div>
+
+</sec:authorize>
+
+
+
+<!-- 일반 회원 ADMIN이 아닌 USER만 표시 -->
+
+<sec:authorize access="hasRole('USER') and !hasRole('ADMIN')">
 
 <div class="mypage-container">
 
@@ -201,10 +250,9 @@ body {
 
     <div class="member-info">
 
-        <!-- 왼쪽 -->
         <div class="mypage-logo">
 
-            MY<span>SHOP</span>
+            MY<span> SHOP</span>
 
             <div class="mypage-text">
                 마이페이지에서는 고객님의<br>
@@ -230,7 +278,7 @@ body {
 
                 <tr>
                     <td>1:1 문의</td>
-                   	<td>${one_inquiryCount}개</td>
+                    <td>${one_inquiryCount}개</td>
                 </tr>
 
             </table>
@@ -238,6 +286,7 @@ body {
         </div>
 
     </div>
+
 
     <div class="mypage-menu">
 
@@ -257,6 +306,8 @@ body {
 
         </a>
 
+
+        <!-- 관심상품 -->
         <a href="/member/wishlistList"
            class="mypage-menu-item">
 
@@ -272,8 +323,11 @@ body {
 
         </a>
 
+
+        <!-- 회원정보 -->
         <a href="/member/memberviewForm"
            class="mypage-menu-item">
+
             <div class="mypage-menu-title">
                 profile
                 <span>회원정보</span>
@@ -283,8 +337,11 @@ body {
                 회원님의 개인정보를 확인하고<br>
                 회원정보를 수정하실 수 있습니다.
             </div>
+
         </a>
 
+
+        <!-- 1:1 문의 -->
         <a href="/one_inquiry/list"
            class="mypage-menu-item">
 
@@ -297,16 +354,17 @@ body {
                 작성하신 1:1 문의 내역을<br>
                 확인하실 수 있습니다.
             </div>
+
         </a>
+
     </div>
 
-    <a href="/member/shipmentMemberList"
-       class="shipment-link">
-        배송정보확인
-    </a>
 </div>
 
-<!-- <%@ include file="../footer.jsp" %> -->
+</sec:authorize>
+
+
+<%@ include file="../footer.jsp" %>
 
 </body>
 </html>

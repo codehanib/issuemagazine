@@ -102,7 +102,5 @@ public class productController {
 
         return "product/productDetail";
     }
-	    
-
     
 }

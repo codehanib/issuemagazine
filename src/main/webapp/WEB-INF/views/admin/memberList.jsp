@@ -92,6 +92,7 @@ body {
 </head>
 
 <body>
+<%@ include file="../header.jsp" %>
 <div class="container">
     <div class="title">
         회원목록
@@ -130,5 +131,6 @@ body {
         </c:choose>
     </table>
 </div>
+<%@ include file="../footer.jsp" %>
 </body>
 </html>

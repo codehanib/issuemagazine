@@ -9,13 +9,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.springboot.issuemagazine.dto.ordersDTO;
 import com.springboot.issuemagazine.dao.IordersDAO;
-import com.springboot.issuemagazine.dto.productDTO;
 import com.springboot.issuemagazine.dao.IproductDAO;
+import com.springboot.issuemagazine.dao.IshipmentDAO;
 import com.springboot.issuemagazine.dao.memberDAO;
 import com.springboot.issuemagazine.dto.memberDTO;
+import com.springboot.issuemagazine.dto.ordersDTO;
 import com.springboot.issuemagazine.dto.orders_detailDTO;
+import com.springboot.issuemagazine.dto.productDTO;
+import com.springboot.issuemagazine.dto.shipmentDTO;
 
 
 @Controller
@@ -30,7 +32,9 @@ public class ordersController {
     @Autowired
     private IproductDAO productDao;
 
-
+    @Autowired
+    private IshipmentDAO shipmentDao;
+    
     // 주문 목록
     @RequestMapping("/member/ordersList")
     public String ordersList(
@@ -76,23 +80,30 @@ public class ordersController {
         // 상품별 주문상세 생성
         for (orders_detailDTO oddto : oddtoList) {
 
-            productDTO product =
-                    productDao.productdetail(oddto.getP_no());
+            productDTO product = productDao.productdetail(oddto.getP_no());
 
             int discountPrice = product.getP_price2();
-
             int quantity = oddto.getOd_quantity();
 
             // 최종 가격
             int orderPrice = discountPrice * quantity;
-
             oddto.setOd_price(orderPrice);
 
             // 같은 주문번호 사용
             oddto.setO_no(o_no);
-
             dao.ordersDetailInsert(oddto);
         }
+        
+     // 배송정보 자동 등록
+     shipmentDTO shipment = new shipmentDTO();
+
+     shipment.setO_no(o_no);
+     shipment.setM_no(member.getM_no());
+     shipment.setS_delivery("배송준비중");
+     shipment.setS_d_no("-");
+     shipment.setS_status("상품준비중");
+
+     shipmentDao.shipmentInsert(shipment);
 
         return "redirect:/member/ordersList";
     }
@@ -154,5 +165,14 @@ public class ordersController {
 
         return "redirect:/member/ordersList";
     }
+    
+    @RequestMapping("/admin/adminOrdersList")
+    public String adminOrdersList(Model model) {
 
+        List<ordersDTO> ordersList = dao.adminOrdersList();
+
+        model.addAttribute("ordersList", ordersList);
+
+        return "admin/adminOrdersList";
+    }
 }
