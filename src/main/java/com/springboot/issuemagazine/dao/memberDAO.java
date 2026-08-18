@@ -26,4 +26,9 @@ public interface memberDAO {
 	
 	//관리자가 회원 삭제
 	public int adminMemberDelete(String m_no);
+	
+	
+	int orderCount(int m_no);
+	int wishlistCount(int m_no);
+	int one_inquiryCount(int m_no);
 }

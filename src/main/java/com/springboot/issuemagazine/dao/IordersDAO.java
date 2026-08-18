@@ -27,5 +27,7 @@ public interface IordersDAO {
     );
 
     // 주문 취소
-    public int ordersDelete(int o_no);
+    public int ordersDelete(
+            @Param("m_no") int m_no,
+            @Param("o_no") int o_no);
 }

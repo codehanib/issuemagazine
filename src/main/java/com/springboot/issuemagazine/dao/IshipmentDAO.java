@@ -18,7 +18,7 @@ public interface IshipmentDAO {
 	public List<shipmentDTO> shipmentMemberList(int m_no);
 	
 	// 배송목록 상세 조회
-	public shipmentDTO shipmentDetail(int s_no);
+	//public shipmentDTO shipmentDetail(int s_no);
 	
 	// 관리자: 배송 상태 변경 update
 	public int shipmentUpdate(shipmentDTO sdot);

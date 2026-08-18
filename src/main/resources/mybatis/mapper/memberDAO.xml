@@ -37,4 +37,24 @@
 		update member set m_passwd=#{m_passwd},m_zipno=#{m_zipno},m_addr=#{m_addr},m_tel=#{m_tel},m_email=#{m_email}
 			where m_id=#{m_id}
 	</update>
+	
+	
+	
+	<select id="orderCount" resultType="int">
+	    SELECT COUNT(*)
+	    FROM orders
+	    WHERE m_no = #{m_no}
+	</select>
+	
+	<select id="wishlistCount" resultType="int">
+	    SELECT COUNT(*)
+	    FROM wishlist
+	    WHERE m_no = #{m_no}
+	</select>
+	
+	<select id="one_inquiryCount" resultType="int">
+	    SELECT COUNT(*)
+	    FROM one_inquiry
+	    WHERE m_no = #{m_no}
+	</select>
 </mapper>
