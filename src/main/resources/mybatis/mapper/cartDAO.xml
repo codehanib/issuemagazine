@@ -3,15 +3,14 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.springboot.issuemagazine.dao.IcartDAO">
-	<!-- 장바구니 상풍 등록 -->
+	<!-- 장바구니 상품 등록 -->
 	<insert id="cartInsert">
 		insert into cart(
 			cart_no,
             cart_quantity,
             cart_price,
             m_no,
-            p_no,
-            p_image
+            p_no
 		)
 		values(
 		cart_seq.nextval,

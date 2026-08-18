@@ -29,6 +29,7 @@ public class productController {
     						@RequestParam(value = "page", defaultValue = "1") int page,
     						@RequestParam(value = "c_no", required = false) Integer c_no,
     						Model model) {
+    	
     	// 한 페이지에 보여줄 상품 수
         int pageSize = 20;
         // 시작 위치

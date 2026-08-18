@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="/css/product-detail.css">
 </head>
 <body>
+	<%@ include file="../header.jsp" %>
     <main class="product-detail-main">
         <!-- =========================================
             1. 상품 상세 상단 영역
@@ -208,7 +209,7 @@
             <!-- DB 상세 텍스트 출력 영역 -->
                 <div class="detail-text">
 				<p>
-				 ${fn:substring(productDetails[0].pd_content, 48, fn:length(productDetails[0].pd_content))}
+				< 이 달의 표지 >
 				</p>
                 </div>
 				
@@ -504,6 +505,7 @@
             </div>
         </section>
     </main>
+    <%@ include file="../footer.jsp" %>
     <script>
     // ==========================================
     // 상품 썸네일

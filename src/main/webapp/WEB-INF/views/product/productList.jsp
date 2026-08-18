@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-	<!-- include file="../header.jsp" -->
+	<%@ include file="../header.jsp" %>
 	 <main>
         <!-- ==================================================
              1. 분야별 카테고리 아이콘
@@ -251,5 +251,6 @@
         </section>
 
     </main>
+    <%@ include file="../footer.jsp" %>
 </body>
 </html>
