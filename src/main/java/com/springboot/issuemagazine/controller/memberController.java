@@ -8,6 +8,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.springboot.issuemagazine.dao.IproductDAO;
 import com.springboot.issuemagazine.dao.memberDAO;
@@ -39,11 +40,7 @@ public class memberController {
 	public String main(Model model) {
 		
 		List<productDTO> productList = productDAO.productList(start, pageSize);
-		
-		 System.out.println("상품 개수 : " + productList.size());
-		
 		model.addAttribute("productList", productList);
-		
 		
 	    return "main";
 	}
@@ -66,6 +63,11 @@ public class memberController {
 	@RequestMapping("/writeForm")
 	public String writeForm() {
 		return "writeForm";
+	}
+	
+	@RequestMapping("/customerService")
+	public String customerService() {
+		return "customerService";
 	}
 	
 	@RequestMapping("/memberInsert")
@@ -252,7 +254,6 @@ public class memberController {
 
 		    return "member/mypage";
 		}
-		
 		
 		
 		

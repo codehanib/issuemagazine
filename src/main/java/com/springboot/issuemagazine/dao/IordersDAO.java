@@ -30,4 +30,8 @@ public interface IordersDAO {
     public int ordersDelete(
             @Param("m_no") int m_no,
             @Param("o_no") int o_no);
+    
+    
+    // 관리자: 전체 주문 목록
+    public List<ordersDTO> adminOrdersList();
 }

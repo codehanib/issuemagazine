@@ -70,11 +70,9 @@
 	    ORDER BY o.o_no DESC
 	</select>
 
-
     <!-- 주문 상세 -->
 	<select id="ordersDetailList"
         resultType="com.springboot.issuemagazine.dto.orders_detailDTO">
-	
 	    SELECT
 	        od.od_no,
 	        od.od_name,
@@ -92,7 +90,6 @@
 	    WHERE o.m_no = #{m_no}
 	      AND od.o_no = #{o_no}
 	    ORDER BY od.od_no
-	
 	</select>
 
     <!-- 주문 취소 -->
@@ -101,5 +98,20 @@
 	    WHERE o_no = #{o_no}
 	      AND m_no = #{m_no}
 	</delete>
-
+	
+	<!-- 관리자: 전체 주문 목록 -->
+	<select id="adminOrdersList" resultType="com.springboot.issuemagazine.dto.ordersDTO"> 
+	    SELECT
+	        o.o_no,
+	        o.o_date,
+	        o.o_status,
+	        o.m_no,
+	        od.od_name,
+	        od.od_quantity,
+	        od.od_price
+	    FROM orders o
+	    JOIN orders_detail od
+	        ON o.o_no = od.o_no
+	    ORDER BY o.o_no DESC
+	</select>
 </mapper>
