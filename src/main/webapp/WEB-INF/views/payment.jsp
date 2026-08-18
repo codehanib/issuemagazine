@@ -10,7 +10,7 @@
 </head>
 
 <body>
-
+<%@ include file="header.jsp" %>
 <h2>주문서</h2>
 <form action="/ordersInput" method="post" name="payForm" id="payForm">
 	<!-- 상품 정보 -->
@@ -89,6 +89,7 @@
         카카오페이로 결제하기
     </button>
 </form>
+<%@ include file="footer.jsp" %>
 <script>
 	// 배송지 설정
 	function goPopup(){

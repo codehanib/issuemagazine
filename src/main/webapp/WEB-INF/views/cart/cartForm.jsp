@@ -8,153 +8,79 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>ISSUEMAGAZINE</title>
+    <title>ISSUEMAGAZINE:장바구니</title>
 
     <link rel="stylesheet" href="css/style_LDH.css">
 </head>
 
 <body>
-
-    <header>
-
-        <!-- ====== 최상단 바 ====== -->
-        <div class="top-bar">
-
-            <!-- 왼쪽 구역 -->
-            <div>
-                <a href="#">신규 회원가입시 3,000원 쿠폰 지급!</a>
-                첫 구매 고객 무료배송 혜택
-            </div>
-
-
-            <!-- 오른쪽 구역 -->
-            <div>
-                <a href="#">고객센터</a> |
-                <a href="#">FAQ</a> |
-                <a href="#">1:1문의</a> |
-                <a href="#">주문조회</a> |
-                <a href="#">마이페이지</a>
-            </div>
-
-        </div>
-
-
-        <!-- ====== 메인 상단바 ====== -->
-        <div class="main-header">
-
-            <!-- 왼쪽 구역 : 검색창 -->
-            <div class="search-area">
-
-                <input type="text" placeholder="매거진 검색">
-
-                <button type="button">
-                    검색
-                </button>
-
-            </div>
-
-
-            <!-- 가운데 구역 : 로고 -->
-            <div class="logo">
-
-                <a href="#">
-                    <img src="" alt="ISSUEMAGAZINE 로고">
-                </a>
-
-            </div>
-
-
-            <!-- 오른쪽 구역 : 로그인 / 회원가입 / 장바구니 -->
-            <div class="member-menu">
-
-                <a href="#">로그인</a>
-                <a href="#">회원가입</a>
-                <a href="#">장바구니</a>
-
-            </div>
-
-        </div>
-
-
-        <!-- ====== 카테고리 구역 ====== -->
-        <nav class="nav">
-
-            <!-- 전체 카테고리 -->
-            <div class="all-category">
-
-
-                <!-- 클릭할 영역 -->
-                <div class="category-button">
-
-                    <div class="hamburger">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-
-                    전체 카테고리
-
-                </div>
-
-
-                <!-- 햄버거 클릭 시 펼쳐질 카테고리 -->
-                <div class="category-menu">
-
-                    <a href="#">패션/여성</a>
-                    <a href="#">인테리어/건축/디자인</a>
-                    <a href="#">과학/논술</a>
-                    <a href="#">교육/어학</a>
-                    <a href="#">시사/경제/경영</a>
-                    <a href="#">여행/레저/취미</a>
-                    <a href="#">라이프/힐링</a>
-                    <a href="#">해외잡지/해외신문</a>
-
-                </div>
-
-            </div>
-
-
-            <!-- 메인 메뉴 -->
-            <div class="main-menu">
-
-                <a href="#">정기구독</a>
-                <a href="#">추천 매거진</a>
-                <a href="#">분야별 매거진</a>
-                <a href="#">디지털 매거진</a>
-                <a href="#">이벤트</a>
-                <a href="#">고객센터</a>
-
-            </div>
-
-        </nav>
-
-    </header>
-
+	<%@ include file="../header.jsp" %>
     <main>
         <!-- 장바구니 타이틀 -->
         <h1 class="cart_title">장바구니</h1>
-
+        <form method="post" name="cartForm" id="cartForm">
         <div class="cart_box">
+            <table class="cart-table">
+            <thead>
+                <tr>
+                    <th>선택</th>
+                    <th>상품정보</th>
+                    <th>수량</th>
+                    <th>가격</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach var="cart" items="${cartList}">
+                    <tr>
+                        <!-- 선택 -->
+                        <td>
+                            <input type="checkbox"
+                                   name="cart_no"
+                                   value="${cart.cart_no}">
+                        </td>
+                        <!-- 상품정보 -->
+                        <td>
+                            <div class="product-info">
+                                <img src="${cart.p_image}"
+                                     alt="${cart.p_name}"
+                                     class="cart-product-image">
+                                <div class="cart-product-text">
+                                    <strong>
+                                        ${cart.p_name}
+                                    </strong>
+                                    <br>
+                                    상품번호 : ${cart.p_no}
+                                </div>
+                            </div>
+                        </td>
+                        <!-- 수량 -->
+                        <td>
+                        	<input
+                                type="number"
+                                id="quantity"
+                                name="quantity"
+                                value="${cart.cart_quantity}"
+                                min="1" width="50"
+                            > 개
+                        </td>
+                        <!-- 가격 -->
+                        <td>
+                            ${cart.p_price}원
+                        </td>
+                    </tr>
+                    <!-- 상품가격 × 수량 -->
+                    <c:set var="itemPrice"
+                           value="${cart.p_price * cart.cart_quantity}" />
 
-            <!-- 장바구니 창 -->
-            <div class="cart_list">
-				<c:forEach var="cart" items="${cartList}">
-
-				    장바구니 번호 : ${cart.cart_no} <br>
-				    상품번호 : ${cart.p_no} <br>
-				    상품명 : ${cart.p_name} <br>
-				    상품가격 : ${cart.p_price} <br>
-				    장바구니 가격 : ${cart.cart_price} <br>
-				    수량 : ${cart.cart_quantity} <br>
-				
-				    <hr>
-
-				</c:forEach>
-            </div> 
+                    <c:set var="totalPrice"
+                           value="${totalPrice + itemPrice}" />
+                </c:forEach>
+            </tbody>
+        </table>
 
             <!-- 총가격 -->
             <div class="cart_total">
-                총가격 :
+                총 상품금액 : ${totalPrice}원
             </div>
 
 
@@ -162,23 +88,23 @@
             <div class="cart_buttons">
                 <!-- 왼쪽 -->
                 <div class="cart_buttons_left">
-                    <button>선택상품 삭제</button> 
+                    <button type="submit" formaction="/">선택상품 삭제</button> 
 
-                    <button>장바구니 비우기</button>
+                    <button type="submit" formaction="/cartDeleteAll">장바구니 비우기</button>
 
                 </div>
 
                 <!-- 오른쪽 -->
                 <div class="cart_buttons_right">
-                    <button>쇼핑 계속하기</button>
+                    <button onclick="location.href='/product/list'">쇼핑 계속하기</button>
 
-                    <button>전체 상품 주문</button>
+                    <button type="submit" formaction="/payment">전체 상품 주문</button>
                 </div>
 
             </div>
 
         </div>    
-
+		</form>
         <!-- 장바구니 이용안내 -->
         <div class="cart_Information">
             <h2>장바구니 이용안내</h2>
@@ -205,77 +131,6 @@
             </div> 
          
     </main>
-
-    <!-- ==================================================
-         FOOTER
-    =================================================== -->
-    <footer class="footer">
-
-
-        <!-- 1. 왼쪽 : 로고 -->
-        <div class="footer-logo">
-
-            <img src="" alt="ISSUEMAGAZINE 로고">
-
-        </div>
-
-
-        <!-- 2. 가운데 : 회사정보 -->
-        <div class="footer-company">
-
-            <h3>ISSUEMAGAZINE</h3>
-
-            상호명 : ISSUEMAGAZINE <br>
-
-            사업자등록번호 : 123-45-67890
-            대표자명 : 홍길동 <br>
-
-            주소 : 서울특별시 강남구 테헤란로 123,
-            5층 (우)06132 <br>
-
-            통신판매업신고 : 제2024-서울강남-0000호
-            개인정보보호책임자 : 홍길순 <br>
-
-            이메일 : issuemagazine@naver.com <br>
-
-            고객센터 :
-            <b>1644-6451</b>
-            (평일 09:00~18:00)
-
-        </div>
-
-
-        <!-- 3. 오른쪽 : 이용안내 -->
-        <div class="footer-menu">
-
-            <div>
-
-                <a href="#">회사소개</a>
-                <a href="#">이용약관</a>
-                <a href="#">개인정보처리방침</a>
-                <a href="#">청소년보호정책</a>
-
-            </div>
-
-
-            <div>
-
-                <img src="" alt="안내로고">
-
-            </div>
-
-        </div>
-
-
-        <!-- 4. Copyright -->
-        <div class="footer-bottom">
-
-            Copyright © 2026 ISSUEMAGAZINE.
-            All Rights Reserved.
-
-        </div>
-
-    </footer>
-
+	<%@ include file="../footer.jsp" %>
 </body>
 </html>
