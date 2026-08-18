@@ -54,11 +54,7 @@
                 오른쪽 : 상품 정보 영역
             =============================== -->
             <div class="product-info-area">
-				<form action="/payment" method="post" name="productDetail">
-                    <!-- 회원 정보 -->
-				    <input type="hidden"
-				           name="m_no"
-				           value="${product.p_no}">
+				<form method="post" name="productDetail">
 				    <!-- 상품 이미지 -->
 				    <input type="hidden" name="p_image"
 				    	value="${product.p_image}">
@@ -127,6 +123,7 @@
                             <input
                                 type="number"
                                 id="quantity"
+                                name="quantity"
                                 value="1"
                                 min="1"
                             >
@@ -159,17 +156,17 @@
                 =========================== -->
                 <div class="product-buttons">
                     <button type="submit"
-                            class="buy-button">
+                            class="buy-button" formaction="/payment">
                         바로구매
                     </button>
-                    <button type="button"
+                    <button type="submit"
                             class="cart-button"
-                            onclick="add_cart()">
+                            formaction="/cartInsert">
                         장바구니
                     </button>
-                    <button type="button"
+                    <button type="submit"
                             class="wish-button"
-                            onclick="add_wish()">
+                            formaction="/member/wishlistInsert">
                         관심상품
                     </button>
 				</div>
@@ -560,11 +557,7 @@
     // ==========================================
 
     updateThumbnails();
-    
-    function add_cart(){};
-    
-    function add_wish(){};
-    
+ 
 	</script>
 </body>
 </html>
