@@ -232,10 +232,26 @@ public class memberController {
 		}
 		
 		@RequestMapping("/member/mypage")
-		public String mymage() {
+		public String mypage(
+		        Authentication authentication,
+		        Model model) {
+
+		    String m_id = authentication.getName();
+
+		    memberDTO member = dao.findById(m_id);
+
+		    int m_no = member.getM_no();
+
+		    int orderCount = dao.orderCount(m_no);
+		    int wishlistCount = dao.wishlistCount(m_no);
+		    int one_inquiryCount = dao.one_inquiryCount(m_no);
+
+		    model.addAttribute("orderCount", orderCount);
+		    model.addAttribute("wishlistCount", wishlistCount);
+		    model.addAttribute("one_inquiryCount", one_inquiryCount);
+
 		    return "member/mypage";
 		}
-		
 		
 		
 		

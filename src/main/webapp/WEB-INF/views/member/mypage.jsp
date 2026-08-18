@@ -220,17 +220,17 @@ body {
 
                 <tr>
                     <td>총 주문</td>
-                    <td>0회</td>
+                    <td>${orderCount}회</td>
                 </tr>
 
                 <tr>
                     <td>관심상품</td>
-                    <td>0개</td>
+                    <td>${wishlistCount}개</td>
                 </tr>
 
                 <tr>
                     <td>1:1 문의</td>
-                    <td>0개</td>
+                   	<td>${one_inquiryCount}개</td>
                 </tr>
 
             </table>

@@ -96,8 +96,8 @@ body {
     text-align: center !important;
     color: #999;
 }
-
 </style>
+
 </head>
 
 <body>
@@ -152,7 +152,7 @@ body {
                         <td>
                             <button type="button"
                                     class="check-btn"
-                                    onclick="location.href='/member/ordersDetail?o_no=${orders.o_no}'">
+                                    onclick="location.href='/member/shipmentMemberList?o_no=${orders.o_no}'">
                               	확인
                             </button>
                         </td>
