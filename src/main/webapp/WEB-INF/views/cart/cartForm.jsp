@@ -1,7 +1,6 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -19,6 +18,7 @@
         <!-- 장바구니 타이틀 -->
         <h1 class="cart_title">장바구니</h1>
         <form method="post" name="cartForm" id="cartForm">
+        <input type="hidden" name="orderType" value="cart">
         <div class="cart_box">
             <table class="cart-table">
             <thead>
@@ -55,13 +55,7 @@
                         </td>
                         <!-- 수량 -->
                         <td>
-                        	<input
-                                type="number"
-                                id="quantity"
-                                name="quantity"
-                                value="${cart.cart_quantity}"
-                                min="1" width="50"
-                            > 개
+                        	${cart.cart_quantity} 개
                         </td>
                         <!-- 가격 -->
                         <td>
@@ -88,7 +82,7 @@
             <div class="cart_buttons">
                 <!-- 왼쪽 -->
                 <div class="cart_buttons_left">
-                    <button type="submit" formaction="/">선택상품 삭제</button> 
+                    <button type="submit" formaction="/cartDelete">선택상품 삭제</button> 
 
                     <button type="submit" formaction="/cartDeleteAll">장바구니 비우기</button>
 
@@ -96,9 +90,9 @@
 
                 <!-- 오른쪽 -->
                 <div class="cart_buttons_right">
-                    <button onclick="location.href='/product/list'">쇼핑 계속하기</button>
+                    <button type="button" onclick="location.href='/product/list'">쇼핑 계속하기</button>
 
-                    <button type="submit" formaction="/payment">전체 상품 주문</button>
+                    <button type="submit" formaction="/payment">선택 상품 주문</button>
                 </div>
 
             </div>

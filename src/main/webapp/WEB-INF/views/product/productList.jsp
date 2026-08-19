@@ -166,8 +166,11 @@
 			            <!-- 장바구니 버튼 -->
 			            <form action="/cartInsert" method="post">
 					    <input type="hidden"
-					           name="P_no"
+					           name="p_no"
 					           value="${product.p_no}">
+					    <input type="hidden"
+				               name="quantity"
+				               value="1">
 			            <button
 			                type="submit"
 			                class="list-cart-button"
@@ -215,11 +218,11 @@
         <section class="info-area">
             <!-- 공지사항 -->
             <div>
-
                 <h3>공지사항</h3>
-                <a href="#">게시글 불러오기1</a>
-                <a href="#">게시글 불러오기2</a>
-                <a href="#">게시글 불러오기3</a>
+                <c:forEach var="notice" items="${noticeList}">
+                 <a href="/notice/view?n_no=${notice.n_no}">
+                 ${notice.n_title}</a>
+                </c:forEach>
             </div>
 
 

@@ -71,6 +71,8 @@
 				    <input type="hidden"
 				           name="p_price2"
 				           value="${product.p_price2}">
+				    <!-- 결제 타입 -->
+				    <input type="hidden" name="orderType" value="direct">
                 
                 <!-- 현재 위치 -->
                 <div class="product-location">

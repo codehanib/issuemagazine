@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.springboot.issuemagazine.dao.IproductDAO;
 import com.springboot.issuemagazine.dao.memberDAO;
+import com.springboot.issuemagazine.dao.noticeDAO;
 import com.springboot.issuemagazine.dto.memberDTO;
+import com.springboot.issuemagazine.dto.noticeDTO;
 import com.springboot.issuemagazine.dto.productDTO;
 import com.springboot.issuemagazine.dto.product_detailDTO;
 
@@ -22,6 +24,9 @@ public class productController {
 	
 	@Autowired
 	private memberDAO memberdao;
+	
+	@Autowired
+	private noticeDAO noticedao;
 
     // 상품 전체 목록 조회
     @RequestMapping("/product/list")
@@ -30,6 +35,9 @@ public class productController {
     						@RequestParam(value = "c_no", required = false) Integer c_no,
     						Model model) {
     	
+    	// 공지보이기 용
+    	List<noticeDTO> noticeList = noticedao.noticeSearch(null, null, 0, 3);
+    	model.addAttribute("noticeList", noticeList);
     	// 한 페이지에 보여줄 상품 수
         int pageSize = 20;
         // 시작 위치
