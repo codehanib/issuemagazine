@@ -313,32 +313,6 @@ document.addEventListener("DOMContentLoaded", function() {
 	}, 4000);
 });
 
-// 장바구니 클릭 위치 저장
-document.querySelectorAll(".list_cart_button").forEach(function(button) {
-
-    button.addEventListener("click", function() {
-
-        sessionStorage.setItem("scrollPosition", window.scrollY);
-
-    });
-
-});
 
 
-// 메인페이지 다시 열리면 저장한 위치로 이동
-window.addEventListener("load", function() {
 
-    let scrollPosition = sessionStorage.getItem("scrollPosition");
-
-    if (scrollPosition !== null) {
-
-        setTimeout(function() {
-
-            window.scrollTo(0, Number(scrollPosition));
-
-            sessionStorage.removeItem("scrollPosition");
-
-        }, 100);
-    }
-
-});

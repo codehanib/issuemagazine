@@ -14,6 +14,7 @@
 
 <body>
 	<%@ include file="../header.jsp" %>
+
     <main>
         <!-- 장바구니 타이틀 -->
         <h1 class="cart_title">장바구니</h1>
@@ -55,7 +56,28 @@
                         </td>
                         <!-- 수량 -->
                         <td>
-                        	${cart.cart_quantity} 개
+                        	cart_no : ${cart.cart_no}
+                        	<form action="/cartUpdate" method="post" >
+                        		
+                        		<input type ="hidden"
+                        			   name ="cart_no"
+                        			   value = "${cart.cart_no}">
+                        			   
+                        		<button type = "submit"
+                        				name = "cart_quantity"
+                        				value = "${cart.cart_quantity - 1}">
+                        			-
+                        		</button>
+                        
+                        		${cart.cart_quantity} 개
+                        		
+                        		<button type="submit"
+                        				name="cart_quantity"
+                        				value="${cart.cart_quantity  + 1}">
+                        			+
+                        		</button>
+                        	
+                        	</form>
                         </td>
                         <!-- 가격 -->
                         <td>

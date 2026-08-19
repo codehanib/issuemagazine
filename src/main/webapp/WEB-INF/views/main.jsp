@@ -25,6 +25,7 @@
 <body>
 
 	<jsp:include page="header.jsp"/>
+	<iframe name="cartFrame" style="display:none;"></iframe>
 
     <main>
 
@@ -214,7 +215,7 @@
 		
 		                    <a href="/product/detail?p_no=${product.p_no}">구매하기</a>
 								
-							<form action="/cartInsert" method="post">
+							<form action="/cartInsert" method="post" target="cartFrame">
 							<input type="hidden" name="p_no" value="${product.p_no}">
 							<input type="hidden" name="quantity" value="1">
 		                    <button type="submit" class="list_cart_button">
@@ -340,7 +341,7 @@
 			                    </a>
 								
 								<!-- 장바구니 -->
-								<form action="/cartInsert" method="post">
+								<form action="/cartInsert" method="post" target="cartFrame">
 								<input type="hidden" name="p_no" value="${product.p_no}">
 								<input type="hidden" name="quantity" value="1">
 		                    	<button type="submit" class="list_cart_button">
@@ -420,7 +421,7 @@
 
 
                         <!-- 장바구니 -->
-						<form action="/cartInsert" method="post">
+						<form action="/cartInsert" method="post" target="cartFrame">
 						<input type="hidden" name="p_no" value="${product.p_no}">
 						<input type="hidden" name="quantity" value="1">
 		                <button type="submit" class="list_cart_button">
