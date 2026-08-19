@@ -20,96 +20,302 @@ body {
     color: #222;
 }
 
+
+/* =========================================================
+   마이페이지 전체
+========================================================= */
+
 .mypage-container {
     width: 90%;
     max-width: 1100px;
+
     margin: 40px auto 80px;
 }
 
+
+/* =========================================================
+   제목
+========================================================= */
+
 .mypage-title {
-    font-size: 18px;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 10px;
+    padding-bottom: 12px;
+
     margin-bottom: 30px;
+
+    border-bottom: 1px solid #ddd;
+
+    color: #222;
+
+    font-size: 18px;
+    font-weight: 500;
 }
 
+
+/* =========================================================
+   회원 정보 영역
+========================================================= */
+
 .member-info {
-    border: 10px solid #DCE6F1;
-    padding: 30px;
+    position: relative;
+
+    margin-bottom: 45px;
+
+    padding: 35px 40px;
+
     display: flex;
+
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 50px;
+
+    background: #f7fbff;
+
+    border: 1px solid #dcecff;
+    border-radius: 14px;
+
+    box-shadow: 0 5px 18px rgba(8, 116, 223, 0.06);
+
+    overflow: hidden;
 }
+
+
+/* 왼쪽 파란 포인트 */
+
+.member-info::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 5px;
+    height: 100%;
+
+    background: #0874df;
+}
+
+
+/* =========================================================
+   MY SHOP / ADMIN PAGE
+========================================================= */
 
 .member-info .mypage-logo {
     width: 45%;
-    font-size: 42px;
+
+    color: #0874df;
+
+    font-size: 38px;
     font-weight: bold;
+
+    letter-spacing: -1px;
 }
 
+
 .member-info .mypage-logo span {
+    color: #222;
+
     font-weight: normal;
 }
 
+
+/* 설명 */
+
 .member-info .mypage-text {
+    margin-top: 14px;
+
+    color: #666;
+
     font-size: 13px;
-    color: #555;
-    margin-top: 10px;
-    line-height: 1.6;
+
+    line-height: 1.8;
 }
+
+
+/* =========================================================
+   주문 / 관심상품 / 문의 정보
+========================================================= */
+
+.mypage-point {
+    padding: 15px 20px;
+
+    border-left: 1px solid #dcecff;
+}
+
+
+.mypage-point table {
+    border-collapse: collapse;
+}
+
+
+.mypage-point td {
+    padding: 7px 0;
+
+    color: #555;
+
+    font-size: 13px;
+
+    line-height: 1.4;
+}
+
+
+/* 왼쪽 항목 */
+
+.mypage-point td:first-child {
+    width: 85px;
+
+    color: #777;
+
+    text-align: left;
+}
+
+
+/* 오른쪽 숫자 */
+
+.mypage-point td:last-child {
+    width: 45px;
+
+    color: #0874df;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    text-align: right;
+}
+
+
+/* =========================================================
+   메뉴 카드
+========================================================= */
 
 .mypage-menu {
     display: grid;
+
     grid-template-columns: repeat(2, 1fr);
-    border-top: 1px solid #c7d2e3;
-    border-left: 1px solid #c7d2e3;
+
+    gap: 15px;
+
+    border: none;
 }
+
+
+/* 메뉴 하나 */
 
 .mypage-menu-item {
+    min-height: 160px;
+
+    padding: 28px 30px;
+
+    position: relative;
+
     display: block;
-    min-height: 170px;
-    padding: 30px;
-    border-right: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
+
     text-decoration: none;
+
     color: #222;
-    transition: 0.2s;
+
+    background-color: #fff;
+
+    border: 1px solid #e5e9ee;
+    border-radius: 12px;
+
+    transition: all 0.25s ease;
 }
+
+
+/* 카드 왼쪽 작은 파란선 */
+
+.mypage-menu-item::before {
+    content: "";
+
+    position: absolute;
+
+    top: 25px;
+    left: 0;
+
+    width: 3px;
+    height: 35px;
+
+    background-color: #0874df;
+
+    border-radius: 0 3px 3px 0;
+}
+
+
+/* Hover */
 
 .mypage-menu-item:hover {
-    background-color: #fafafa;
+    transform: translateY(-3px);
+
+    border-color: #b9d9f7;
+
+    box-shadow: 0 8px 20px rgba(8, 116, 223, 0.10);
 }
+
+
+/* =========================================================
+   메뉴 제목
+========================================================= */
 
 .mypage-menu-title {
-    font-size: 28px;
     margin-bottom: 15px;
+
     color: #222;
+
+    font-size: 25px;
+    font-weight: 600;
+
+    letter-spacing: -0.5px;
 }
+
 
 .mypage-menu-title span {
-    font-size: 13px;
+    margin-left: 7px;
+
     color: #777;
-    margin-left: 5px;
+
+    font-size: 13px;
+    font-weight: normal;
 }
 
+
+/* =========================================================
+   메뉴 설명
+========================================================= */
+
 .mypage-menu-desc {
+    color: #777;
+
     font-size: 13px;
-    color: #aaa;
-    line-height: 1.6;
+
+    line-height: 1.8;
 }
+
+
+/* =========================================================
+   배송 링크
+========================================================= */
 
 .shipment-link {
     display: inline-block;
+
     margin-top: 15px;
-    color: #222;
+
+    color: #0874df;
+
     font-size: 13px;
+
     text-decoration: none;
 }
+
 
 .shipment-link:hover {
     text-decoration: underline;
 }
+
+
+/* =========================================================
+   모바일
+========================================================= */
 
 @media(max-width: 700px) {
 
@@ -117,21 +323,34 @@ body {
         width: 94%;
     }
 
+
     .member-info {
         display: block;
+
+        padding: 30px;
     }
+
 
     .member-info .mypage-logo,
     .mypage-point {
         width: 100%;
+
         margin-bottom: 20px;
     }
+
+
+    .mypage-point {
+        padding: 15px 0;
+
+        border-left: none;
+        border-top: 1px solid #dcecff;
+    }
+
 
     .mypage-menu {
         grid-template-columns: 1fr;
     }
 }
-
 </style>
 </head>
 
@@ -223,8 +442,7 @@ body {
             </div>
 
             <div class="mypage-menu-desc">
-                상품 목록을 확인하고<br>
-                상품 정보를 관리하실 수 있습니다.
+                상품 목록을 확인하실 수 있습니다.
             </div>
 
         </a>

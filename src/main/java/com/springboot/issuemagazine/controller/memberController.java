@@ -270,4 +270,16 @@ public class memberController {
 		    return "admin/memberList";
 		}
 		
+		// 관리자 회원 상세정보
+		@RequestMapping("/admin/memberView")
+		public String adminMemberView(@RequestParam("m_no") int m_no,
+		                              Model model) {
+
+		    memberDTO dto = dao.memberView(m_no);
+
+		    model.addAttribute("view", dto);
+
+		    return "member/memberviewForm";
+		}
+		
 }

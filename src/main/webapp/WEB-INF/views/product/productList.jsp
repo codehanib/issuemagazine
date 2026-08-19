@@ -7,6 +7,273 @@
 <meta charset="UTF-8">
 <title>상품리스트보기</title>
     <link rel="stylesheet" href="/css/style.css">
+<style>
+/* =========================================================
+   상품 리스트 - 한 줄에 4개
+========================================================= */
+
+.category-product-list {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    margin-top: 25px;
+}
+
+
+/* 상품 카드 */
+.list-product-card {
+    min-width: 0;
+    padding: 15px;
+    border: 1px solid #eeeeee;
+    border-radius: 10px;
+    background-color: #ffffff;
+    transition: 0.25s;
+}
+
+.list-product-card:hover {
+    transform: translateY(-5px);
+    border-color: #d9e6f5;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* 상품 이미지 */
+.list-product-image {
+    width: 100%;
+    height: 270px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-color: #f6f7f9;
+    border-radius: 7px;
+}
+
+.list-product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: 0.3s;
+}
+
+.list-product-card:hover .list-product-image img {
+    transform: scale(1.03);
+}
+
+/* 상품명 */
+.list-product-name {
+    min-height: 45px;
+    margin-bottom: 8px;
+    display: block;
+    color: #222222;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+.list-product-name:hover {
+    color: #0874df;
+}
+
+/* 정가 */
+.list-original-price {
+    margin-bottom: 4px;
+    color: #999999;
+    font-size: 13px;
+}
+
+/* 할인가 */
+.list-sale-price {
+    margin-bottom: 15px;
+    color: #0874df;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* 장바구니 폼 */
+.list-product-card form {
+    width: 100%;
+}
+
+/* 장바구니 버튼 */
+.list-cart-button {
+    width: 100%;
+    height: 38px;
+    border: 1px solid #0874df;
+    border-radius: 5px;
+    background-color: #ffffff;
+    color: #0874df;
+    font-size: 13px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.list-cart-button:hover {
+    background-color: #0874df;
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   반응형
+========================================================= */
+
+@media (max-width: 1000px) {
+    .category-product-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 700px) {
+    .category-product-list {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+}
+
+@media (max-width: 450px) {
+    .category-product-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* 상품 목록 전체 */
+.product-list-content {
+    width: 100%;
+
+    margin-top: 50px;
+    margin-bottom: 70px;
+}
+
+
+/* 상품 목록 제목 */
+.list-section-title {
+    width: 100%;
+
+    border-bottom: 1px solid #dddddd;
+
+    margin-bottom: 0;
+}
+
+
+.list-section-title h2 {
+    display: inline-block;
+
+    margin: 0;
+
+    padding-bottom: 10px;
+
+    border-bottom: 2px solid #222222;
+
+    color: #222222;
+
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.product-list-toolbar {
+    width: 100%;
+
+    min-height: 55px;
+
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    border-bottom: 1px solid #eeeeee;
+}
+
+/* 등록 제품 수 */
+.product-count {
+    color: #777777;
+
+    font-size: 12px;
+}
+
+/* 정렬 영역 */
+.product-sort {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #777777;
+    font-size: 12px;
+}
+
+/* 정렬 링크 */
+.product-sort a {
+    color: #555555;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.product-sort a:hover {
+    color: #0874df;
+}
+
+
+/* | 구분선 */
+.product-sort span {
+    color: #cccccc;
+
+    font-size: 11px;
+}
+
+/* ================================
+   페이지 번호
+================================ */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+
+    margin: 50px 0 70px;
+}
+
+.pagination a {
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 1px solid #d6e5f5;
+    border-radius: 5px;
+
+    background-color: #ffffff;
+    color: #0874df;
+
+    font-size: 13px;
+    text-decoration: none;
+
+    transition: all 0.2s ease;
+}
+
+.pagination a:hover {
+    background-color: #eaf4ff;
+    border-color: #0874df;
+}
+
+/* 현재 페이지 */
+.pagination a.active {
+    background-color: #0874df;
+    border-color: #0874df;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* 이전 / 다음 버튼 */
+.pagination a:first-child,
+.pagination a:last-child {
+    font-size: 15px;
+}
+</style>
+
 </head>
 <body>
 	<%@ include file="../header.jsp" %>
@@ -99,13 +366,7 @@
                     <span>|</span>
 
                     <a href="#">
-                        신상품
-                    </a>
-
-                    <span>|</span>
-
-                    <a href="#">
-                        인기상품
+                        최신순
                     </a>
 
                 </div>
@@ -114,8 +375,6 @@
 
             <!-- =================================================
                  상품 목록
-
-                 DB에서 조회된 개수만큼 자동 반복
             ================================================== -->
 			<div class="category-product-list">
 			
@@ -147,19 +406,14 @@
 			
 			            <!-- 정가 -->
 			            <div class="list-original-price">
-			
 			                <del>
-			                    ${product.p_price}
+			                    ${product.p_price}원
 			                </del>
-			
 			            </div>
-			
 			
 			            <!-- 할인가 -->
 			            <div class="list-sale-price">
-			
-			                ${product.p_price2}
-			
+			                ${product.p_price2}원
 			            </div>
 			
 			

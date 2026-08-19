@@ -27,10 +27,25 @@ body {
 }
 
 .title {
+    position: relative;
     font-size: 18px;
     border-bottom: 1px solid #ddd;
     padding-bottom: 10px;
     margin-bottom: 20px;
+    color: #222222;
+    font-weight: 500;
+}
+
+/* 제목 글자 아래 두꺼운 밑줄 */
+.title::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 104px;
+    height: 2px;
+
+    background-color: #222222;
 }
 
 .orders-table {

@@ -29,10 +29,25 @@ body {
 
 /* 제목 */
 .title {
+    position: relative;
     font-size: 18px;
     border-bottom: 1px solid #ddd;
     padding-bottom: 10px;
     margin-bottom: 20px;
+    color: #222222;
+    font-weight: 500;
+}
+
+/* 제목 글자 아래 두꺼운 밑줄 */
+.title::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 110px;
+    height: 2px;
+
+    background-color: #222222;
 }
 
 /* 안내문 */
@@ -127,7 +142,7 @@ body {
     <table class="orders-table">
         <tr>
             <th style="width: 150px;">이미지</th>
-            <th style="width: 250px;">제품이름</th>
+            <th style="width: 250px;">상품이름</th>
             <th style="width: 180px;">구독기간</th>
             <th style="width: 120px;">수량</th>
             <th style="width: 200px;">가격</th>
