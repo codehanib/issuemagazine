@@ -55,4 +55,12 @@
 		set cart_quantity = #{cart_quantity}
 		where cart_no = #{cart_no}
 	</update>
+	
+	<!-- 제품 수량 증가 -->
+	<update id="cartUpdatePlus">
+		update cart
+		set cart_quantity = cart_quantity + #{cart_quantity}
+		where m_no = #{m_no}
+		  and p_no = #{p_no}
+	</update>
 </mapper>

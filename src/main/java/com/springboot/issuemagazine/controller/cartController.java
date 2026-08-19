@@ -47,17 +47,22 @@ public class cartController {
 								cartDTO cdto,
 								@RequestParam("quantity") int quantity) {
 		// 현재 로그인한 회원의 ID
-				 String m_id = auth.getName();
+		String m_id = auth.getName();
 		// 회원번호 조회
 		memberDTO member = memberdao.findById(m_id);
 		int m_no = member.getM_no();
 		
 		// 회원번호를 DTO에 저장
 	    cdto.setM_no(m_no);
-		// 장바구니 수량 입력
 	    cdto.setCart_quantity(quantity);
 	    
-		cartdao.cartInsert(cdto);
+	    // 같은 회원 + 같은 상품이 있으면 수량 증가
+	    int result = cartdao.cartUpdatePlus(cdto);
+	    
+		// 같은 상품이 없으면 새로 추가
+	    if (result == 0) {
+	    	cartdao.cartInsert(cdto);
+	    }
 		
 		return "redirect:/cartForm";
 	}
