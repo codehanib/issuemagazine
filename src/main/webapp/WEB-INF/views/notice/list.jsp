@@ -9,49 +9,32 @@
 <head>
 <meta charset="UTF-8">
 <title>공지목록</title>
-<style>
-    .pagination {
-        margin-top: 15px;
-        text-align: center;
-    }
-    .pagination a {
-        margin: 0 4px;
-        text-decoration: none;
-        color: #333;
-    }
-    .pagination .active {
-        font-weight: bold;
-        color: red;
-    }
-    .search-box {
-        margin-top: 15px;
-        text-align: center;
-    }
-</style>
+<link rel="stylesheet" href="/css/notice.css">
 </head>
 <body>
-    <div class="list-wrapper">
-        <h3>공지 목록</h3>
-        <table class="member-table" border="1">
+<%@ include file="../header.jsp" %>
+    <div class="notice-wrapper">
+        <h3 class="notice-title">공지 목록</h3>
+        <table class="notice-table">
             <thead>
                 <tr>
                     <th>번호</th>
                     <th>제목</th>
                     <th>작성일</th>
                     <th>조회수</th>
-                    <th>멤버번호</th>
+                    <th>작성자</th>
                 </tr>
             </thead>
             <tbody>
                 <c:forEach var="notice" items="${list}">
                     <tr>
                         <td>${notice.n_no}</td>
-                        <td>
+                        <td class="notice-title-col">
                             <a href="/notice/view?n_no=${notice.n_no}">${notice.n_title}</a>
                         </td>
                         <td><fmt:formatDate value="${notice.n_reg_date}" pattern="yyyy-MM-dd"/></td>
                         <td>${notice.n_count}</td>
-                        <td>${notice.m_no}</td>
+                        <td>ISSUE MAGAZINE</td>
                     </tr>
                 </c:forEach>
                 <c:if test="${empty list}">
@@ -91,14 +74,15 @@
                     <option value="title" ${searchType == 'title' ? 'selected' : ''}>제목</option>
                     <option value="content" ${searchType == 'content' ? 'selected' : ''}>내용</option>
                 </select>
-
                 <input type="text" name="keyword" value="${keyword}">
                 <button type="submit">찾기</button>
             </form>
         </div>
 
-        <br>
-        <a href="/main"><input type="button" value="메인으로"></a>
+        <div class="bottom-button">
+            <a href="/main"><input type="button" value="메인으로"></a>
+        </div>
     </div>
+    <%@ include file="../footer.jsp" %>
 </body>
 </html>

@@ -1,0 +1,351 @@
+@charset "UTF-8";
+
+/* =========================================================
+   0. 공통 리셋 및 스크롤바 틀어짐 방지
+========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    overflow-y: scroll;
+}
+
+body {
+    width: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #333333;
+    background-color: #f8f9fa;
+    overflow-x: hidden;
+}
+
+/* =========================================================
+   1. 공지사항 목록 카드 영역
+========================================================= */
+
+.notice-wrapper {
+    position: relative;
+    width: 960px;
+    max-width: calc(100% - 40px);
+
+    margin: 60px auto 80px;
+    padding: 50px 55px;
+
+    border: 1px solid #e5e8eb;
+    border-radius: 16px;
+
+    background-color: #ffffff;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+    overflow: hidden;
+}
+
+/* 카드 상단 포인트 상징 선 */
+.notice-wrapper::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #0874df, #00d2ff);
+}
+
+/* =========================================================
+   2. 상단 타이틀 & 검색 영역
+========================================================= */
+
+/* 헤더 컨테이너 또는 wrapper 내부 첫 타이틀 자동 배치 */
+.notice-header,
+.notice-wrapper > h2,
+.notice-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+
+    margin-bottom: 35px;
+
+    font-size: 26px;
+    font-weight: 800;
+    color: #111111;
+    letter-spacing: -0.5px;
+}
+
+/* 검색 폼 (클래스명이 없어도 자동 스타일링 적용) */
+.notice-search-form,
+.notice-wrapper form,
+.notice-header form {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto; /* 우측 정렬 */
+}
+
+/* 검색 드롭다운 & 입력창 */
+.notice-search-form select,
+.notice-search-form input[type="text"],
+.notice-wrapper form select,
+.notice-wrapper form input[type="text"] {
+    height: 42px;
+    padding: 0 14px;
+
+    border: 1px solid #e1e4e8;
+    border-radius: 8px;
+
+    font-size: 14px;
+    color: #333333;
+    background-color: #ffffff;
+    outline: none;
+
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.notice-search-form select:focus,
+.notice-search-form input[type="text"]:focus,
+.notice-wrapper form select:focus,
+.notice-wrapper form input[type="text"]:focus {
+    border-color: #0874df;
+    box-shadow: 0 0 0 3px rgba(8, 116, 223, 0.1);
+}
+
+/* 검색 버튼 */
+.notice-search-form button,
+.notice-search-form input[type="submit"],
+.notice-wrapper form button,
+.notice-wrapper form input[type="submit"] {
+    height: 42px;
+    padding: 0 20px;
+
+    border: none;
+    border-radius: 8px;
+
+    background-color: #0874df;
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+
+    transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+.notice-search-form button:hover,
+.notice-search-form input[type="submit"]:hover,
+.notice-wrapper form button:hover,
+.notice-wrapper form input[type="submit"]:hover {
+    background-color: #005bb5;
+    box-shadow: 0 4px 10px rgba(8, 116, 223, 0.25);
+}
+
+/* =========================================================
+   3. 테이블 영역
+========================================================= */
+
+.notice-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-bottom: 35px;
+    table-layout: fixed;
+}
+
+.notice-table th {
+    padding: 16px 20px;
+    background-color: #f8f9fa;
+    border-top: 1px solid #e1e4e8;
+    border-bottom: 1px solid #e1e4e8;
+
+    font-size: 15px;
+    font-weight: 700;
+    color: #495057;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.notice-table th:first-child {
+    border-top-left-radius: 8px;
+}
+
+.notice-table th:last-child {
+    border-top-right-radius: 8px;
+}
+
+.notice-table td {
+    padding: 18px 20px;
+    border-bottom: 1px solid #f1f3f5;
+
+    font-size: 15px;
+    color: #495057;
+    text-align: center;
+    vertical-align: middle;
+
+    transition: background-color 0.15s ease;
+}
+
+/* 행 호버 효과 */
+.notice-table tbody tr:hover td {
+    background-color: #f8faff;
+}
+
+.notice-table td.title {
+    text-align: left;
+}
+
+.notice-table td.title a {
+    color: #212529;
+    text-decoration: none;
+    font-weight: 500;
+
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    transition: color 0.2s ease;
+}
+
+.notice-table td.title a:hover {
+    color: #0874df;
+    font-weight: 600;
+}
+
+/* =========================================================
+   4. 하단 버튼 영역
+========================================================= */
+
+.notice-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.notice-buttons a,
+.notice-buttons button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 44px;
+    padding: 0 24px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: linear-gradient(135deg, #0874df, #005bb5);
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 0 3px 8px rgba(8, 116, 223, 0.2);
+    transition: all 0.2s ease;
+}
+
+.notice-buttons a:hover,
+.notice-buttons button:hover {
+    background: linear-gradient(135deg, #0066c8, #004b96);
+    box-shadow: 0 5px 12px rgba(8, 116, 223, 0.35);
+}
+
+/* =========================================================
+   5. 페이징 영역
+========================================================= */
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    margin-top: 25px;
+}
+
+.pagination a,
+.pagination span {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    min-width: 40px;
+    height: 40px;
+    padding: 0 8px;
+
+    border-radius: 8px;
+    border: 1px solid transparent;
+
+    font-size: 14px;
+    font-weight: 500;
+    color: #495057;
+    text-decoration: none;
+
+    transition: all 0.2s ease;
+}
+
+.pagination a:hover {
+    background-color: #e7f1ff;
+    color: #0874df;
+}
+
+.pagination .active {
+    background-color: #0874df;
+    color: #ffffff;
+    font-weight: 700;
+    box-shadow: 0 3px 8px rgba(8, 116, 223, 0.3);
+}
+
+/* =========================================================
+   6. 모바일 반응형 (650px 이하)
+========================================================= */
+
+@media (max-width: 650px) {
+    .notice-wrapper {
+        padding: 30px 20px;
+        margin-top: 30px;
+        margin-bottom: 50px;
+        border-radius: 12px;
+    }
+
+    .notice-header,
+    .notice-wrapper > h2,
+    .notice-title {
+        flex-direction: column;
+        align-items: flex-start;
+        font-size: 22px;
+    }
+
+    .notice-search-form,
+    .notice-wrapper form {
+        width: 100%;
+    }
+
+    .notice-search-form input[type="text"],
+    .notice-wrapper form input[type="text"] {
+        flex: 1;
+    }
+
+    .notice-table th,
+    .notice-table td {
+        padding: 12px 8px;
+        font-size: 13px;
+    }
+
+    .notice-buttons a,
+    .notice-buttons button {
+        height: 40px;
+        padding: 0 18px;
+        font-size: 13px;
+    }
+
+    .pagination a,
+    .pagination span {
+        min-width: 34px;
+        height: 34px;
+        font-size: 13px;
+    }
+}

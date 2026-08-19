@@ -86,7 +86,7 @@ public class reviewController {
 		memberDTO mdto = memberdao.findById(m_id);
 		dto.setM_no(mdto.getM_no());
 		reviewDAO.reviewWrite(dto);
-		return "redirect:/review/list?p_no=" + dto.getP_no();
+		return "redirect:/product/detail?p_no=" + dto.getP_no() + "#product-review";
 	}
 
 	// 후기 수정 폼

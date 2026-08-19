@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -192,8 +193,8 @@
             </a>
 
             <a href="#product-review">
-                상품 사용 후기 (0)
-            </a>
+    상품 사용 후기 (${reviewCount})
+</a>
 
         </section>
 
@@ -488,24 +489,100 @@
         <!-- =========================================
             5. 상품 후기
         ========================================== -->
-        <section
-            class="product-review"
-            id="product-review"
-        >
-            <div class="section-title">
-                <h2>
-                    상품 사용 후기
-                </h2>
-                <form action="/review/writeForm" method="post" name="goReview">
-                <button type="button">
-                    사용후기 쓰기
-                </button>
-                </form>
-            </div>
-            <div class="empty-content">
-                등록된 상품 후기가 없습니다.
-            </div>
-        </section>
+        <section class="product-review" id="product-review">
+    <div class="section-title">
+        <h2>상품 사용 후기 (${reviewCount})</h2>
+        <form action="/review/writeForm" method="post" name="goReview">
+            <input type="hidden" name="p_no" value="${product.p_no}">
+            <button type="submit">사용후기 쓰기</button>
+        </form>
+    </div>
+
+    <table class="review-table">
+        <thead>
+            <tr>
+                <th style="width:60px;">번호</th>
+                <th>제목</th>
+                <th style="width:100px;">작성자</th>
+                <th style="width:110px;">작성일</th>
+                <th class="rating-col">평점</th>
+            </tr>
+        </thead>
+        <tbody>
+            <c:forEach var="review" items="${reviewList}">
+
+                <c:set var="hasRating" value="${fn:contains(review.r_content, '(평점:')}" />
+
+                <c:choose>
+                    <c:when test="${hasRating}">
+                        <c:set var="contentOnly" value="${fn:substringBefore(review.r_content, ' (평점:')}" />
+                        <c:set var="ratingRaw" value="${fn:substringAfter(review.r_content, '(평점: ')}" />
+                        <c:set var="rating" value="${fn:substringBefore(ratingRaw, ')')}" />
+                    </c:when>
+                    <c:otherwise>
+                        <c:set var="contentOnly" value="${review.r_content}" />
+                        <c:set var="rating" value="0" />
+                    </c:otherwise>
+                </c:choose>
+
+                <tr class="review-title-row">
+                    <td>${review.r_no}</td>
+                    <td>${review.r_title}</td>
+                    <td>${fn:substring(review.m_id, 0, 2)}****</td>
+                    <td><fmt:formatDate value="${review.r_reg_date}" pattern="yyyy-MM-dd"/></td>
+                    <td class="rating-col">
+                        <span class="star-display">
+                            <c:forEach begin="1" end="5" var="i">
+                                <c:choose>
+                                    <c:when test="${i <= rating}"><span class="filled">★</span></c:when>
+                                    <c:otherwise><span>★</span></c:otherwise>
+                                </c:choose>
+                            </c:forEach>
+                        </span>
+                    </td>
+                </tr>
+                <tr class="review-preview-row">
+                    <td colspan="5">
+                        ${contentOnly}
+                        <c:if test="${loginNo == review.m_no}">
+                            <span class="edit-link">
+                                <a href="/review/updateForm?r_no=${review.r_no}">게시글 수정하기</a>
+                                &nbsp;|&nbsp;
+                                <a href="/review/deleteForm?r_no=${review.r_no}">삭제</a>
+                            </span>
+                        </c:if>
+                    </td>
+                </tr>
+
+            </c:forEach>
+            <c:if test="${empty reviewList}">
+                <tr>
+                    <td colspan="5" style="text-align: center; padding: 20px 0;">등록된 후기가 없습니다.</td>
+                </tr>
+            </c:if>
+        </tbody>
+    </table>
+</section>
+<div class="pagination">
+    <c:if test="${reviewPrev}">
+        <a href="/product/detail?p_no=${product.p_no}&reviewPage=${reviewStartPage - 1}#product-review">[이전]</a>
+    </c:if>
+
+    <c:forEach var="num" begin="${reviewStartPage}" end="${reviewEndPage}">
+        <c:choose>
+            <c:when test="${num == reviewPage}">
+                <span class="active">[${num}]</span>
+            </c:when>
+            <c:otherwise>
+                <a href="/product/detail?p_no=${product.p_no}&reviewPage=${num}#product-review">[${num}]</a>
+            </c:otherwise>
+        </c:choose>
+    </c:forEach>
+
+    <c:if test="${reviewNext}">
+        <a href="/product/detail?p_no=${product.p_no}&reviewPage=${reviewEndPage + 1}#product-review">[다음]</a>
+    </c:if>
+</div>
     </main>
     <%@ include file="../footer.jsp" %>
     <script>
