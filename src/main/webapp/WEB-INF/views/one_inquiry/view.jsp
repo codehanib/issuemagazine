@@ -7,84 +7,111 @@
 <head>
 <meta charset="UTF-8">
 <title>1:1 문의 상세보기</title>
+<!-- 리뷰 CSS 연결 -->
+<link rel="stylesheet" href="/css/review.css">
 </head>
 <body>
+<%@ include file="../header.jsp" %>
 
-<h2>1:1 문의 상세보기</h2>
+<div class="notice-detail-wrapper">
+    <div class="review-header">
+        <h2 class="notice-detail-title">1:1 문의 상세보기</h2>
+    </div>
 
-<table border="1" cellpadding="8" cellspacing="0">
-	<tr>
-		<th>번호</th>
-		<td>${dto.oi_no}</td>
-	</tr>
-	<tr>
-		<th>작성자</th>
-		<td>${dto.m_id}</td>
-	</tr>
-	<tr>
-		<th>제목</th>
-		<td>${dto.oi_title}</td>
-	</tr>
-	<tr>
-		<th>내용</th>
-		<td><pre>${dto.oi_content}</pre></td>
-	</tr>
-	<tr>
-		<th>작성일</th>
-		<td>${dto.oi_reg_date}</td>
-	</tr>
-	<tr>
-		<th>상태</th>
-		<td>${dto.oi_status}</td>
-	</tr>
-</table>
+    <%-- ===================== 문의 상세 정보 테이블 ===================== --%>
+    <table class="review-table">
+        <colgroup>
+            <col style="width: 15%;">
+            <col style="width: 35%;">
+            <col style="width: 15%;">
+            <col style="width: 35%;">
+        </colgroup>
+        <tbody>
+            <tr class="review-title-row">
+                <th>제목</th>
+                <td colspan="3" style="text-align: left; font-weight: 700; font-size: 16px; color: var(--text-primary);">
+                    ${dto.oi_title}
+                </td>
+            </tr>
+            <tr class="review-title-row">
+                <th>작성자</th>
+                <td style="text-align: left;">${dto.m_id}</td>
+                <th>작성일</th>
+                <td style="text-align: left;">${dto.oi_reg_date}</td>
+            </tr>
+            <tr class="review-title-row">
+                <th>문의번호</th>
+                <td style="text-align: left;">${dto.oi_no}</td>
+                <th>처리상태</th>
+                <td style="text-align: left;">
+                    <span style="font-weight: 700; color: ${dto.oi_status == '답변완료' ? 'var(--primary-color)' : 'var(--text-muted)'};">
+                        ${dto.oi_status}
+                    </span>
+                </td>
+            </tr>
+            <tr class="review-preview-row">
+                <td colspan="4" style="padding-top: 16px;">
+                    <div class="review-content-body" style="min-height: 120px; align-items: flex-start; justify-content: flex-start;">
+                        <pre style="white-space: pre-wrap; font-family: inherit; margin: 0; word-break: break-all;">${dto.oi_content}</pre>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 
-<hr>
+    <%-- ===================== 답변 영역 ===================== --%>
+    <div style="margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--border-color);">
+        <c:choose>
+            <%-- 이미 답변이 등록된 경우: 답변 내용 표시 --%>
+            <c:when test="${not empty dto.oi_answer}">
+                <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 16px; color: var(--text-primary);">답변 내용</h3>
+                <div class="review-content-body" style="background-color: var(--primary-light); border-color: rgba(8, 116, 223, 0.15); min-height: 100px;">
+                    <pre style="white-space: pre-wrap; font-family: inherit; margin: 0; color: #004b99; word-break: break-all;">${dto.oi_answer}</pre>
+                </div>
+            </c:when>
 
-<%-- ===================== 답변 영역 ===================== --%>
-<c:choose>
+            <%-- 답변이 없는 경우: 관리자에게만 답변 입력 폼 노출 --%>
+            <c:otherwise>
+                <sec:authorize access="hasRole('ADMIN')">
+                    <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 16px; color: var(--text-primary);">답변 작성</h3>
+                    <form action="/one_inquiry/answer" method="post">
+                        <sec:csrfInput/>
+                        <input type="hidden" name="oi_no" value="${dto.oi_no}">
+                        <div class="notice-form-group">
+                            <textarea name="oi_answer" class="notice-form-textarea" rows="6" placeholder="답변 내용을 입력하세요." required></textarea>
+                        </div>
+                        <div class="notice-write-buttons">
+                            <button type="submit" class="btn-submit">답변 등록</button>
+                        </div>
+                    </form>
+                </sec:authorize>
+                
+                <sec:authorize access="!hasRole('ADMIN')">
+                    <div class="review-content-body" style="justify-content: center; color: var(--text-muted); padding: 24px;">
+                        아직 답변이 등록되지 않았습니다.
+                    </div>
+                </sec:authorize>
+            </c:otherwise>
+        </c:choose>
+    </div>
 
-	<%-- 이미 답변이 등록된 경우: 답변 내용 표시 --%>
-	<c:when test="${not empty dto.oi_answer}">
-		<h3>답변 내용</h3>
-		<table border="1" cellpadding="8" cellspacing="0">
-			<tr>
-				<th>답변</th>
-				<td><pre>${dto.oi_answer}</pre></td>
-			</tr>
-		</table>
-	</c:when>
+    <%-- ===================== 하단 버튼 영역 ===================== --%>
+    <div class="notice-write-buttons" style="margin-top: 40px; justify-content: space-between; align-items: center;">
+        <div>
+            <a href="/one_inquiry/list" class="btn-cancel">목록으로</a>
+        </div>
+        
+        <div>
+            <%-- 작성자 본인만 수정/삭제 가능 --%>
+            <sec:authentication property="principal.username" var="loginId" />
+            <c:if test="${loginId == dto.m_id}">
+                <a href="/one_inquiry/updateForm?oi_no=${dto.oi_no}" class="btn-cancel" style="margin-right: 6px;">수정</a>
+                <a href="/one_inquiry/deleteForm?oi_no=${dto.oi_no}" class="btn-cancel" style="color: #ff3b30; border-color: #ffc0bd;">삭제</a>
+            </c:if>
+        </div>
+    </div>
+</div>
 
-	<%-- 답변이 없는 경우: 관리자에게만 답변 입력 폼 노출 --%>
-	<%-- TODO: 실제 프로젝트의 관리자 판별 방식(session, Spring Security 등)에 맞게 조건 수정 필요 --%>
-	<c:otherwise>
-		<sec:authorize access="hasRole('ADMIN')">
-			<h3>답변 작성</h3>
-			<form action="/one_inquiry/answer" method="post">
-				<input type="hidden" name="oi_no" value="${dto.oi_no}">
-				<textarea name="oi_answer" rows="6" cols="60" placeholder="답변 내용을 입력하세요" required></textarea>
-				<br>
-				<button type="submit">답변 등록</button>
-			</form>
-		</sec:authorize>
-		<sec:authorize access="!hasRole('ADMIN')">
-			<p>아직 답변이 등록되지 않았습니다.</p>
-		</sec:authorize>
-	</c:otherwise>
-
-</c:choose>
-
-<hr>
-
-<%-- 작성자 본인만 수정/삭제 가능 --%>
-<sec:authentication property="principal.username" var="loginId" /><c:if test="${loginId == dto.m_id}">
-	<a href="/one_inquiry/updateForm?oi_no=${dto.oi_no}">수정</a>
-	&nbsp;|&nbsp;
-	<a href="/one_inquiry/deleteForm?oi_no=${dto.oi_no}">삭제</a>
-	&nbsp;|&nbsp;
-</c:if>
-
-<a href="/one_inquiry/list">목록으로</a>
-
+<%@ include file="../footer.jsp" %>
 </body>
 </html>

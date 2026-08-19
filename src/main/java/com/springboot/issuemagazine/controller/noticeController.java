@@ -25,11 +25,11 @@ public class noticeController {
     @Autowired
     private memberDAO memberdao;
 
-    // 공지 목록 (페이징 & 검색)
+    // 공지 목록
     @RequestMapping("/list")
     public String noticeList(
             @RequestParam(value = "page", defaultValue = "1") int page,
-            @RequestParam(value = "searchType", required = false) String searchType,
+            @RequestParam(value = "searchType", required = false) String searchType, //검색기능
             @RequestParam(value = "keyword", required = false) String keyword,
             Model model) {
 
@@ -53,7 +53,7 @@ public class noticeController {
         model.addAttribute("next", endPage < totalPage);
         model.addAttribute("searchType", searchType);
         model.addAttribute("keyword", keyword);
-
+        //페이지 넘기는거
         return "notice/list";
     }
 
@@ -99,10 +99,15 @@ public class noticeController {
         return "redirect:/notice/view?n_no=" + dto.getN_no();
     }
 
-    // 공지 삭제 처리 (GET/POST 모두 대응)
+    // 공지 삭제 처리
     @RequestMapping("/delete")
     public String noticeDelete(@RequestParam("n_no") int n_no) {
         noticeDAO.noticeDelete(n_no);
         return "redirect:/notice/list";
+    }
+    @RequestMapping("/deleteForm")
+    public String noticeDeleteForm(@RequestParam("n_no") int n_no, Model model) {
+        model.addAttribute("dto", noticeDAO.noticeView(n_no));
+        return "notice/delete";
     }
 }

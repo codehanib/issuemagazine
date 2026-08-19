@@ -1,0 +1,531 @@
+@charset "UTF-8";
+
+/* =========================================================
+   0. 공통 변수 및 기본 설정 (공지사항 CSS와 동일)
+========================================================= */
+:root {
+    --primary-color: #0874df;
+    --primary-hover: #0066c8;
+    --primary-light: #e7f1ff;
+    --text-primary: #191f28;
+    --text-secondary: #4e5968;
+    --text-muted: #8b95a1;
+    --bg-main: #f2f4f6;
+    --bg-card: #ffffff;
+    --border-color: #e5e8eb;
+    --radius-main: 24px;
+    --radius-sub: 12px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, "Pretendard Variable", Pretendard, "Segoe UI", Roboto, sans-serif;
+    color: var(--text-primary);
+    background-color: #ffffff;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* =========================================================
+   1. 메인 카드 영역 (공지사항 프레임 규격 통일)
+========================================================= */
+.product-review,
+.notice-detail-wrapper,
+.notice-wrapper {
+    width: 960px;
+    max-width: calc(100% - 40px);
+    margin: 60px auto 80px;
+    padding: 48px 52px;
+    border-radius: var(--radius-main);
+    background-color: var(--bg-card);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.02);
+}
+
+/* =========================================================
+   2. 상단 헤더 & 버튼
+========================================================= */
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+.notice-detail-title, .review-header h3 {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.6px;
+}
+
+.btn-write {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 42px;
+    padding: 0 20px;
+    border: none;
+    border-radius: var(--radius-sub);
+    background-color: var(--primary-color);
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 4px 14px rgba(8, 116, 223, 0.25);
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-write:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-1px);
+}
+
+/* =========================================================
+   3. 테이블 영역 (가로 넘침 방지 핵심)
+========================================================= */
+.review-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-bottom: 32px;
+    table-layout: fixed; /* 내용이 틀을 뚫고 나가지 못하도록 고정 */
+}
+
+.review-table th {
+    padding: 16px 12px;
+    background-color: #f9fafb;
+    border-top: 1px solid #f2f4f6;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-align: center;
+}
+
+.review-table th:first-child { border-radius: var(--radius-sub) 0 0 var(--radius-sub); }
+.review-table th:last-child { border-radius: 0 var(--radius-sub) var(--radius-sub) 0; }
+
+.review-title-row td {
+    padding: 18px 12px 6px 12px;
+    font-size: 15px;
+    color: var(--text-secondary);
+    text-align: center;
+    word-break: break-all; /* 긴 영문/숫자 줄바꿈 처리 */
+}
+
+.review-title-row td:nth-child(2) {
+    text-align: left;
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+/* 본문/내용 감싸는 영역 */
+.review-preview-row td {
+    padding: 6px 12px 18px 12px;
+    border-bottom: 1px solid #f2f4f6;
+}
+
+.review-content-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f9fafb;
+    padding: 14px 20px;
+    border-radius: var(--radius-sub);
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    word-break: break-all;
+}
+
+/* 별점 선택 박스 */
+.notice-rating-box {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 18px;
+    background-color: #f9fafb;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sub);
+}
+
+.star-rating {
+    font-size: 24px;
+    letter-spacing: 4px;
+    cursor: pointer;
+    user-select: none;
+    display: inline-block;
+}
+
+/* 기본 별 색상 (회색) */
+.star-rating span {
+    color: #e5e8eb !important;
+    transition: color 0.1s ease;
+    display: inline-block;
+}
+
+/* 선택된 별 색상 (노란색) */
+.star-rating span.filled {
+    color: #ffb800 !important;
+}
+
+.rating-text {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+/* 수정/삭제 버튼 */
+.edit-link a {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: #ffffff;
+    text-decoration: none;
+    margin-left: 4px;
+    transition: all 0.15s ease;
+}
+
+.edit-link a:hover {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+    background-color: var(--primary-light);
+}
+
+/* =========================================================
+   4. 페이징 영역 (공지사항 페이징과 100% 동일)
+========================================================= */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    margin-top: 32px;
+    margin-bottom: 10px;
+}
+
+.pagination a,
+.pagination span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #6b7684;
+    text-decoration: none;
+    transition: all 0.15s ease;
+}
+
+.pagination a:hover {
+    background-color: #f2f4f6;
+    color: var(--text-primary);
+}
+
+.pagination .active,
+.pagination span.active {
+    background-color: var(--primary-light) !important;
+    color: var(--primary-color) !important;
+    font-weight: 700 !important;
+}
+
+/* =========================================================
+   5. 반응형 모바일 대응
+========================================================= */
+@media (max-width: 768px) {
+    .product-review,
+    .notice-detail-wrapper,
+    .notice-wrapper {
+        padding: 24px 20px;
+        margin: 20px auto;
+    }
+
+    .notice-detail-title, .review-header h3 {
+        font-size: 20px;
+    }
+}
+/* =========================================================
+   6. 작성/수정 폼 전용 추가 스타일 (writeForm 대응)
+========================================================= */
+.notice-form-group {
+    margin-bottom: 24px;
+    text-align: left;
+}
+
+.notice-form-label {
+    display: block;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+}
+
+.notice-form-input,
+.notice-form-textarea {
+    width: 100%;
+    padding: 14px 18px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sub);
+    font-size: 15px;
+    color: var(--text-primary);
+    background-color: #f9fafb;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.notice-form-input:focus,
+.notice-form-textarea:focus {
+    background-color: #ffffff;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(8, 116, 223, 0.12);
+}
+
+.notice-form-textarea {
+    resize: vertical;
+    min-height: 160px;
+    line-height: 1.6;
+}
+
+.notice-rating-box {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 18px;
+    background-color: #f9fafb;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sub);
+}
+
+.notice-write-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 32px;
+    width: 100%;
+}
+
+.notice-write-buttons .btn-cancel,
+.notice-write-buttons .btn-submit {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 46px;
+    padding: 0 24px;
+    border-radius: var(--radius-sub);
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.notice-write-buttons .btn-cancel {
+    background-color: #ffffff;
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+}
+
+.notice-write-buttons .btn-submit {
+    background-color: var(--primary-color);
+    border: none;
+    color: #ffffff;
+    box-shadow: 0 4px 14px rgba(8, 116, 223, 0.25);
+}
+/* =========================================================
+   삭제 확인 페이지 (deleteForm) 전용 스타일
+========================================================= */
+.notice-delete-box {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.notice-delete-msg {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 24px;
+}
+
+.notice-target-title {
+    display: inline-block;
+    padding: 14px 24px;
+    background-color: #f9fafb;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sub);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 32px;
+    max-width: 100%;
+    word-break: break-all;
+}
+
+.notice-delete-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.btn-delete-submit {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 46px;
+    padding: 0 24px;
+    border: none;
+    border-radius: var(--radius-sub);
+    background-color: #ff3b30;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(255, 59, 48, 0.25);
+    transition: all 0.2s ease;
+}
+
+.btn-delete-submit:hover {
+    background-color: #e03126;
+    transform: translateY(-1px);
+}
+
+.msg-error {
+    margin-top: 16px;
+    color: #ff3b30;
+    font-size: 14px;
+    font-weight: 600;
+}
+/* 삭제 페이지 취소 버튼 스타일 강제 적용 */
+.notice-delete-buttons a,
+.notice-delete-buttons .btn-cancel {
+    display: inline-flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    height: 46px !important;
+    padding: 0 24px !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: var(--radius-sub) !important;
+    background-color: #ffffff !important;
+    color: var(--text-secondary) !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    text-decoration: none !important;
+    box-sizing: border-box !important;
+    transition: all 0.2s ease !important;
+}
+
+.notice-delete-buttons a:hover,
+.notice-delete-buttons .btn-cancel:hover {
+    background-color: #f2f4f6 !important;
+    color: var(--text-primary) !important;
+}
+/* =========================================================
+   메인 카드 프레임 (후기 목록 영역만 상단 안내 박스 규격과 통일)
+========================================================= */
+.product-review {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 32px 40px;
+    border-radius: 0 !important;
+    background-color: #ffffff;
+    border: 1px solid #e5e8eb;
+    border-top: none;
+    box-shadow: none !important;
+    box-sizing: border-box;
+}
+
+/* 후기 목록 헤더 선 스타일 */
+.product-review .review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #191f28;
+}
+
+.product-review .review-header h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #191f28;
+    margin: 0;
+}
+
+/* 상단 타이틀 구분선 */
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #191f28; /* 상단 표 헤더와 같은 깔끔한 실선 */
+}
+
+.review-header h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #191f28;
+    margin: 0;
+}
+/* 비밀번호 확인 및 삭제/작성 폼 버튼 강제 적용 */
+.notice-delete-buttons .btn-submit,
+.notice-delete-buttons button[type="submit"] {
+    display: inline-flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    height: 46px !important;
+    padding: 0 24px !important;
+    border: none !important;
+    border-radius: var(--radius-sub) !important;
+    background-color: var(--primary-color) !important;
+    color: #ffffff !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    cursor: pointer !important;
+    box-shadow: 0 4px 14px rgba(8, 116, 223, 0.25) !important;
+    transition: all 0.2s ease !important;
+}
+
+.notice-delete-buttons .btn-submit:hover,
+.notice-delete-buttons button[type="submit"]:hover {
+    background-color: var(--primary-hover) !important;
+}
+/* 삭제 전용 빨간색 버튼 스타일 */
+.notice-delete-buttons .btn-delete-submit {
+    display: inline-flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    height: 46px !important;
+    padding: 0 24px !important;
+    border: none !important;
+    border-radius: var(--radius-sub, 8px) !important;
+    background-color: #dc3545 !important; /* 경고 빨간색 */
+    color: #ffffff !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    cursor: pointer !important;
+    box-shadow: 0 4px 14px rgba(220, 53, 69, 0.25) !important;
+    transition: all 0.2s ease !important;
+}
+
+.notice-delete-buttons .btn-delete-submit:hover {
+    background-color: #c82333 !important;
+}

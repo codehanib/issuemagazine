@@ -14,7 +14,17 @@
 <body>
 <%@ include file="../header.jsp" %>
     <div class="notice-wrapper">
-        <h3 class="notice-title">공지 목록</h3>
+    
+        <div class="notice-header-area" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px;">
+            <h3 class="notice-title" style="margin-bottom: 0;">공지 목록</h3>
+
+            <sec:authorize access="hasRole('ROLE_ADMIN')">
+                <div class="bottom-button">
+                    <a href="/notice/writeForm"><input type="button" value="공지작성"></a>
+                </div>
+            </sec:authorize>
+        </div>
+        
         <table class="notice-table">
             <thead>
                 <tr>
@@ -48,22 +58,22 @@
         <!-- 하단 페이징 영역 -->
         <div class="pagination">
             <c:if test="${prev}">
-                <a href="/notice/list?page=${startPage - 1}&searchType=${searchType}&keyword=${keyword}">[이전]</a>
+                <a href="/notice/list?page=${startPage - 1}&searchType=${searchType}&keyword=${keyword}" class="page-nav">‹</a>
             </c:if>
 
             <c:forEach var="num" begin="${startPage}" end="${endPage}">
                 <c:choose>
                     <c:when test="${num == page}">
-                        <span class="active">[${num}]</span>
+                        <span class="active">${num}</span>
                     </c:when>
                     <c:otherwise>
-                        <a href="/notice/list?page=${num}&searchType=${searchType}&keyword=${keyword}">[${num}]</a>
+                        <a href="/notice/list?page=${num}&searchType=${searchType}&keyword=${keyword}">${num}</a>
                     </c:otherwise>
                 </c:choose>
             </c:forEach>
 
             <c:if test="${next}">
-                <a href="/notice/list?page=${endPage + 1}&searchType=${searchType}&keyword=${keyword}">[다음]</a>
+                <a href="/notice/list?page=${endPage + 1}&searchType=${searchType}&keyword=${keyword}" class="page-nav">›</a>
             </c:if>
         </div>
 
@@ -74,14 +84,16 @@
                     <option value="title" ${searchType == 'title' ? 'selected' : ''}>제목</option>
                     <option value="content" ${searchType == 'content' ? 'selected' : ''}>내용</option>
                 </select>
-                <input type="text" name="keyword" value="${keyword}">
+                <input type="text" name="keyword" value="${keyword}" placeholder="검색어를 입력하세요">
                 <button type="submit">찾기</button>
             </form>
         </div>
 
+        <!-- 하단 버튼 영역 -->
         <div class="bottom-button">
             <a href="/main"><input type="button" value="메인으로"></a>
         </div>
+        
     </div>
     <%@ include file="../footer.jsp" %>
 </body>
