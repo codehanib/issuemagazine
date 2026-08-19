@@ -11,7 +11,7 @@
     <title>ISSUEMAGAZINE</title>
 
 	<!-- 메인 css -->
-    <link rel="stylesheet" href="css/style_LDH.css">
+    <link rel="stylesheet" href="/css/style.css">
     
      <!-- 헤더 CSS -->
     <link rel="stylesheet" href="/css/header.css">
@@ -174,7 +174,7 @@
         <!-- ==================================================
              3. 추천 매거진
         =================================================== -->
-        <section class="recommend-magazine">
+        <section class="recommend-magazine" id="recommend">
 
             <!-- 상단 제목 -->
             <div class="section-title">
@@ -199,22 +199,28 @@
 	            			   end="11">			
 		                <!-- 상품 1 -->
 		                <div class="recommend-product">
+		                
+		                
 		
-		                    <a href="/productDetail?p_no=${product.p_no}">
+		                    <a href="/product/detail?p_no=${product.p_no}">
 		                        <img src="${product.p_image}" alt="${product.p_name}">
 		                    </a>
 		
-		                    <a href="/productDetail?p_no=${product.p_no}"> 
+		                    <a href="/product/detail?p_no=${product.p_no}"> 
 		                    <p>${product.p_name}</p>
 		                    </a>
 		
 		                    <p>${product.p_price2}원</p>
 		
-		                    <a href="/productDetail?p_no=${product.p_no}">구매하기</a>
-		
-		                    <button type="button">
+		                    <a href="/product/detail?p_no=${product.p_no}">구매하기</a>
+								
+							<form action="/cartInsert" method="post">
+							<input type="hidden" name="p_no" value="${product.p_no}">
+							<input type="hidden" name="quantity" value="1">
+		                    <button type="submit" class="list_cart_button">
 		                        장바구니
 		                    </button>
+		                    </form>
 		
 		                </div>
 		             
@@ -231,7 +237,7 @@
         <!-- ==================================================
              4. 분야별 베스트
         =================================================== -->
-        <section class="category-best">
+        <section class="category-best" id="categoryBest">
 
             <!-- 상단 제목 -->
             <div class="section-title">
@@ -312,13 +318,13 @@
 			                	  data-category="${product.c_no}">
 			
 								<!--  상품 이미지 -->
-			                    <a href="/productDetail?p_no=${product.p_no}">
+			                    <a href="/product/detail?p_no=${product.p_no}">
 			                        <img src="${product.p_image}" 
 			                        	 alt="${product.p_name}">
 			                    </a>
 								
 								<!--  상품명 -->
-			                    <a href="/productDetail?p_no=${product.p_no}"
+			                    <a href="/product/detail?p_no=${product.p_no}"
 			                       class="category-recommend-name"> 
 			                    ${product.p_name}
 			                    </a>
@@ -329,14 +335,18 @@
 			                    
 			                    
 								<!-- 구매 -->
-			                    <a href="/productDetail?p_no=${product.p_no}">
+			                    <a href="/product/detail?p_no=${product.p_no}">
 			                    구매하기
 			                    </a>
 								
 								<!-- 장바구니 -->
-			                    <button type="button">
-			                        장바구니
-			                    </button>
+								<form action="/cartInsert" method="post">
+								<input type="hidden" name="p_no" value="${product.p_no}">
+								<input type="hidden" name="quantity" value="1">
+		                    	<button type="submit" class="list_cart_button">
+		                        	장바구니
+		                    	</button>
+		                    	</form>
 			
 			                </div>
 			             
@@ -354,7 +364,7 @@
 <!-- ==================================================
      5. 디지털 매거진
 =================================================== -->
-<section class="digital-magazine">
+<section class="digital-magazine" id="digital">
 
     <!-- 상단 제목 -->
     <div class="section-title">
@@ -384,14 +394,14 @@
                     <div class="digital-product">
 
                         <!-- 상품 이미지 -->
-                        <a href="/productDetail?p_no=${product.p_no}">
+                        <a href="/product/detail?p_no=${product.p_no}">
                             <img src="${product.p_image}"
                                  alt="${product.p_name}">
                         </a>
 
 
                         <!-- 상품명 -->
-                        <a href="/productDetail?p_no=${product.p_no}"
+                        <a href="/product/detail?p_no=${product.p_no}"
                            class="digital-product-name">
                             ${product.p_name}
                         </a>
@@ -404,16 +414,19 @@
 
 
                         <!-- 구매 -->
-                        <a href="/productDetail?p_no=${product.p_no}">
+                        <a href="/product/detail?p_no=${product.p_no}">
                             구매하기
                         </a>
 
 
                         <!-- 장바구니 -->
-                        <button type="button">
-                            장바구니
-                        </button>
-
+						<form action="/cartInsert" method="post">
+						<input type="hidden" name="p_no" value="${product.p_no}">
+						<input type="hidden" name="quantity" value="1">
+		                <button type="submit" class="list_cart_button">
+		                      장바구니
+		                </button>
+		                </form>
                     </div>
 
                     <!-- 출력 개수 +1 -->
@@ -431,7 +444,7 @@
 </section>
 
         <!-- ==================================================
-             6. 공지사항 / 배송안내 / 1:1 문의 / FAQ
+             6. 공지사항 / 배송안내 / 1:1 문의 
         =================================================== -->
         <section class="info-area">
 
@@ -478,19 +491,6 @@
             </div>
 
 
-            <!-- FAQ -->
-            <div>
-
-                <h3>FAQ</h3>
-
-                자주 묻는 질문을 모았습니다.<br>
-                빠르게 확인해 보세요.
-
-                <a href="#">
-                    바로가기
-                </a>
-
-            </div>
 
         </section>
 

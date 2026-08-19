@@ -2,15 +2,12 @@
    0. 전체 기본 설정
 ========================================================= */
 
-/* 모든 태그 기본 여백 제거 */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-
-/* 홈페이지 전체 */
 body {
     font-family: Arial, "Noto Sans KR", sans-serif;
 
@@ -20,453 +17,29 @@ body {
     font-size: 14px;
 }
 
-
-/* 링크 기본 설정 */
 a {
     color: inherit;
     text-decoration: none;
 }
 
-
-/* 이미지 기본 설정 */
 img {
     display: block;
-
     max-width: 100%;
 }
 
-
-/* 버튼 기본 설정 */
 button {
     font-family: inherit;
-
     cursor: pointer;
 }
 
 
-/* =========================================================
-   1. HEADER - 최상단 안내바
-========================================================= */
-
-.top-bar {
-    height: 40px;
-
-    background-color: #f4f8fd;
-
-    border-bottom: 1px solid #e8edf3;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-
-    /*
-        화면 가운데 1200px 영역에
-        내용을 맞추기 위한 여백
-    */
-    padding-left: max(30px, calc((100% - 1200px) / 2));
-    padding-right: max(30px, calc((100% - 1200px) / 2));
-
-    font-size: 12px;
-
-    color: #666666;
-}
-
-
-/* 신규회원 쿠폰 링크 */
-.top-bar > div:first-child a {
-    color: #0874df;
-
-    font-weight: bold;
-
-    margin-right: 12px;
-}
-
-
-/* 최상단 오른쪽 링크 */
-.top-bar > div:last-child a {
-    margin: 0 7px;
-
-    transition: 0.2s;
-}
-
-
-/* 마우스 올렸을 때 */
-.top-bar > div:last-child a:hover {
-    color: #0874df;
-}
-
-
 
 /* =========================================================
-   2. HEADER - 메인 헤더
-========================================================= */
-
-.main-header {
-    width: 1200px;
-    max-width: calc(100% - 60px);
-
-    height: 120px;
-
-    margin: 0 auto;
-
-
-    /*
-        검색 / 로고 / 회원메뉴
-        3칸으로 나눈다
-    */
-    display: grid;
-
-    grid-template-columns: 1fr 1fr 1fr;
-
-    align-items: center;
-}
-
-
-
-/* =========================================================
-   2-1. 검색창
-========================================================= */
-
-.search-area {
-    width: 260px;
-    height: 42px;
-
-    border: 1px solid #d9dee5;
-
-    border-radius: 25px;
-
-    overflow: hidden;
-
-    display: flex;
-
-    background-color: #ffffff;
-}
-
-
-/* 검색 input */
-.search-area input {
-    flex: 1;
-
-    min-width: 0;
-
-    border: none;
-    outline: none;
-
-    padding-left: 18px;
-
-    font-size: 14px;
-
-    color: #333333;
-
-    background-color: transparent;
-}
-
-
-/* 검색창 안내 문구 */
-.search-area input::placeholder {
-    color: #aaaaaa;
-}
-
-
-/* 검색 버튼 */
-.search-area button {
-    width: 65px;
-
-    border: none;
-
-    background-color: #ffffff;
-
-    color: #0874df;
-
-    font-size: 13px;
-
-    font-weight: bold;
-}
-
-
-/* 검색버튼 hover */
-.search-area button:hover {
-    background-color: #f3f7fc;
-}
-
-
-
-/* =========================================================
-   2-2. 로고
-========================================================= */
-
-.logo {
-    text-align: center;
-
-    display: flex;
-
-    justify-content: center;
-    align-items: center;
-}
-
-
-/* 로고 이미지 */
-.logo img {
-    max-width: 240px;
-    max-height: 75px;
-
-    margin: 0 auto;
-}
-
-
-
-/* =========================================================
-   2-3. 로그인 / 회원가입 / 장바구니
-========================================================= */
-
-.member-menu {
-    display: flex;
-
-    justify-content: flex-end;
-    align-items: center;
-
-    gap: 22px;
-
-    font-size: 14px;
-
-    color: #333333;
-}
-
-
-.member-menu a {
-    transition: 0.2s;
-}
-
-
-.member-menu a:hover {
-    color: #0874df;
-}
-
-
-
-/* =========================================================
-   3. NAV - 파란색 메뉴바
-========================================================= */
-
-.nav {
-    width: 100%;
-    height: 56px;
-
-    background-color: #0874df;
-
-
-    display: flex;
-
-    align-items: center;
-
-
-    /*
-        main-header의 1200px 선과 맞춘다
-    */
-    padding-left: max(30px, calc((100% - 1200px) / 2));
-    padding-right: max(30px, calc((100% - 1200px) / 2));
-
-    position: relative;
-
-    z-index: 100;
-}
-
-
-
-/* =========================================================
-   3-1. 전체 카테고리
-========================================================= */
-
-.all-category {
-    width: 210px;
-    height: 56px;
-
-    position: relative;
-
-    flex-shrink: 0;
-}
-
-
-/* 햄버거 + 전체 카테고리 */
-.category-button {
-    width: 100%;
-    height: 100%;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 15px;
-
-    padding: 0 20px;
-
-    color: #ffffff;
-
-    font-size: 15px;
-
-    font-weight: bold;
-
-    cursor: pointer;
-
-    transition: 0.2s;
-}
-
-
-.category-button:hover {
-    background-color: #0066c8;
-}
-
-
-
-/* =========================================================
-   3-2. 햄버거 아이콘
-========================================================= */
-
-.hamburger {
-    width: 23px;
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 5px;
-}
-
-
-/* 햄버거 선 하나 */
-.hamburger span {
-    display: block;
-
-    width: 23px;
-    height: 2px;
-
-    background-color: #ffffff;
-}
-
-
-
-/* =========================================================
-   3-3. 펼쳐지는 전체 카테고리
-========================================================= */
-
-.category-menu {
-    position: absolute;
-
-    top: 56px;
-    left: 0;
-
-    width: 270px;
-
-    background-color: #ffffff;
-
-    border: 1px solid #e0e0e0;
-
-    border-top: none;
-
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
-
-
-    /*
-        처음에는 숨김
-    */
-    display: none;
-
-    z-index: 1000;
-}
-
-
-/*
-    나중에 JavaScript가
-    open class를 붙이면 보임
-*/
-.category-menu.open {
-    display: block;
-}
-
-
-/* 카테고리 하나 */
-.category-menu a {
-    display: block;
-
-    padding: 15px 20px;
-
-    border-bottom: 1px solid #eeeeee;
-
-    color: #333333;
-
-    font-size: 14px;
-
-    transition: 0.2s;
-}
-
-
-.category-menu a:last-child {
-    border-bottom: none;
-}
-
-
-.category-menu a:hover {
-    background-color: #f3f7fd;
-
-    color: #0874df;
-
-    padding-left: 25px;
-}
-
-
-
-/* =========================================================
-   3-4. 오른쪽 메인 메뉴
-========================================================= */
-
-.main-menu {
-    flex: 1;
-
-    height: 56px;
-
-    display: flex;
-
-    align-items: center;
-}
-
-
-/* 메뉴 하나하나 */
-.main-menu a {
-    flex: 1;
-
-    height: 56px;
-
-    display: flex;
-
-    justify-content: center;
-    align-items: center;
-
-    color: #ffffff;
-
-    font-size: 15px;
-
-    font-weight: bold;
-
-    white-space: nowrap;
-
-    transition: 0.2s;
-}
-
-
-.main-menu a:hover {
-    background-color: #0066c8;
-}
-
-
-
-/* =========================================================
-   4. MAIN 전체
+   1. MAIN 전체
 ========================================================= */
 
 main {
     width: 1200px;
-
     max-width: calc(100% - 60px);
 
     margin: 0 auto;
@@ -475,12 +48,11 @@ main {
 
 
 /* =========================================================
-   5. 메인 자동 배너
+   2. 메인 자동 배너
 ========================================================= */
 
 .main-banner {
     width: 100%;
-
     height: 400px;
 
     margin-top: 35px;
@@ -501,7 +73,7 @@ main {
 }
 
 
-/* 각 배너 */
+/* 모든 배너 기본 숨김 */
 .slide {
     width: 100%;
     height: 100%;
@@ -510,19 +82,25 @@ main {
 
     top: 0;
     left: 0;
-}
 
-
-/*
-    현재는 첫 번째 것만 화면에 보이게 한다.
-    나중에 JavaScript에서 변경
-*/
-.slide:not(:first-child) {
     display: none;
 }
 
 
-/* 배너 이미지 */
+/* 현재 선택된 배너 */
+.slide.active {
+    display: block;
+}
+
+
+.slide a {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+}
+
+
 .slide img {
     width: 100%;
     height: 100%;
@@ -531,9 +109,52 @@ main {
 }
 
 
+/* 이전 / 다음 화살표 */
+.banner-prev,
+.banner-next {
+    width: 45px;
+    height: 60px;
+
+    position: absolute;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    border: none;
+    border-radius: 5px;
+
+    background-color: rgba(255, 255, 255, 0.70);
+
+    color: #333333;
+
+    font-size: 32px;
+
+    z-index: 10;
+}
+
+
+.banner-prev {
+    left: 20px;
+}
+
+
+.banner-next {
+    right: 20px;
+}
+
+
+.banner-prev:hover,
+.banner-next:hover {
+    background-color: rgba(255, 255, 255, 0.95);
+
+    color: #0874df;
+}
+
+
 
 /* =========================================================
-   6. 분야별 카테고리 아이콘
+   3. 메인 카테고리 아이콘
 ========================================================= */
 
 .category-icons {
@@ -543,15 +164,14 @@ main {
 
     padding: 25px 15px;
 
-    background-color: #ffffff;
-
-    border: 1px solid #edf0f4;
-
-    border-radius: 12px;
-
     display: grid;
 
     grid-template-columns: repeat(9, 1fr);
+
+    background-color: #ffffff;
+
+    border: 1px solid #edf0f4;
+    border-radius: 12px;
 
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
 }
@@ -578,29 +198,25 @@ main {
 }
 
 
-/* 마지막 오른쪽 선 제거 */
 .category-icons > a:last-child {
     border-right: none;
 }
 
 
-/* 아이콘 */
 .category-icons span {
     font-size: 28px;
 }
 
 
-/* 카테고리 이름 */
 .category-icons p {
-    font-size: 12px;
-
     color: #555555;
+
+    font-size: 12px;
 
     line-height: 1.4;
 }
 
 
-/* hover */
 .category-icons > a:hover {
     color: #0874df;
 
@@ -615,7 +231,7 @@ main {
 
 
 /* =========================================================
-   7. 공통 SECTION 설정
+   4. 메인 SECTION 공통
 ========================================================= */
 
 .recommend-magazine,
@@ -627,7 +243,7 @@ main {
 
 
 /* =========================================================
-   8. 각 영역의 제목
+   5. SECTION 제목
 ========================================================= */
 
 .section-title {
@@ -645,15 +261,13 @@ main {
 }
 
 
-/* 제목 */
 .section-title h2 {
-    font-size: 26px;
+    padding-bottom: 15px;
 
+    font-size: 26px;
     font-weight: 700;
 
     white-space: nowrap;
-
-    padding-bottom: 15px;
 }
 
 
@@ -679,7 +293,211 @@ main {
 
 
 /* =========================================================
-   9. 일반 상품 목록
+   6. 상품 카드 공통
+   추천 / 분야별 베스트 / 디지털
+========================================================= */
+
+.recommend-product,
+.category-recommend-product,
+.digital-product {
+    padding: 15px;
+
+    border: 1px solid #eeeeee;
+    border-radius: 10px;
+
+    background-color: #ffffff;
+
+    min-width: 0;
+
+    transition: 0.25s;
+}
+
+
+/* 마우스 올렸을 때 */
+.recommend-product:hover,
+.category-recommend-product:hover,
+.digital-product:hover {
+    transform: translateY(-5px);
+
+    border-color: #d9e6f5;
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+
+/* 상품 이미지 */
+.recommend-product img,
+.category-recommend-product img,
+.digital-product img {
+    width: 100%;
+    height: 260px;
+
+    object-fit: contain;
+
+    display: block;
+
+    margin-bottom: 15px;
+}
+
+
+/* 상품 이름 */
+.recommend-product > a:nth-of-type(2),
+.category-recommend-name,
+.digital-product-name {
+    min-height: 45px;
+
+    margin-bottom: 10px;
+
+    display: block;
+
+    color: #222222;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    line-height: 1.5;
+}
+
+
+/* 추천 상품 안 상품명 p */
+.recommend-product > a:nth-of-type(2) p {
+    margin: 0;
+
+    color: #222222;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    line-height: 1.5;
+}
+
+
+/* 가격 */
+.recommend-product > p,
+.category-recommend-product > p,
+.digital-product > p {
+    margin: 10px 0 15px;
+
+    color: #0874df;
+
+    font-size: 17px;
+    font-weight: 700;
+}
+
+
+/* 구매하기 */
+.recommend-product > a:nth-of-type(3),
+.category-recommend-product > a:nth-of-type(3),
+.digital-product > a:nth-of-type(3) {
+    width: calc(50% - 4px);
+    height: 36px;
+
+    display: inline-flex;
+
+    justify-content: center;
+    align-items: center;
+
+    vertical-align: middle;
+
+    border: 1px solid #0874df;
+    border-radius: 5px;
+
+    background-color: #ffffff;
+
+    color: #0874df;
+
+    font-size: 13px;
+
+    transition: 0.2s;
+}
+
+
+.recommend-product > a:nth-of-type(3):hover,
+.category-recommend-product > a:nth-of-type(3):hover,
+.digital-product > a:nth-of-type(3):hover {
+    background-color: #f1f7ff;
+}
+
+
+/* 장바구니 */
+.recommend-product button,
+.category-recommend-product button,
+.digital-product button {
+    width: calc(50% - 4px);
+    height: 36px;
+
+    margin-left: 4px;
+
+    padding: 0;
+
+    vertical-align: middle;
+
+    border: none;
+    border-radius: 5px;
+
+    background-color: #0874df;
+
+    color: #ffffff;
+
+    font-size: 13px;
+
+    transition: 0.2s;
+}
+
+
+.recommend-product button:hover,
+.category-recommend-product button:hover,
+.digital-product button:hover {
+    background-color: #0066c8;
+}
+
+
+
+/* =========================================================
+   7. 추천 매거진
+   12개 중 화면에 4개씩
+========================================================= */
+
+/* 화면 밖 상품 숨김 */
+.recommend-magazine .recommend-wrap {
+    width: 100%;
+
+    overflow: hidden;
+
+    padding: 8px 0 15px;
+}
+
+
+/*
+   gap을 따로 사용하지 않고
+   상품마다 좌우 margin을 줌.
+
+   상품 하나의 전체 공간 = 25%
+   따라서 JS의 translateX(-100%)와 정확히 맞는다.
+*/
+.recommend-magazine .recommend-track {
+    width: 100%;
+
+    display: flex;
+
+    gap: 0;
+
+    transition: transform 0.6s ease;
+}
+
+
+/* 정확히 한 화면에 4개 */
+.recommend-magazine .recommend-product {
+    flex: 0 0 calc(25% - 20px);
+
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+
+
+/* =========================================================
+   8. 일반 상품 목록
 ========================================================= */
 
 .product-list {
@@ -691,52 +509,37 @@ main {
 }
 
 
-/*
-    추천 매거진은 4개 상품이므로
-    4칸으로 표시
-*/
-.recommend-magazine .product-list {
-    grid-template-columns: repeat(4, 1fr);
-}
-
-
-
-/* =========================================================
-   10. 상품 카드
-========================================================= */
-
 .product {
     min-width: 0;
+
+    padding: 14px;
+
+    overflow: hidden;
 
     background-color: #ffffff;
 
     border: 1px solid #eeeeee;
-
     border-radius: 12px;
-
-    overflow: hidden;
-
-    padding: 14px;
 
     transition: 0.25s;
 }
 
 
-/* 상품에 마우스 올리기 */
 .product:hover {
     transform: translateY(-5px);
 
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.10);
-
     border-color: #d9e6f5;
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.10);
 }
 
 
-/* 상품 이미지 링크 */
+/* 이미지 */
 .product > a:first-child {
     width: 100%;
-
     height: 270px;
+
+    margin-bottom: 16px;
 
     display: flex;
 
@@ -747,13 +550,10 @@ main {
 
     background-color: #f6f7f9;
 
-    margin-bottom: 16px;
-
     border-radius: 7px;
 }
 
 
-/* 상품 이미지 */
 .product > a:first-child img {
     width: 100%;
     height: 100%;
@@ -771,19 +571,18 @@ main {
 
 /* 상품 이름 */
 .product > a:nth-of-type(2) {
-    display: block;
-
     min-height: 42px;
 
     margin-bottom: 8px;
 
-    font-size: 15px;
+    display: block;
 
+    color: #333333;
+
+    font-size: 15px;
     font-weight: bold;
 
     line-height: 1.5;
-
-    color: #333333;
 }
 
 
@@ -791,10 +590,9 @@ main {
 .product p {
     margin: 10px 0 15px;
 
-    font-size: 17px;
-
     color: #0874df;
 
+    font-size: 17px;
     font-weight: bold;
 }
 
@@ -802,7 +600,7 @@ main {
 /* 구매하기 */
 .product > a:nth-of-type(3) {
     width: calc(50% - 4px);
-    height: 35px;
+    height: 36px;
 
     display: inline-flex;
 
@@ -810,7 +608,6 @@ main {
     align-items: center;
 
     border: 1px solid #0874df;
-
     border-radius: 5px;
 
     color: #0874df;
@@ -822,17 +619,16 @@ main {
 /* 장바구니 */
 .product button {
     width: calc(50% - 4px);
-    height: 35px;
+    height: 36px;
 
     margin-left: 4px;
 
     border: none;
-
     border-radius: 5px;
 
     background-color: #0874df;
 
-    color: white;
+    color: #ffffff;
 
     font-size: 12px;
 }
@@ -845,9 +641,10 @@ main {
 
 
 /* =========================================================
-   11. 분야별 베스트 카테고리 버튼
+   9. 분야별 베스트
 ========================================================= */
 
+/* 제목 안 카테고리 버튼 때문에 줄바꿈 허용 */
 .category-best .section-title {
     flex-wrap: wrap;
 
@@ -855,9 +652,11 @@ main {
 }
 
 
-/* 카테고리 버튼 부모 */
+/* 카테고리 버튼 묶음 */
 .category-buttons {
     display: flex;
+
+    align-items: center;
 
     flex-wrap: wrap;
 
@@ -868,11 +667,11 @@ main {
 
 
 /* 카테고리 버튼 */
+.category-best-btn,
 .category-buttons button {
     padding: 7px 13px;
 
     border: 1px solid #dddddd;
-
     border-radius: 20px;
 
     background-color: #ffffff;
@@ -885,162 +684,109 @@ main {
 }
 
 
+.category-best-btn:hover,
 .category-buttons button:hover {
     border-color: #0874df;
 
-    background-color: #0874df;
-
-    color: #ffffff;
+    color: #0874df;
 }
 
 
-/* 첫 번째 카테고리 활성화 느낌 */
-.category-buttons button:first-child {
-    background-color: #0874df;
-
+/* 현재 선택 */
+.category-best-btn.active {
     border-color: #0874df;
 
+    background-color: #0874df;
+
     color: #ffffff;
 }
 
 
+/*
+   현재 JSP가 recommend-wrap / recommend-track을
+   분야별 베스트에서도 사용하고 있으므로
+   category-best 안에서는 GRID로 덮어쓴다.
+*/
+.category-best .recommend-wrap,
+.category-recommend-wrap {
+    width: 100%;
 
-/* =========================================================
-   12. 디지털 매거진
-========================================================= */
-
-.digital-product-list {
-    display: grid;
-
-    grid-template-columns: repeat(5, 1fr);
-
-    gap: 24px;
-}
-
-
-/* 디지털 상품 */
-.digital-product {
-    min-width: 0;
-
-    padding: 15px;
-
-    background-color: #ffffff;
-
-    border-radius: 12px;
-
-    border: 1px solid #eeeeee;
-
-    transition: 0.25s;
-}
-
-
-.digital-product:hover {
-    transform: translateY(-5px);
-
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.10);
-}
-
-
-/* 디지털 이미지 */
-.digital-product > a:first-child {
-    height: 250px;
-
-    padding: 13px;
-
-    display: flex;
-
-    justify-content: center;
-    align-items: center;
-
-    background-color: #252525;
-
-    border: 6px solid #111111;
-
-    border-radius: 12px;
+    margin-top: 25px;
 
     overflow: hidden;
 
-    margin-bottom: 15px;
+    padding: 8px 0 15px;
 }
 
 
-/* 내부 이미지 */
-.digital-product > a:first-child img {
+.category-best .recommend-track,
+.category-recommend-track {
     width: 100%;
-    height: 100%;
 
-    object-fit: contain;
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 20px;
+
+    transform: none !important;
 }
 
 
-/* 상품 이름 */
-.digital-product > a:nth-of-type(2) {
+/* 처음엔 상품 숨김 */
+.category-recommend-product {
+    display: none;
+}
+
+
+/* JS에서 show가 붙은 4개만 표시 */
+.category-recommend-product.show {
     display: block;
-
-    min-height: 40px;
-
-    font-size: 14px;
-
-    font-weight: bold;
-
-    line-height: 1.5;
-}
-
-
-/* 가격 */
-.digital-product p {
-    margin: 8px 0 14px;
-
-    color: #0874df;
-
-    font-size: 16px;
-
-    font-weight: bold;
-}
-
-
-/* 구매하기 */
-.digital-product > a:nth-of-type(3) {
-    width: calc(50% - 4px);
-    height: 34px;
-
-    display: inline-flex;
-
-    justify-content: center;
-    align-items: center;
-
-    border: 1px solid #0874df;
-
-    border-radius: 5px;
-
-    color: #0874df;
-
-    font-size: 11px;
-}
-
-
-/* 장바구니 */
-.digital-product button {
-    width: calc(50% - 4px);
-    height: 34px;
-
-    margin-left: 4px;
-
-    border: none;
-
-    border-radius: 5px;
-
-    background-color: #0874df;
-
-    color: white;
-
-    font-size: 11px;
 }
 
 
 
 /* =========================================================
-   13. 공지 / 배송안내 / 문의
+   10. 디지털 매거진
+========================================================= */
+
+.digital-wrap {
+    width: 100%;
+
+    margin-top: 25px;
+
+    overflow: hidden;
+
+    padding: 8px 0 15px;
+}
+
+
+.digital-track {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 20px;
+}
+
+
+/* 처음에는 숨김 */
+.digital-product {
+    display: none;
+}
+
+
+/* JS가 선택한 상품 4개 */
+.digital-product.show {
+    display: block;
+}
+
+
+
+/* =========================================================
+   11. 공지사항 / 배송안내 / 1:1 문의
 ========================================================= */
 
 .info-area {
@@ -1050,17 +796,15 @@ main {
 
     grid-template-columns: repeat(3, 1fr);
 
-    border: 1px solid #e8ebef;
-
-    border-radius: 12px;
-
     overflow: hidden;
+
+    border: 1px solid #e8ebef;
+    border-radius: 12px;
 
     background-color: #fafbfc;
 }
 
 
-/* 각각의 박스 */
 .info-area > div {
     min-height: 180px;
 
@@ -1074,13 +818,11 @@ main {
 }
 
 
-/* 마지막 오른쪽 선 제거 */
 .info-area > div:last-child {
     border-right: none;
 }
 
 
-/* 제목 */
 .info-area h3 {
     margin-bottom: 15px;
 
@@ -1090,15 +832,14 @@ main {
 }
 
 
-/* 링크 */
 .info-area a {
-    display: block;
-
     margin-top: 8px;
 
-    font-size: 12px;
+    display: block;
 
     color: #666666;
+
+    font-size: 12px;
 
     transition: 0.2s;
 }
@@ -1111,148 +852,566 @@ main {
 
 
 /* =========================================================
-   14. FOOTER
+   12. 고객센터 페이지
 ========================================================= */
 
-.footer {
-    width: 100%;
+.info {
+    width: 1100px;
+    max-width: 100%;
 
-    background-color: #f4f5f7;
+    margin: 0 auto;
 
-    border-top: 1px solid #e0e0e0;
-
-    padding: 45px max(30px, calc((100% - 1200px) / 2)) 20px;
-
+    padding: 70px 0 90px;
 
     display: grid;
 
-    grid-template-columns: 220px 1fr 380px;
+    grid-template-columns: 1fr 1fr;
 
-    column-gap: 40px;
-
-    color: #777777;
-
-    font-size: 12px;
-
-    line-height: 1.9;
+    gap: 30px;
 }
 
 
+/* 제목 */
+.info_title {
+    grid-column: 1 / -1;
 
-/* =========================================================
-   14-1. Footer 로고
-========================================================= */
+    margin-bottom: 20px;
 
-.footer-logo {
-    display: flex;
-
-    align-items: flex-start;
+    text-align: center;
 }
 
 
-.footer-logo img {
-    max-width: 190px;
-
-    max-height: 80px;
-}
-
-
-
-/* =========================================================
-   14-2. 회사정보
-========================================================= */
-
-.footer-company h3 {
-    margin-bottom: 10px;
-
-    font-size: 18px;
+.info_title h1 {
+    margin: 0;
 
     color: #222222;
+
+    font-size: 46px;
+    font-weight: 700;
+
+    letter-spacing: -1px;
 }
 
 
-.footer-company b {
-    color: #0874df;
+.info_title h1::after {
+    content: "";
+
+    width: 38px;
+    height: 3px;
+
+    margin: 15px auto 18px;
+
+    display: block;
+
+    background-color: #0874df;
+}
+
+
+.info_title p {
+    margin: 0;
+
+    color: #555555;
 
     font-size: 15px;
+
+    line-height: 1.8;
 }
 
 
+/* 공지 / 문의 카드 */
+.announcement,
+.Inquiry {
+    min-height: 350px;
 
-/* =========================================================
-   14-3. Footer 이용안내
-========================================================= */
+    position: relative;
 
-.footer-menu {
-    text-align: right;
+    padding: 28px 30px;
+
+    border: 1px solid #e1e5ea;
+    border-radius: 12px;
+
+    background-color: #ffffff;
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
 
-.footer-menu > div:first-child {
-    display: flex;
+/* 카드 제목 */
+.announcement h3,
+.Inquiry h3 {
+    margin: 0 0 20px;
 
-    justify-content: flex-end;
+    padding-bottom: 17px;
 
-    flex-wrap: wrap;
+    border-bottom: 1px dashed #c9d0d8;
 
-    gap: 16px;
+    color: #222222;
 
-    margin-bottom: 25px;
+    font-size: 22px;
+    font-weight: 700;
 }
 
 
-.footer-menu a {
+.announcement h3::before,
+.Inquiry h3::before {
+    content: "";
+
+    width: 10px;
+    height: 10px;
+
+    margin-right: 10px;
+
+    display: inline-block;
+
+    border-radius: 50%;
+
+    background-color: #0874df;
+
+    vertical-align: middle;
+}
+
+
+/* more */
+.announcement button,
+.Inquiry button {
+    position: absolute;
+
+    top: 25px;
+    right: 30px;
+
+    padding: 5px 14px;
+
+    border: 1px solid #d7dce3;
+    border-radius: 5px;
+
+    background-color: #ffffff;
+
+    color: #555555;
+
+    font-size: 12px;
+}
+
+
+.announcement button:hover,
+.Inquiry button:hover {
+    border-color: #0874df;
+
+    color: #0874df;
+}
+
+
+/* 공지사항 글 */
+.announcement > a {
+    padding: 12px 5px;
+
+    display: block;
+
+    border-bottom: 1px solid #f1f1f1;
+
     color: #444444;
+
+    font-size: 14px;
+}
+
+
+.announcement > a::before {
+    content: "›";
+
+    margin-right: 8px;
+
+    color: #0874df;
 
     font-weight: bold;
 }
 
 
-.footer-menu a:hover {
+.announcement > a:hover {
     color: #0874df;
 }
 
 
-/* 안내 로고 */
-.footer-menu img {
-    max-width: 250px;
+/* 문의 */
+.Inquiry {
+    color: #555555;
 
-    margin-left: auto;
+    font-size: 14px;
+
+    line-height: 1.8;
+}
+
+
+.Inquiry > a:not(:last-child) {
+    padding: 10px 5px;
+
+    display: block;
+
+    border-bottom: 1px solid #f1f1f1;
+
+    color: #444444;
+
+    font-size: 14px;
+}
+
+
+.Inquiry > a:not(:last-child)::before {
+    content: "›";
+
+    margin-right: 8px;
+
+    color: #0874df;
+
+    font-weight: bold;
+}
+
+
+.Inquiry > a:not(:last-child):hover {
+    color: #0874df;
+}
+
+
+/* 문의하기 */
+.Inquiry > a:last-child {
+    width: 135px;
+    height: 42px;
+
+    margin-top: 25px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    border: 1px solid #0874df;
+    border-radius: 5px;
+
+    background-color: #ffffff;
+
+    color: #0874df;
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
+.Inquiry > a:last-child:hover {
+    background-color: #0874df;
+
+    color: #ffffff;
 }
 
 
 
 /* =========================================================
-   14-4. Copyright
+   13. 장바구니
 ========================================================= */
 
-.footer-bottom {
-    grid-column: 1 / -1;
+/* 제목 */
+.cart_title {
+    margin: 45px 0 30px;
 
-    margin-top: 35px;
+    padding-bottom: 15px;
 
-    padding-top: 18px;
+    border-bottom: 1px solid #dddddd;
 
-    border-top: 1px solid #dddddd;
+    color: #222222;
+
+    font-size: 28px;
+    font-weight: 600;
+}
+
+
+.cart_title::after {
+    content: "";
+
+    width: 85px;
+    height: 2px;
+
+    margin-top: 14px;
+
+    display: block;
+
+    background-color: #222222;
+}
+
+
+/* 전체 박스 */
+.cart_box {
+    width: 100%;
+
+    padding: 30px;
+
+    border: 1px solid #e1e5ea;
+    border-radius: 10px;
+
+    background-color: #ffffff;
+}
+
+
+.cart_list {
+    width: 100%;
+
+    display: block;
+}
+
+
+/* 테이블 */
+.cart-table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    table-layout: fixed;
+}
+
+
+.cart-table th {
+    height: 50px;
+
+    padding: 10px;
+
+    border-top: 2px solid #222222;
+    border-bottom: 1px solid #dddddd;
+
+    color: #222222;
+
+    font-size: 14px;
+    font-weight: 600;
 
     text-align: center;
+}
 
-    color: #999999;
 
-    font-size: 11px;
+.cart-table td {
+    min-height: 80px;
+
+    padding: 20px 15px;
+
+    border-bottom: 1px solid #eeeeee;
+
+    color: #444444;
+
+    font-size: 14px;
+
+    vertical-align: middle;
+}
+
+
+/* 선택 */
+.cart-table th:nth-child(1),
+.cart-table td:nth-child(1) {
+    width: 80px;
+
+    text-align: center;
+}
+
+
+/* 상품 */
+.cart-table th:nth-child(2),
+.cart-table td:nth-child(2) {
+    width: auto;
+
+    text-align: left;
+}
+
+
+/* 수량 */
+.cart-table th:nth-child(3),
+.cart-table td:nth-child(3) {
+    width: 140px;
+
+    text-align: center;
+}
+
+
+/* 가격 */
+.cart-table th:nth-child(4),
+.cart-table td:nth-child(4) {
+    width: 180px;
+
+    text-align: right;
+}
+
+
+.cart-table td:nth-child(2) {
+    line-height: 1.6;
+}
+
+
+.cart-table input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+
+    cursor: pointer;
+}
+
+
+/* 장바구니 상품정보 */
+.product-info {
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+}
+
+
+.cart-product-image {
+    width: 90px;
+    height: 120px;
+
+    object-fit: contain;
+
+    border: 1px solid #eeeeee;
+
+    background-color: #ffffff;
+}
+
+
+.cart-product-text {
+    flex: 1;
+
+    line-height: 1.7;
+}
+
+
+/* 총가격 */
+.cart_total {
+    width: 100%;
+    min-height: 70px;
+
+    padding: 0 20px;
+
+    display: flex;
+
+    justify-content: flex-end;
+    align-items: center;
+
+    border-bottom: 1px solid #dddddd;
+
+    color: #222222;
+
+    font-size: 17px;
+    font-weight: 600;
+}
+
+
+/* 버튼 */
+.cart_buttons {
+    width: 100%;
+
+    margin-top: 20px;
+
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.cart_buttons_left,
+.cart_buttons_right {
+    display: flex;
+
+    gap: 8px;
+}
+
+
+.cart_buttons button {
+    min-width: 120px;
+    height: 42px;
+
+    padding: 0 18px;
+
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+
+    background-color: #ffffff;
+
+    color: #444444;
+
+    font-size: 13px;
+
+    transition: 0.2s;
+}
+
+
+.cart_buttons button:hover {
+    border-color: #0874df;
+
+    color: #0874df;
+}
+
+
+.cart_buttons_right button:first-child {
+    min-width: 140px;
+}
+
+
+/* 전체 상품 주문 */
+.cart_buttons_right button:last-child {
+    min-width: 150px;
+
+    border-color: #0874df;
+
+    background-color: #0874df;
+
+    color: #ffffff;
+
+    font-weight: 600;
+}
+
+
+.cart_buttons_right button:last-child:hover {
+    border-color: #0565c5;
+
+    background-color: #0565c5;
+
+    color: #ffffff;
+}
+
+
+/* 장바구니 이용안내 */
+.cart_Information {
+    width: 100%;
+
+    margin-top: 25px;
+
+    padding: 28px 30px;
+
+    border: 1px solid #e1e5ea;
+    border-radius: 8px;
+
+    background-color: #fafbfc;
+
+    color: #666666;
+
+    font-size: 12px;
+
+    line-height: 2;
+}
+
+
+.cart_Information h2 {
+    margin: 0 0 18px;
+
+    color: #222222;
+
+    font-size: 18px;
+    font-weight: 600;
 }
 
 
 
 /* =========================================================
-   15. 화면이 조금 작을 때
+   14. 반응형 - 1100px 이하
 ========================================================= */
 
 @media (max-width: 1100px) {
 
-    .main-header,
     main {
         width: calc(100% - 40px);
+
+        max-width: none;
     }
 
 
@@ -1266,9 +1425,7 @@ main {
     }
 
 
-    .product-list,
-    .recommend-magazine .product-list,
-    .digital-product-list {
+    .product-list {
         grid-template-columns: repeat(3, 1fr);
     }
 
@@ -1278,27 +1435,161 @@ main {
     }
 
 
-    .footer {
-        grid-template-columns: 1fr 2fr;
-    }
-
-
-    .footer-menu {
-        grid-column: 1 / -1;
-
-        text-align: left;
-
-        margin-top: 30px;
-    }
-
-
-    .footer-menu > div:first-child {
-        justify-content: flex-start;
-    }
-
-
-    .footer-menu img {
-        margin-left: 0;
+    .category-best .recommend-track,
+    .category-recommend-track,
+    .digital-track {
+        grid-template-columns: repeat(3, 1fr);
     }
 }
-    
+
+
+
+/* =========================================================
+   15. 반응형 - 900px 이하
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .info {
+        grid-template-columns: 1fr;
+    }
+
+
+    .info_title {
+        grid-column: 1;
+    }
+
+
+    .category-buttons {
+        gap: 5px;
+    }
+
+
+    .category-best-btn,
+    .category-buttons button {
+        padding: 6px 10px;
+
+        font-size: 11px;
+    }
+}
+
+
+
+/* =========================================================
+   16. 반응형 - 768px 이하
+========================================================= */
+
+@media (max-width: 768px) {
+
+    main {
+        width: auto;
+        max-width: none;
+
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+
+    .main-banner {
+        height: 300px;
+    }
+
+
+    /* 추천은 모바일 2개씩 */
+    .recommend-magazine .recommend-product {
+        flex: 0 0 calc(50% - 20px);
+    }
+
+
+    .category-best .recommend-track,
+    .category-recommend-track,
+    .digital-track {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+
+    .cart_box {
+        padding: 15px;
+    }
+
+
+    .cart-table th:nth-child(1),
+    .cart-table td:nth-child(1) {
+        width: 50px;
+    }
+
+
+    .cart-table th:nth-child(3),
+    .cart-table td:nth-child(3) {
+        width: 80px;
+    }
+
+
+    .cart-table th:nth-child(4),
+    .cart-table td:nth-child(4) {
+        width: 110px;
+    }
+}
+
+
+
+/* =========================================================
+   17. 반응형 - 600px 이하
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .product-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+
+    .category-best .recommend-track,
+    .category-recommend-track,
+    .digital-track {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+
+    .info-area {
+        grid-template-columns: 1fr;
+    }
+
+
+    .info {
+        max-width: calc(100% - 30px);
+
+        padding: 45px 0 60px;
+    }
+
+
+    .info_title h1 {
+        font-size: 34px;
+    }
+
+
+    .info_title p {
+        font-size: 13px;
+    }
+
+
+    .announcement,
+    .Inquiry {
+        min-height: 300px;
+
+        padding: 22px;
+    }
+
+
+    .announcement h3,
+    .Inquiry h3 {
+        font-size: 19px;
+    }
+
+
+    .announcement button,
+    .Inquiry button {
+        top: 20px;
+        right: 20px;
+    }
+}
