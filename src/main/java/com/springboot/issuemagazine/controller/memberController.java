@@ -33,11 +33,13 @@ public class memberController {
 		return "redirect:/main";
 	}
 	
-	int start = 0;
-    int pageSize = 10;
+
 
 	@RequestMapping("/main")
 	public String main(Model model) {
+		
+		int start = 0;
+	    int pageSize = productDAO.productCount();
 		
 		List<productDTO> productList = productDAO.productList(start, pageSize);
 		model.addAttribute("productList", productList);
