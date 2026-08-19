@@ -29,7 +29,6 @@ public class one_inquiryController {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
-	// 1:1문의 목록 (페이징 10개씩 적용 + 비밀글 열람 권한 전달)
 	@RequestMapping("/one_inquiry/list")
 	public String one_inquiryList(
 			@RequestParam(value = "page", defaultValue = "1") int page,
@@ -39,15 +38,13 @@ public class one_inquiryController {
 			Authentication authentication,
 			Model model) {
 
-		int recordPerPage = 10; // 페이지당 10개씩 출력
-		int pageBlock = 10;     // 하단 [1]~[10] 블록 개수
-		int offset = (page - 1) * recordPerPage; // DB 조회 시 건너뛸 개수
+		int recordPerPage = 10;
+		int pageBlock = 10;
+		int offset = (page - 1) * recordPerPage; 
 
-		// 1. 총 문의 개수 및 10개 목록 조회
 		int totalCount = one_inquiryDAO.one_inquirySearchCount(searchType, keyword);
 		List<one_inquiryDTO> list = one_inquiryDAO.one_inquirySearch(searchType, keyword, offset, recordPerPage);
 
-		// 2. 하단 페이징 관련 계산
 		int totalPage = (int) Math.ceil((double) totalCount / recordPerPage);
 		int startPage = ((page - 1) / pageBlock) * pageBlock + 1;
 		int endPage = startPage + pageBlock - 1;
@@ -55,12 +52,10 @@ public class one_inquiryController {
 			endPage = totalPage;
 		}
 
-		// 3. 로그인 정보 및 관리자 여부 판별 (JSP 비교용)
 		String loginId = (principal != null) ? principal.getName() : "";
 		boolean isAdmin = (authentication != null) && authentication.getAuthorities().stream()
 				.anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"));
 
-		// 4. Model에 값 바인딩
 		model.addAttribute("list", list);
 		model.addAttribute("page", page);
 		model.addAttribute("startPage", startPage);
@@ -77,7 +72,7 @@ public class one_inquiryController {
 		return "one_inquiry/list";
 	}
 
-	// 1:1문의 상세보기 (본인 및 관리자 검증 보완)
+	// 1:1문의 상세보기
 	@RequestMapping("/one_inquiry/view")
 	public String one_inquiryView(@RequestParam("oi_no") int oi_no, Principal principal, Authentication authentication, Model model) {
 		one_inquiryDTO dto = one_inquiryDAO.one_inquiryView(oi_no);
@@ -92,7 +87,6 @@ public class one_inquiryController {
 		boolean isAdmin = (authentication != null) && authentication.getAuthorities().stream()
 				.anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"));
 
-		// 본인도 아니고 관리자도 아닌 경우 URL 직접 접근 차단
 		if (!loginId.equals(dto.getM_id()) && !isAdmin) {
 			model.addAttribute("msg", "작성자 본인과 관리자만 조회할 수 있습니다.");
 			model.addAttribute("url", "/one_inquiry/list");
@@ -167,7 +161,7 @@ public class one_inquiryController {
 		return "redirect:/one_inquiry/view?oi_no=" + dto.getOi_no();
 	}
 
-	// 비밀번호 확인 폼 (일반 회원이 본인 문의 열람 전 거치는 화면)
+	// 비밀번호 확인 폼
 	@RequestMapping("/one_inquiry/passwordCheckForm")
 	public String one_inquiryPasswordCheckForm(@RequestParam("oi_no") int oi_no, Model model) {
 		model.addAttribute("oi_no", oi_no);

@@ -1,18 +1,19 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>공지 상세보기</title>
+<title>공지 글</title>
 <link rel="stylesheet" href="/css/notice_detail.css">
 </head>
 <body>
 <%@ include file="../header.jsp" %>
 <div class="notice-detail-wrapper">
-    <h2 class="notice-detail-title">공지 상세보기</h2>
+    <h2 class="notice-detail-title">공지 글</h2>
 
     <table class="notice-detail-table">
         <tr>
@@ -29,7 +30,7 @@
         </tr>
         <tr>
             <th>작성일</th>
-            <td>${dto.n_reg_date}</td>
+            <td><fmt:formatDate value="${dto.n_reg_date}" pattern="yyyy-MM-dd"/></td>
         </tr>
         <tr>
             <th>조회수</th>

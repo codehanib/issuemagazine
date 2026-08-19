@@ -2,38 +2,17 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
 <%@ taglib prefix="fn" uri="jakarta.tags.functions"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>후기수정</title>
-<style>
-    .star-rating {
-        font-size: 28px;
-        letter-spacing: 4px;
-        cursor: pointer;
-        user-select: none;
-    }
-    .star-rating span {
-        color: #ddd;
-    }
-    .star-rating span.filled {
-        color: #f5a623;
-    }
-    .rating-text {
-        margin-left: 8px;
-        font-size: 14px;
-        color: #666;
-        vertical-align: middle;
-    }
-</style>
+<title>후기 수정</title>
+<link rel="stylesheet" href="/css/review.css">
 </head>
 <body>
+<%@ include file="../header.jsp" %>
 
-<%--
-    기존 r_content 는 "내용 (평점: N)" 형태로 저장돼 있으므로,
-    수정 폼을 열 때 내용과 평점을 다시 분리해서 각각 채워줌
---%>
 <c:set var="hasRating" value="${fn:contains(dto.r_content, '(평점:')}" />
 <c:choose>
     <c:when test="${hasRating}">
@@ -47,22 +26,23 @@
     </c:otherwise>
 </c:choose>
 
- <div class="login-wrapper">
-    <h3>후기수정</h3>
+<div class="notice-detail-wrapper">
+    <h2 class="notice-detail-title">후기 수정</h2>
+
     <form name="reviewForm" method="post" action="/review/update" onsubmit="return combineContent();">
+        <sec:csrfInput/>
+        
         <input type="hidden" name="r_no" value="${dto.r_no}">
         <input type="hidden" name="p_no" value="${dto.p_no}">
 
-        <div class="form-row">
-            <label class="title">제목</label>
-            <div class="input-content">
-                <input type="text" name="r_title" value="${dto.r_title}" required>
-            </div>
+        <div class="notice-form-group">
+            <label class="notice-form-label">제목</label>
+            <input type="text" name="r_title" class="notice-form-input" value="${dto.r_title}" required>
         </div>
 
-        <div class="form-row">
-            <label class="title">평점</label>
-            <div class="input-content">
+        <div class="notice-form-group">
+            <label class="notice-form-label">평점</label>
+            <div class="notice-rating-box">
                 <span class="star-rating" id="starRating">
                     <span data-value="1">★</span><span data-value="2">★</span><span data-value="3">★</span><span data-value="4">★</span><span data-value="5">★</span>
                 </span>
@@ -70,25 +50,23 @@
             </div>
         </div>
 
-        <div class="form-row">
-            <label class="title">내용</label>
-            <div class="input-content">
-                <textarea id="r_content_text" rows="6" cols="50" required>${contentOnly}</textarea>
-            </div>
+        <div class="notice-form-group">
+            <label class="notice-form-label">내용</label>
+            <textarea id="r_content_text" class="notice-form-textarea" rows="7" required>${contentOnly}</textarea>
         </div>
 
         <input type="hidden" name="r_content" id="r_content_hidden">
 
-        <div class="form-row">
-            <button type="submit">수정</button>
+        <!-- 버튼 영역 클래스 지정 -->
+        <div class="notice-write-buttons">
+            <a href="/product/detail?p_no=${dto.p_no}#product-review" class="btn-cancel">취소</a>
+            <button type="submit" class="btn-submit">수정완료</button>
         </div>
     </form>
- </div>
+</div>
 
 <script>
-// 서버에서 미리 파싱해준 기존 평점으로 초기화
-var selectedRating = ${initialRating};
-
+var selectedRating = parseInt("${initialRating}") || 0;
 var stars = document.querySelectorAll('#starRating span');
 var ratingText = document.getElementById('ratingText');
 
@@ -109,12 +87,13 @@ function refreshRatingText() {
 
 stars.forEach(function (star) {
     star.addEventListener('click', function () {
-        selectedRating = parseInt(star.getAttribute('data-value'));
+        selectedRating = parseInt(this.getAttribute('data-value'));
         paintStars(selectedRating);
         refreshRatingText();
     });
+    
     star.addEventListener('mouseover', function () {
-        paintStars(parseInt(star.getAttribute('data-value')));
+        paintStars(parseInt(this.getAttribute('data-value')));
     });
 });
 
@@ -122,9 +101,11 @@ document.getElementById('starRating').addEventListener('mouseleave', function ()
     paintStars(selectedRating);
 });
 
-// 페이지 로드 시 기존 평점으로 별 채워두기
-paintStars(selectedRating);
-refreshRatingText();
+// 페이지 로드 시 기존 평점 즉시 반영
+document.addEventListener("DOMContentLoaded", function() {
+    paintStars(selectedRating);
+    refreshRatingText();
+});
 
 function combineContent() {
     var content = document.getElementById('r_content_text').value.trim();
@@ -143,5 +124,6 @@ function combineContent() {
 }
 </script>
 
+<%@ include file="../footer.jsp" %>
 </body>
 </html>
