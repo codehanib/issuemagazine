@@ -156,7 +156,9 @@ body {
                         </td>
 
                         <!-- 가격 -->
-                        <td class="price">${orders.od_price}원  </td>
+                        <td class="price">
+                        	<fmt:formatNumber value="${orders.od_price}" pattern="#,###"/>원
+                        </td>
 
                         <!-- 배송정보 확인 -->
                         <td>

@@ -23,7 +23,7 @@ public class PaymentService {
         Map<String, String> body = new HashMap<>();
         body.put("imp_key", "7824385552788271");
         body.put("imp_secret",
-        			"AAAAA");
+        			"rjSAFrDHS2CYwYRjt3fcdsvlpqDbvt5hFFUxde2ZTCrKOa79YembJ8z6ltTeS7HzNujOFBbkwDhj2Gux");
 
         RestTemplate restTemplate = new RestTemplate();
 
