@@ -117,7 +117,7 @@ public class paymentController {
 	        int totalPrice = 0;
 	        for (cartDTO cart : selectedCartList) {
 	            totalPrice +=
-	                    cart.getP_price()
+	                    cart.getP_price2()
 	                    * cart.getCart_quantity();
 	        }
 	        model.addAttribute(
