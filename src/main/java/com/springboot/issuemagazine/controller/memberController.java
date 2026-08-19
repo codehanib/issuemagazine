@@ -12,8 +12,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.springboot.issuemagazine.dao.IproductDAO;
 import com.springboot.issuemagazine.dao.memberDAO;
+import com.springboot.issuemagazine.dao.noticeDAO;
 import com.springboot.issuemagazine.dto.memberDTO;
+import com.springboot.issuemagazine.dto.noticeDTO;
 import com.springboot.issuemagazine.dto.productDTO;
+
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -27,6 +30,10 @@ public class memberController {
 	
 	@Autowired
 	private IproductDAO productDAO;
+	
+	@Autowired
+	private noticeDAO noticeDAO;
+	
 
 	@RequestMapping("/")
 	public String root() {
@@ -41,8 +48,12 @@ public class memberController {
 		int start = 0;
 	    int pageSize = productDAO.productCount();
 		
-		List<productDTO> productList = productDAO.productList(start, pageSize);
-		model.addAttribute("productList", productList);
+	    List<productDTO> productList = productDAO.mainProductList(start, pageSize);
+	    model.addAttribute("productList", productList);
+		
+		List<noticeDTO> noticeList = noticeDAO.noticeSearch("", "", 0, 3);
+	
+		model.addAttribute("noticeList", noticeList);
 		
 	    return "main";
 	}

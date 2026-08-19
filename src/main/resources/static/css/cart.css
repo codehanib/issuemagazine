@@ -1556,4 +1556,42 @@ main {
     .info-area {
         grid-template-columns: 1fr;
     }
+    
+	    /* 장바구니 수량 영역 */
+	.cart-quantity-cell {
+	    text-align: center;
+	    white-space: nowrap;
+	}
+	
+	
+	.quantity-btn {
+	    width: 32px;
+	    height: 32px;
+	
+	    border: 1px solid #d5d9df;
+	    border-radius: 5px;
+	
+	    background-color: #ffffff;
+	    color: #333333;
+	
+	    font-size: 18px;
+	    font-weight: 600;
+	
+	    cursor: pointer;
+	}
+	
+	.quantity-btn:hover {
+	    border-color: #0874df;
+	    color: #0874df;
+	}
+	
+	.quantity-text {
+	    min-width: 45px;
+	    display: inline-block;
+	
+	    text-align: center;
+	
+	    font-size: 14px;
+	    font-weight: 500;
+	}
 }

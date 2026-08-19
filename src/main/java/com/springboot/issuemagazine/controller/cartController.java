@@ -103,9 +103,13 @@ public class cartController {
 	 @RequestMapping("/cartUpdate")
 	 public String cartUpdate(cartDTO cdto) {
 
+	     System.out.println("cart_no = " + cdto.getCart_no());
+	     System.out.println("cart_quantity = " + cdto.getCart_quantity());
+
 	     cartdao.cartUpdate(cdto);
 
 	     return "redirect:/cartForm";
 	 }
-	 
+
 }
+

@@ -8,14 +8,14 @@
 		insert into cart(
 			cart_no,
             cart_quantity,
-            cart_price,
+            cart_price2,
             m_no,
             p_no
 		)
 		values(
 		cart_seq.nextval,
 		#{cart_quantity},
-        #{cart_price},
+        #{cart_price2},
         #{m_no},
         #{p_no}
 		)
@@ -26,11 +26,10 @@
 		select 
 			c.cart_no,
 			c.cart_quantity,
-			c.cart_price,
         	c.m_no,
         	c.p_no,
         	p.p_name,
-        	p.p_price,
+        	p.p_price2,
         	p.p_image
 		from cart c
 		join product p

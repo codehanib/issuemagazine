@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -9,7 +10,7 @@
 
     <title>ISSUEMAGAZINE:장바구니</title>
 
-    <link rel="stylesheet" href="css/style_LDH.css">
+    <link rel="stylesheet" href="css/cart.css">
 </head>
 
 <body>
@@ -55,38 +56,31 @@
                             </div>
                         </td>
                         <!-- 수량 -->
-                        <td>
-                        	cart_no : ${cart.cart_no}
-                        	<form action="/cartUpdate" method="post" >
-                        		
-                        		<input type ="hidden"
-                        			   name ="cart_no"
-                        			   value = "${cart.cart_no}">
-                        			   
-                        		<button type = "submit"
-                        				name = "cart_quantity"
-                        				value = "${cart.cart_quantity - 1}">
-                        			-
-                        		</button>
-                        
-                        		${cart.cart_quantity} 개
-                        		
-                        		<button type="submit"
-                        				name="cart_quantity"
-                        				value="${cart.cart_quantity  + 1}">
-                        			+
-                        		</button>
-                        	
-                        	</form>
-                        </td>
+							<td>
+							
+							    <button type="submit"
+							    		class="quantity-btn"
+							            formaction="/cartUpdate?cart_no=${cart.cart_no}&cart_quantity=${cart.cart_quantity - 1}">
+							        -
+							    </button>
+							
+							    ${cart.cart_quantity} 개
+							
+							    <button type="submit"
+							    		class="quantity-btn"
+							            formaction="/cartUpdate?cart_no=${cart.cart_no}&cart_quantity=${cart.cart_quantity + 1}">
+							        +
+							    </button>
+							
+							</td>
                         <!-- 가격 -->
                         <td>
-                            ${cart.p_price}원
+                            <fmt:formatNumber value="${cart.p_price2}" pattern="#,###" />원
                         </td>
                     </tr>
                     <!-- 상품가격 × 수량 -->
                     <c:set var="itemPrice"
-                           value="${cart.p_price * cart.cart_quantity}" />
+                           value="${cart.p_price2 * cart.cart_quantity}" />
 
                     <c:set var="totalPrice"
                            value="${totalPrice + itemPrice}" />
@@ -96,7 +90,7 @@
 
             <!-- 총가격 -->
             <div class="cart_total">
-                총 상품금액 : ${totalPrice}원
+                총 상품금액 :<fmt:formatNumber value="${totalPrice}" pattern="#,###" />원
             </div>
 
 
