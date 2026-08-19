@@ -33,61 +33,77 @@ public class productController {
 	@Autowired
 	private reviewDAO reviewdao;
 
-    // 상품 전체 목록 조회
-    @RequestMapping("/product/list")
-    public String productList(
-    						@RequestParam(value = "page", defaultValue = "1") int page,
-    						@RequestParam(value = "c_no", required = false) Integer c_no,
-    						Model model) {
-    	
-    	// 공지보이기 용
-    	List<noticeDTO> noticeList = noticedao.noticeSearch(null, null, 0, 3);
-    	model.addAttribute("noticeList", noticeList);
-    	// 한 페이지에 보여줄 상품 수
-        int pageSize = 20;
-        // 시작 위치
-        int start = (page - 1) * pageSize;
-        // 상품 조회
-        List<productDTO> productList =
-                productDAO.productList(start, pageSize);
-        // 전체 상품 수
-        int productCount =
-                productDAO.productCount();
-        
-        // 카테고리별 상품 조회
-        if(c_no != null) {
-        	productList = productDAO.productListCategory(c_no, start, pageSize);
-        	productCount = productDAO.productCountCategory(c_no);
-        } else {
-        	productList = productDAO.productList(start, pageSize);
-        	productCount = productDAO.productCount();
-        }
-        
-        // 전체 페이지 수
-        int totalPage =
-                (int) Math.ceil((double) productCount / pageSize);
-        int pageBlock = 10;
-        // 현재 페이지가 속한 페이지 그룹의 시작 번호
-        int startPage =
-                ((page - 1) / pageBlock) * pageBlock + 1;
-        // 현재 페이지 그룹의 마지막 번호
-        int endPage =
-                startPage + pageBlock - 1;
-        // 마지막 페이지보다 크면 마지막 페이지로 설정
-        if (endPage > totalPage) {
-            endPage = totalPage;
-        }
+	// 상품 전체 목록 조회
+	@RequestMapping("/product/list")
+	public String productList(
+	        @RequestParam(value = "page", defaultValue = "1") int page,
+	        @RequestParam(value = "c_no", required = false) Integer c_no,
+	        @RequestParam(value = "sort", defaultValue = "pno") String sort,
+	        Model model) {
 
-        model.addAttribute("productList", productList);
-        model.addAttribute("productCount", productCount);
-        model.addAttribute("page", page);
-        model.addAttribute("totalPage", totalPage);
-        model.addAttribute("startPage", startPage);
-        model.addAttribute("endPage", endPage);
-        model.addAttribute("c_no", c_no);
+	    // 공지보이기 용
+	    List<noticeDTO> noticeList =
+	            noticedao.noticeSearch(null, null, 0, 3);
 
-        return "product/productList";
-    }
+	    model.addAttribute("noticeList", noticeList);
+
+	    // 한 페이지에 보여줄 상품 수
+	    int pageSize = 20;
+
+	    // 시작 위치
+	    int start = (page - 1) * pageSize;
+
+	    List<productDTO> productList;
+	    int productCount;
+
+	    // 카테고리별 상품 조회
+	    if (c_no != null) {
+
+	        productList = productDAO.productListCategory(
+	                c_no, start, pageSize, sort);
+
+	        productCount = productDAO.productCountCategory(c_no);
+
+	    } else {
+
+	        productList = productDAO.productList(
+	                start, pageSize, sort);
+
+	        productCount = productDAO.productCount();
+	    }
+
+	    // 전체 페이지 수
+	    int totalPage =
+	            (int) Math.ceil((double) productCount / pageSize);
+
+	    int pageBlock = 10;
+
+	    // 현재 페이지가 속한 페이지 그룹의 시작 번호
+	    int startPage =
+	            ((page - 1) / pageBlock) * pageBlock + 1;
+
+	    // 현재 페이지 그룹의 마지막 번호
+	    int endPage =
+	            startPage + pageBlock - 1;
+
+	    // 마지막 페이지보다 크면 마지막 페이지로 설정
+	    if (endPage > totalPage) {
+	        endPage = totalPage;
+	    }
+
+	    model.addAttribute("productList", productList);
+	    model.addAttribute("productCount", productCount);
+	    model.addAttribute("page", page);
+	    model.addAttribute("totalPage", totalPage);
+	    model.addAttribute("startPage", startPage);
+	    model.addAttribute("endPage", endPage);
+	    model.addAttribute("c_no", c_no);
+
+	    // 현재 정렬 조건 유지
+	    model.addAttribute("sort", sort);
+
+	    return "product/productList";
+	}
 
     @RequestMapping("/product/detail")
     public String productDetail(Authentication auth,

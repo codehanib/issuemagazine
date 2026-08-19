@@ -1,54 +1,125 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper 
-	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="com.springboot.issuemagazine.dao.IproductDAO">
+
+    <!-- 상품 전체 목록 -->
+    <select id="productList" resultType="com.springboot.issuemagazine.dto.productDTO">
+        SELECT *
+        FROM product
+        <choose>
+
+            <!-- 낮은 가격순 -->
+            <when test="sort == 'low'">
+                ORDER BY p_price2 ASC
+            </when>
+
+            <!-- 높은 가격순 -->
+            <when test="sort == 'high'">
+                ORDER BY p_price2 DESC
+            </when>
+
+            <!-- 기본값 : 낮은 가격순 -->
+            <otherwise>
+                ORDER BY p_price2 ASC
+            </otherwise>
+
+        </choose>
+        OFFSET #{start} ROWS
+        FETCH NEXT #{pageSize} ROWS ONLY
+
+    </select>
 	
-	<select id="productList" resultType="com.springboot.issuemagazine.dto.productDTO">
+	
+	<!-- 메인 상품 목록 : 제품번호 순 -->
+	<select id="mainProductList"
+	        resultType="com.springboot.issuemagazine.dto.productDTO">
 	    SELECT *
 	    FROM product
 	    ORDER BY p_no ASC
 	    OFFSET #{start} ROWS
 	    FETCH NEXT #{pageSize} ROWS ONLY
 	</select>
-	<select id="productListCategory" resultType="com.springboot.issuemagazine.dto.productDTO">
-	    select * from product where c_no = #{c_no}
-	    order by p_no asc
-	    OFFSET #{start} ROWS
-	    FETCH NEXT #{pageSize} ROWS ONLY
-	</select>
-	<select id="productdetail"
-        resultType="com.springboot.issuemagazine.dto.productDTO">
-	    select *
-	    from product
-	    where p_no = #{p_no}
-	</select>
-	<select id="product_detailList" resultType="com.springboot.issuemagazine.dto.product_detailDTO">
-				select
-			        pd.pd_no,
-			        pd.pd_content,
-			        pd.p_no,
-			        pdi.pdi_no,
-			        pdi.pdi_image,
-			        pdi.pdi_order
-			     from product_detail pd
-			      LEFT JOIN product_detail_image pdi
-			        ON pd.pd_no = pdi.pd_no
-			     WHERE pd.p_no = #{p_no}
-			     ORDER BY pdi.pdi_order ASC
-	</select>
-	<select id="productCount"
-        resultType="int">	
-		    SELECT COUNT(p_no)
-		    FROM product
-	</select>
-	<select id="productCountCategory"
-        resultType="int">	
-		    SELECT COUNT(p_no)
-		    FROM product
-		    WHERE c_no= #{c_no}
-	</select>
-	<delete id="productDelete">
-			delete from product where p_no=#{p_no}
-	</delete>
+
+    <!-- 카테고리별 상품 목록 -->
+    <select id="productListCategory" resultType="com.springboot.issuemagazine.dto.productDTO">
+        SELECT *
+        FROM product
+        WHERE c_no = #{c_no}
+        <choose>
+		    <!-- 제품번호 순 -->
+		    <when test="sort == 'pno'">
+		        ORDER BY p_no ASC
+		    </when>
+		
+		    <!-- 낮은 가격순 -->
+		    <when test="sort == 'low'">
+		        ORDER BY p_price2 ASC
+		    </when>
+		
+		    <!-- 높은 가격순 -->
+		    <when test="sort == 'high'">
+		        ORDER BY p_price2 DESC
+		    </when>
+		
+		    <otherwise>
+		        ORDER BY p_no ASC
+		    </otherwise>
+		
+		</choose>
+        OFFSET #{start} ROWS
+        FETCH NEXT #{pageSize} ROWS ONLY
+    </select>
+
+    <!-- 상품 하나의 기본 정보 -->
+    <select id="productdetail"
+            resultType="com.springboot.issuemagazine.dto.productDTO">
+        SELECT *
+        FROM product
+        WHERE p_no = #{p_no}
+    </select>
+
+    <!-- 상품 상세정보와 이미지 -->
+    <select id="product_detailList"
+            resultType="com.springboot.issuemagazine.dto.product_detailDTO">
+        SELECT
+            pd.pd_no,
+            pd.pd_content,
+            pd.p_no,
+            pdi.pdi_no,
+            pdi.pdi_image,
+            pdi.pdi_order
+        FROM product_detail pd
+
+        LEFT JOIN product_detail_image pdi
+            ON pd.pd_no = pdi.pd_no
+
+        WHERE pd.p_no = #{p_no}
+
+        ORDER BY pdi.pdi_order ASC
+    </select>
+
+    <!-- 상품 전체 개수 -->
+    <select id="productCount" resultType="int">
+        SELECT COUNT(p_no)
+        FROM product
+
+    </select>
+
+    <!-- 카테고리별 상품 개수 -->
+    <select id="productCountCategory" resultType="int">
+        SELECT COUNT(p_no)
+        FROM product
+        WHERE c_no = #{c_no}
+    </select>
+
+    <!-- 상품 삭제 -->
+    <delete id="productDelete">
+        DELETE
+        FROM product
+        WHERE p_no = #{p_no}
+    </delete>
+
 </mapper>
