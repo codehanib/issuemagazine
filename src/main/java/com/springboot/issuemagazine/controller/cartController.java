@@ -62,17 +62,22 @@ public class cartController {
 		return "redirect:/cartForm";
 	}
 	
+	// 선택 상품 삭제
+	@RequestMapping("/cartDelete")
+	public String cartDelete(
+	        @RequestParam(value = "cart_no", required = false)
+	        List<Integer> cart_no) {
 
-	// 선택상품 삭제
-	 @RequestMapping("/cartDelete")
-	 public String cartDelete(@RequestParam("cart_no") List<Integer> cart_no ) {
-		 
-		 for(int no : cart_no) {
-			 cartdao.cartDelete(no);
-		 }
-		 
-		 return "redirect:/cartForm";
-	 }
+	    if (cart_no != null) {
+
+	        for (int no : cart_no) {
+	            cartdao.cartDelete(no);
+	        }
+
+	    }
+
+	    return "redirect:/cartForm";
+	}
 	 
 	 //장바구니 전체 삭제
 	 @RequestMapping("/cartDeleteAll")

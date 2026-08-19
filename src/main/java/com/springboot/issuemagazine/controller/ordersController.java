@@ -63,31 +63,23 @@ public class ordersController {
 
         // 현재 로그인한 회원
         String m_id = authentication.getName();
-
         // 회원 정보 조회
         memberDTO member = memberDao.findById(m_id);
-
         // 회원번호 설정
         odto.setM_no(member.getM_no());
 
         // 주문 생성
         dao.ordersInsert(odto);
-
         // 생성된 주문번호
         int o_no = odto.getO_no();
-
         // 상품별 주문상세 생성
         for (orders_detailDTO oddto : oddtoList) {
-
             productDTO product = productDao.productdetail(oddto.getP_no());
-
             int discountPrice = product.getP_price2();
             int quantity = oddto.getOd_quantity();
-
             // 최종 가격
             int orderPrice = discountPrice * quantity;
             oddto.setOd_price(orderPrice);
-
             // 같은 주문번호 사용
             oddto.setO_no(o_no);
             dao.ordersDetailInsert(oddto);
