@@ -1,7 +1,5 @@
 package com.springboot.issuemagazine.dto;
 
-import java.util.Date;
-
 import lombok.Data;
 
 @Data
@@ -12,6 +10,6 @@ public class cartDTO {
 	private int m_no;
 	private int p_no;
 	private String p_name;
-	private int p_price;
+	private int p_price2;
 	private String P_image;
 }

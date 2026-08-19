@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -36,73 +37,67 @@
         
 			<!-- 1번 배너 -->
             <div class="slide active">
-            	<a href="">
-                	<img src="/images/메인 광고1.png" alt="메인배너1">
+            	<a href="/product/detail?p_no=2506">
+                	<img src="/images/메인 페이지 광고1.png" alt="메인배너1">
                 </a>
             </div>
             
 			<!-- 2번 배너 -->
             <div class="slide">
-            	<a href="">
-                	<img src="/images/메인광고2.png" alt="메인배너2">
+            	<a href="/product/detail?p_no=2543">
+                	<img src="/images/메인 페이지 광고2.png" alt="메인배너2">
                 </a>
             </div>
             
 			<!-- 3번 배너 -->
             <div class="slide">
-            	<a href="">
-                	<img src="/images/메인광고3.png" alt="메인배너3">
+            	<a href="/product/detail?p_no=2159">
+                	<img src="/images/메인 페이지 광고3.png" alt="메인배너3">
                 </a>
             </div>
             
 			<!-- 4번 배너 -->
             <div class="slide">
-            	<a href="">
-               		<img src="/images/메인광고4.png" alt="메인배너4">
+            	<a href="/product/detail?p_no=2334">
+               		<img src="/images/메인 페이지 광고4.png" alt="메인배너4">
                	</a>
             </div>
             
 			<!-- 5번 배너 -->           
             <div class="slide">
-            	<a href="">
-                	<img src="/images/메인광고5.png" alt="메인배너5">
+            	<a href="/product/detail?p_no=2449">
+                	<img src="/images/메인 페이지 광고5.png" alt="메인배너5">
                 </a>
             </div>
             
  			<!-- 6번 배너 -->          
             <div class="slide">
-            	<a href="">
-                	<img src="/images/메인광고6.png" alt="메인배너6">
+            	<a href="/product/detail?p_no=2005">
+                	<img src="/images/메인 페이지 광고6.png" alt="메인배너6">
                 </a>
             </div>
             
             <!-- 7번 배너 -->          
             <div class="slide">
-            	<a href="">
-                	<img src="/images/메인광고7.png" alt="메인배너7">
+            	<a href="/product/detail?p_no=2076">
+                	<img src="/images/메인 페이지 광고7.png" alt="메인배너7">
                 </a>
             </div>
             
             <!-- 8번 배너 -->          
             <div class="slide">
-            	<a href="">
-                	<img src="/images/메인광고8.png" alt="메인배너8">
+            	<a href="/product/detail?p_no=2113">
+                	<img src="/images/메인 페이지 광고8.png" alt="메인배너8">
                 </a>
             </div>
             
             <!-- 9번 배너 -->          
             <div class="slide">
-            	<a href="">
-                	<img src="/images/메인광고9.png" alt="메인배너9">
+            	<a href="/product/detail?p_no=2187">
+                	<img src="/images/메인 페이지 광고9.png" alt="메인배너9">
                 </a>
             </div>
             
-            <!-- 10번 배너 -->          
-            <div class="slide">
-            	<a href="">
-                	<img src="/images/메인광고10.png" alt="메인배너10">
-                </a>
-            </div>
             
             <!-- 이전 버튼 -->
             <button class="banner-prev" type="button">
@@ -163,7 +158,7 @@
                 <p>해외잡지/해외신문</p>
             </a>
 
-            <a href="/productList">
+            <a href="/product/list">
                 <span>☰</span>
                 <p>전체 보기</p>
             </a>
@@ -182,9 +177,6 @@
 
                 <h2>추천 매거진</h2>
 
-                <div>
-                    <a href="#">더보기</a>
-                </div>
 
             </div>
 
@@ -211,18 +203,19 @@
 		                    <p>${product.p_name}</p>
 		                    </a>
 		
-		                    <p>${product.p_price2}원</p>
-		
-		                    <a href="/product/detail?p_no=${product.p_no}">구매하기</a>
-								
-							<form action="/cartInsert" method="post" target="cartFrame">
-							<input type="hidden" name="p_no" value="${product.p_no}">
-							<input type="hidden" name="quantity" value="1">
-		                    <button type="submit" class="list_cart_button">
-		                        장바구니
-		                    </button>
-		                    </form>
-		
+		                    <p> <fmt:formatNumber value="${product.p_price2}" pattern="#,###" />원 </p>
+							
+							<div class="product-buttons">
+			                    <a href="/product/detail?p_no=${product.p_no}">구매하기</a>
+									
+								<form action="/cartInsert" method="post" target="cartFrame">
+								<input type="hidden" name="p_no" value="${product.p_no}">
+								<input type="hidden" name="quantity" value="1">
+			                    <button type="submit" class="list_cart_button" onclick="alert('장바구니에 추가되었습니다.')">
+			                        장바구니
+			                    </button>
+			                    </form>
+							</div>
 		                </div>
 		             
 		             </c:forEach>
@@ -300,9 +293,6 @@
                 </div>
 
 
-                <div>
-                    <a href="#" id="category-more">더보기</a>
-                </div>
 
             </div>
 
@@ -332,23 +322,26 @@
 			                    
 			                    
 								<!-- 가격 -->
-			                    <p>${product.p_price2}원</p>
+			                    <p><fmt:formatNumber value="${product.p_price2}" pattern="#,###" />원</p>
 			                    
 			                    
 								<!-- 구매 -->
-			                    <a href="/product/detail?p_no=${product.p_no}">
-			                    구매하기
-			                    </a>
+								<div class="product-buttons">
 								
-								<!-- 장바구니 -->
-								<form action="/cartInsert" method="post" target="cartFrame">
-								<input type="hidden" name="p_no" value="${product.p_no}">
-								<input type="hidden" name="quantity" value="1">
-		                    	<button type="submit" class="list_cart_button">
-		                        	장바구니
-		                    	</button>
-		                    	</form>
-			
+					                    <a href="/product/detail?p_no=${product.p_no}">
+					                    구매하기
+					                    </a>
+										
+										<!-- 장바구니 -->
+										<form action="/cartInsert" method="post" target="cartFrame">
+										<input type="hidden" name="p_no" value="${product.p_no}">
+										<input type="hidden" name="quantity" value="1">
+				                    	<button type="submit" class="list_cart_button" onclick="alert('장바구니에 추가되었습니다.')">
+				                        	장바구니
+				                    	</button>
+				                    	</form>
+								</div>
+								
 			                </div>
 			             
 			             </c:forEach>
@@ -372,9 +365,6 @@
 
         <h2>디지털 매거진</h2>
 
-        <div>
-            <a href="/productList?c_no=9">더보기</a>
-        </div>
 
     </div>
 
@@ -410,24 +400,26 @@
 
                         <!-- 가격 -->
                         <p>
-                            ${product.p_price2}원
+                            <fmt:formatNumber value="${product.p_price2}" pattern="#,###" />원
                         </p>
 
 
                         <!-- 구매 -->
-                        <a href="/product/detail?p_no=${product.p_no}">
-                            구매하기
-                        </a>
-
-
-                        <!-- 장바구니 -->
-						<form action="/cartInsert" method="post" target="cartFrame">
-						<input type="hidden" name="p_no" value="${product.p_no}">
-						<input type="hidden" name="quantity" value="1">
-		                <button type="submit" class="list_cart_button">
-		                      장바구니
-		                </button>
-		                </form>
+                        <div class="product-buttons">
+	                        <a href="/product/detail?p_no=${product.p_no}">
+	                            구매하기
+	                        </a>
+	
+	
+	                        <!-- 장바구니 -->
+							<form action="/cartInsert" method="post" target="cartFrame">
+							<input type="hidden" name="p_no" value="${product.p_no}">
+							<input type="hidden" name="quantity" value="1">
+			                <button type="submit" class="list_cart_button" onclick="alert('장바구니에 추가되었습니다.')">
+			                      장바구니
+			                </button>
+			                </form>
+			             </div>
                     </div>
 
                     <!-- 출력 개수 +1 -->
@@ -455,9 +447,10 @@
 
                 <h3>공지사항</h3>
 
-                <a href="#">게시글 불러오기1</a>
-                <a href="#">게시글 불러오기2</a>
-                <a href="#">게시글 불러오기3</a>
+				 <c:forEach var="notice" items="${noticeList}">
+                 <a href="/notice/view?n_no=${notice.n_no}">
+                 ${notice.n_title}</a>
+                </c:forEach>
 
             </div>
 
