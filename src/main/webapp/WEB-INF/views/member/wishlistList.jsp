@@ -53,7 +53,7 @@ body {
 .wishlist-table td {
     height: 100px;
     font-size: 12px;
-    text-align: center;
+    text-align: center !important;
     border-bottom: 1px solid #ddd;
 }
 
@@ -105,18 +105,21 @@ body {
     text-align: center !important;
     color: #999;
 }
+.text { font-size: 13px; color: #aaa; line-height: 1.6; }
 </style>
 
 </head>
 <body>
 
-<!-- <%@ include file="../header.jsp" %> -->
+<%@ include file="../header.jsp" %>
 
 <div class="container">
     <div class="title">
         관심 상품
     </div>
-
+	<div class="text"> 
+		이미지나 주문번호를 클릭하시면 상품 상세를 확인하실 수 있습니다.<br> 
+	</div><br>
     <table class="wishlist-table">
 
         <tr>
@@ -172,7 +175,7 @@ body {
     </table>
 </div>
 
-<!-- <%@ include file="../footer.jsp" %> -->
+<%@ include file="../footer.jsp" %>
 
 </body>
 </html>

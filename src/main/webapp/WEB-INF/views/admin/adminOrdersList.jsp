@@ -71,7 +71,7 @@ body {
 
 /* 배송정보 확인 버튼 */
 .check-btn {
-    width: 60px;
+    width: 70px;
     height: 25px;
     border: 1px solid #bbb;
     background: white;
@@ -89,6 +89,8 @@ body {
     text-align: center !important;
     color: #999;
 }
+
+.text { font-size: 13px; color: #aaa; line-height: 1.6; }
 </style>
 
 </head>
@@ -99,7 +101,10 @@ body {
 
 <div class="container">
     <div class="title">주문 리스트</div>
-    
+    <div class="text">
+    	회원번호를 클릭하면 회원정보를 확인하실 수 있습니다.<br>
+        주문상태를 클릭하면 주문상태를 변경하실 수 있습니다.
+    </div><br>
     <table class="orders-table">
         <tr>
             <th style="width: 90px;">회원번호</th>
@@ -149,7 +154,11 @@ body {
 
                         <!-- 주문상태 -->
                         <td>
-                            ${orders.o_status}
+                           <button type="button"
+                                   class="check-btn"
+                                   onclick="location.href='/admin/statusUpdateForm?o_no=${orders.o_no}'">
+                                ${orders.o_status}
+                            </button>
                         </td>
 
                         <!-- 배송정보 -->

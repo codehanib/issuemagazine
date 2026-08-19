@@ -110,7 +110,7 @@ body {
 
 <body>
 
-<!-- <%@ include file="../header.jsp" %> -->
+<%@ include file="../header.jsp" %>
 
 <div class="container">
 
@@ -133,6 +133,7 @@ body {
             <th style="width: 200px;">가격</th>
         </tr>
 
+
         <c:choose>
 
             <c:when test="${not empty ordersDetailList}">
@@ -150,7 +151,7 @@ body {
                         <td>
 					    	${detail.od_sub_date}
 						</td>
-					   <td>
+					     <td>
                             ${detail.od_quantity}
                         </td>
                         <td class="price">
@@ -193,7 +194,7 @@ body {
 
 </div>
 
-<!-- <%@ include file="../footer.jsp" %> -->
+<%@ include file="../footer.jsp" %>
 
 </body>
 </html>

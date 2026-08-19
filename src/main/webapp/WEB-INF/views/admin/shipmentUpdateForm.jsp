@@ -184,12 +184,10 @@ body {
 
                 </td>
 
-
-                <!-- 수정 -->
                 <td>
                     <button type="submit"
                             class="update-btn">
-                        수정
+                        확인
                     </button>
                 </td>
 
