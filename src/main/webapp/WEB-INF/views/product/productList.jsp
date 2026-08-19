@@ -353,16 +353,16 @@
                 <!-- 정렬 -->
                 <div class="product-sort">
 
-                    <a href="#">
-                        낮은가격
-                    </a>
+                    <a href="/product/list?page=1&c_no=${c_no}&sort=low">
+					    낮은가격순
+					</a>
 
                     <span>|</span>
 
-                    <a href="#">
-                        높은가격
-                    </a>
-
+                    <a href="/product/list?page=1&c_no=${c_no}&sort=high">
+					    높은가격순
+					</a>
+					
                     <span>|</span>
 
                     <a href="#">
@@ -449,14 +449,12 @@
 		        </a>
 		    </c:if>
 		    <!-- 페이지 번호 -->
-			    <c:forEach var="p"
-			               begin="${startPage}"
-			               end="${endPage}">
-			        <a href="/product/list?page=${p}&c_no=${c_no}"
-			           class="${p == page ? 'active' : ''}">
-			            ${p}
-			        </a>
-			    </c:forEach>
+				<c:forEach var="p" begin="${startPage}" end="${endPage}">
+				    <a href="/product/list?page=${p}&c_no=${c_no}&sort=${sort}"
+				       class="${p == page ? 'active' : ''}">
+				        ${p}
+				    </a>
+				</c:forEach>
 			    <!-- 다음 10페이지 -->
 			    <c:if test="${endPage < totalPage}">
 			        <a href="/product/list?page=${endPage + 1}&c_no=${c_no}">

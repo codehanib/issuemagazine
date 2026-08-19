@@ -12,14 +12,19 @@ import com.springboot.issuemagazine.dto.product_detailDTO;
 public interface IproductDAO {
 	// 상품 목록 보기 select
 	public List<productDTO> productList(@Param("start") int start,
-	        							@Param("pageSize") int pageSize);
+	        							@Param("pageSize") int pageSize,
+	        							@Param("sort") String sort);
 	
+	public List<productDTO> mainProductList(
+	        @Param("start") int start,
+	        @Param("pageSize") int pageSize);
 	
 	// 카테고리별 상품 목록 보기 select
 	public List<productDTO> productListCategory(
 	        @Param("c_no") int c_no,
 	        @Param("start") int start,
-	        @Param("pageSize") int pageSize
+	        @Param("pageSize") int pageSize,
+	        @Param("sort") String sort
 	);
 	
 	// 상품 하나의 기본 정보 select
@@ -36,4 +41,5 @@ public interface IproductDAO {
 	
 	// 카테고리별 상품 개수
 	public int productCountCategory(@Param("c_no") int c_no);
+	
 }

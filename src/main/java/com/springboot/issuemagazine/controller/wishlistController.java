@@ -7,6 +7,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.springboot.issuemagazine.dao.memberDAO;
 import com.springboot.issuemagazine.dao.wishlistDAO;
@@ -27,7 +28,7 @@ public class wishlistController {
     @RequestMapping("/member/wishlistInsert")
     public String wishlistInsert(
             Authentication auth,
-            int p_no) {
+            @RequestParam("p_no") int p_no) {
 
         String m_id = auth.getName();
 
