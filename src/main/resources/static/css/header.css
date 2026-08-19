@@ -7,6 +7,12 @@ header {
     position: relative;
     z-index: 9999;
 }
+
+header a {
+    text-decoration: none;
+    color: inherit;
+}
+
 /* =========================================================
    HEADER - 최상단 안내바
 ========================================================= */
@@ -113,13 +119,9 @@ header {
 
 .search-area button {
     width: 65px;
-
     border: none;
-
     background-color: #ffffff;
-
     color: #0874df;
-
     font-size: 13px;
     font-weight: bold;
 }

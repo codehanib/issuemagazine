@@ -19,7 +19,6 @@ import com.springboot.issuemagazine.dto.orders_detailDTO;
 import com.springboot.issuemagazine.dto.productDTO;
 import com.springboot.issuemagazine.dto.shipmentDTO;
 
-
 @Controller
 public class ordersController {
 
@@ -175,4 +174,17 @@ public class ordersController {
 
         return "admin/adminOrdersList";
     }
+    
+    @RequestMapping("/admin/statusUpdate")
+    public String statusUpdate(ordersDTO dto) {
+    	dao.statusUpdate(dto);
+    	return "redirect:/admin/adminOrdersList";
+    }
+    
+    @RequestMapping("/admin/statusUpdateForm")
+	public String statusUpdateForm(@RequestParam("o_no") int o_no, Model model) {
+    	ordersDTO orders = dao.statusUpdateForm(o_no);
+    	model.addAttribute("orders", orders);
+		return "admin/ordersUpdateForm";
+	}
 }

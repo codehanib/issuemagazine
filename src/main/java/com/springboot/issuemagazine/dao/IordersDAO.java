@@ -34,4 +34,10 @@ public interface IordersDAO {
     
     // 관리자: 전체 주문 목록
     public List<ordersDTO> adminOrdersList();
+    
+    // 관리자: 주문 상태 수정
+    public int statusUpdate(ordersDTO dto);
+    
+    // 관리자: 주문 상태 수정 폼 조회
+    public ordersDTO statusUpdateForm(int o_no);
 }

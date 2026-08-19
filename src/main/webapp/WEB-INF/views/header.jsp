@@ -20,7 +20,7 @@
 
             <!-- 오른쪽 구역 -->
             <div>
-                <a href="#">고객센터</a> | 
+                <a href="/">고객센터</a> | 
                 <a href="/one_inquiry/list">1:1문의</a> |
                 <a href="/member/ordersList">주문조회</a> |
                 <a href="/cartForm">장바구니</a>
@@ -126,7 +126,7 @@
                 <a href="/product/list">분야별 매거진</a>
                 <a href="/product/list?c_no=9">디지털 매거진</a>
                 <a href="/notice/list">공지사항</a>
-                <a href="#">고객센터</a>
+                <a href="/">고객센터</a>
 
             </div>
 

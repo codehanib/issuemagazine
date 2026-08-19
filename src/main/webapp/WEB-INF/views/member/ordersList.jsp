@@ -101,7 +101,7 @@ body {
 </head>
 
 <body>
-<!-- <%@ include file="../header.jsp" %> -->
+<%@ include file="../header.jsp" %>
 <div class="container">
     <div class="title">
         주문 내역 조회
@@ -177,7 +177,7 @@ body {
     </table>
 </div>
 
-<!-- <%@ include file="../footer.jsp" %> -->
+<%@ include file="../footer.jsp" %>
 
 </body>
 </html>

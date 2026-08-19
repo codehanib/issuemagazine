@@ -47,7 +47,13 @@
     max-height: 80px;
 }
 
-
+.footer-info-logo {
+    width: 380px !important;
+    height: 65px !important;
+    max-width: none !important;
+    max-height: none !important;
+    display: block;
+}
 
 /* =========================================================
    2. 회사 정보
@@ -95,17 +101,16 @@
 
 .footer-menu a {
     color: #444444;
-
     font-weight: bold;
-
     transition: 0.2s;
+    text-decoration: none;
 }
 
 
 .footer-menu a:hover {
     color: #0874df;
 }
-
+s
 
 /* 안내 로고 이미지 */
 .footer-menu img {

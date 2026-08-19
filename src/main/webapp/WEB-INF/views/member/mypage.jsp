@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -137,8 +137,7 @@ body {
 
 <body>
 
-<%@ include file="../header.jsp" %>
-
+<jsp:include page="../header.jsp"/>
 
 <!-- 관리자 -->
 <sec:authorize access="hasRole('ADMIN')">
@@ -363,8 +362,7 @@ body {
 
 </sec:authorize>
 
-
-<%@ include file="../footer.jsp" %>
+<jsp:include page="../footer.jsp"/>
 
 </body>
 </html>

@@ -1,78 +1,71 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
 <meta charset="UTF-8">
+<%@ taglib prefix="sec"
+    uri="http://www.springframework.org/security/tags" %>
+<link rel="stylesheet" href="/css/footer.css">
 <title>footer</title>
-</head>
-<body>
-    <footer class="footer">
+
+<footer class="footer">
+
+    <!-- 1. 왼쪽 : 로고 -->
+    <div class="footer-logo">
+
+        <img src="/images/logo.png" alt="ISSUEMAGAZINE 로고">
+
+    </div>
 
 
-        <!-- 1. 왼쪽 : 로고 -->
-        <div class="footer-logo">
+    <!-- 2. 가운데 : 회사정보 -->
+    <div class="footer-company">
 
-            <img src="/images/logo.png" alt="ISSUEMAGAZINE 로고">
+        <h3>ISSUEMAGAZINE</h3>
 
-        </div>
+        상호명 : ISSUEMAGAZINE <br>
 
+        사업자등록번호 : 155-45-67890
+        대표자명 : 홍길동 <br>
 
-        <!-- 2. 가운데 : 회사정보 -->
-        <div class="footer-company">
+        주소 : 부산 부산진구 중앙대로 627,
+        5층 (우)47351 <br>
 
-            <h3>ISSUEMAGAZINE</h3>
+        통신판매업신고 : 제2026-부산진구-0001호
+        개인정보보호책임자 : 홍길순 <br>
 
-            상호명 : ISSUEMAGAZINE <br>
+        이메일 : issuemagazine1@gmail.com <br>
 
-            사업자등록번호 : 123-45-67890
-            대표자명 : 홍길동 <br>
+        고객센터 :
+        <b>1644-1550</b>
+        (평일 09:00~18:00)
 
-            주소 : 서울특별시 강남구 테헤란로 123,
-            5층 (우)06132 <br>
-
-            통신판매업신고 : 제2024-서울강남-0000호
-            개인정보보호책임자 : 홍길순 <br>
-
-            이메일 : issuemagazine@naver.com <br>
-
-            고객센터 :
-            <b>1644-6451</b>
-            (평일 09:00~18:00)
-
-        </div>
+    </div>
 
 
-        <!-- 3. 오른쪽 : 이용안내 -->
-        <div class="footer-menu">
+    <!-- 3. 오른쪽 : 이용안내 -->
+    <div class="footer-menu">
 
-            <div>
+        <div>
 
-                <a href="#">회사소개</a>
-                <a href="#">이용약관</a>
-                <a href="#">개인정보처리방침</a>
-                <a href="#">청소년보호정책</a>
-
-            </div>
-
-
-            <div>
-
-                <img src="" alt="안내로고">
-
-            </div>
+            <a href="#">회사소개</a>
+            <a href="#">이용약관</a>
+            <a href="#">개인정보처리방침</a>
+            <a href="#">청소년보호정책</a>
 
         </div>
 
-
-        <!-- 4. Copyright -->
-        <div class="footer-bottom">
-
-            Copyright © 2026 ISSUEMAGAZINE.
-            All Rights Reserved.
-
+        <div>
+            <img src="/images/footerLogo.png" alt="안내로고" class="footer-info-logo">
         </div>
 
-    </footer>
-</body>
-</html>
+    </div>
+
+
+    <!-- 4. Copyright -->
+    <div class="footer-bottom">
+
+        Copyright © 2026 ISSUEMAGAZINE.
+        All Rights Reserved.
+
+    </div>
+
+</footer>

@@ -17,58 +17,82 @@ body {
     color: #222;
 }
 
+/* 고객센터 전체 */
 .info-area {
     width: 90%;
     max-width: 1100px;
+
     margin: 50px auto;
+
     display: flex;
+
     gap: 20px;
 }
 
+/* 각각의 박스 */
 .info-area > div {
     flex: 1;
+
     min-height: 220px;
+
     padding: 30px;
+
     border: 1px solid #ddd;
+
     background-color: #fff;
 }
 
+/* 제목 */
 .info-area h3 {
     margin: 0 0 25px;
+
     padding-bottom: 15px;
+
     border-bottom: 1px solid #ddd;
+
     font-size: 16px;
+
     font-weight: normal;
 }
 
+/* 링크 */
 .info-area a {
     display: block;
+
     margin-top: 15px;
+
     color: #555;
+
     text-decoration: none;
+
     font-size: 13px;
 }
 
+/* 링크 마우스 올렸을 때 */
 .info-area a:hover {
     text-decoration: underline;
 }
 
+/* 공지사항 */
 .info-area > div:first-child a {
     margin-top: 12px;
 }
 
+/* 배송안내 / 1:1 문의 */
 .info-area > div:nth-child(2),
 .info-area > div:nth-child(3) {
     line-height: 1.8;
+
     font-size: 13px;
 }
 
+/* 배송안내 / 문의 링크 */
 .info-area > div:nth-child(2) a,
 .info-area > div:nth-child(3) a {
     margin-top: 25px;
+
     font-size: 12px;
 }
-
 </style>
 
 </head>
@@ -79,50 +103,32 @@ body {
 
 <section class="info-area">
 
-    <!-- 공지사항 -->
     <div>
-
         <h3>공지사항</h3>
 
         <a href="#">게시글 불러오기1</a>
         <a href="#">게시글 불러오기2</a>
         <a href="#">게시글 불러오기3</a>
-
     </div>
 
-
-    <!-- 배송안내 -->
     <div>
-
         <h3>배송안내</h3>
-
         평일 오후 2시 이전 주문 시<br>
         당일 출고됩니다.
 
-        <a href="#">
-            자세히 보기
-        </a>
-
+        <a href="#">자세히 보기</a>
     </div>
 
-
-    <!-- 1:1 문의 -->
     <div>
-
         <h3>1:1 문의</h3>
 
         궁금하신 점이 있으신가요?<br>
         친절하게 안내해 드립니다.
 
-        <a href="#">
-            문의하기
-        </a>
-
+        <a href="#">문의하기</a>
     </div>
 
 </section>
-
-
 
 </body>
 </html>
