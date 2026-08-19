@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>후기작성</title>
+<link rel="stylesheet" href="/css/review_writeForm.css">
 <style>
     .star-rating {
         font-size: 28px;
@@ -27,21 +28,20 @@
 </style>
 </head>
 <body>
- <div>
-    <h3>후기 등록</h3>
+<%@ include file="../header.jsp" %>
+ <div class="review-form">
+    <h3 class="review-main-title">후기 등록</h3>
     <form name="reviewForm" method="post" action="/review/write" onsubmit="return combineContent();">
         <input type="hidden" name="p_no" value="${p_no}">
 
         <div class="form-row">
             <label class="title">제목</label>
-            <div class="input-content">
-                <input type="text" name="r_title" required>
-            </div>
+            <input type="text" name="r_title" required>
         </div>
 
         <div class="form-row">
             <label class="title">평점</label>
-            <div class="input-content">
+            <div class="rating-box">
                 <span class="star-rating" id="starRating">
                     <span data-value="1">★</span><span data-value="2">★</span><span data-value="3">★</span><span data-value="4">★</span><span data-value="5">★</span>
                 </span>
@@ -51,18 +51,16 @@
 
         <div class="form-row">
             <label class="title">내용</label>
-            <div class="input-content">
-                <textarea id="r_content_text" rows="6" cols="50" required></textarea>
-            </div>
+            <textarea id="r_content_text" rows="7" required></textarea>
         </div>
 
         <input type="hidden" name="r_content" id="r_content_hidden">
 
-        <div class="form-row">
-            <button type="submit">등록</button>
+        <div class="button-row">
+            <input type="submit" value="등록">
         </div>
     </form>
- </div>
+</div>
 
 <script>
 var selectedRating = 0;
@@ -116,6 +114,6 @@ function combineContent() {
     return true; // 제출 진행
 }
 </script>
-
+<%@ include file="../footer.jsp" %>
 </body>
 </html>

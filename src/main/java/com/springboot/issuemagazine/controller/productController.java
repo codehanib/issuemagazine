@@ -12,10 +12,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.springboot.issuemagazine.dao.IproductDAO;
 import com.springboot.issuemagazine.dao.memberDAO;
 import com.springboot.issuemagazine.dao.noticeDAO;
+import com.springboot.issuemagazine.dao.reviewDAO;
 import com.springboot.issuemagazine.dto.memberDTO;
 import com.springboot.issuemagazine.dto.noticeDTO;
 import com.springboot.issuemagazine.dto.productDTO;
 import com.springboot.issuemagazine.dto.product_detailDTO;
+import com.springboot.issuemagazine.dto.reviewDTO;
 
 @Controller
 public class productController {
@@ -27,6 +29,9 @@ public class productController {
 	
 	@Autowired
 	private noticeDAO noticedao;
+	
+	@Autowired
+	private reviewDAO reviewdao;
 
     // 상품 전체 목록 조회
     @RequestMapping("/product/list")
@@ -84,30 +89,45 @@ public class productController {
         return "product/productList";
     }
 
-    // 상품 상세 조회
     @RequestMapping("/product/detail")
     public String productDetail(Authentication auth,
-    							@RequestParam("p_no") int p_no,
+                                @RequestParam("p_no") int p_no,
+                                @RequestParam(value = "reviewPage", defaultValue = "1") int reviewPage,
                                 Model model) {
-    	
-    	// 현재 로그인한 회원의 ID
-	    String m_id = auth.getName();
 
-	    // 회원번호 조회
-	    memberDTO member = memberdao.findById(m_id);
-	    int m_no = member.getM_no();
-    	
-        // 상품 기본정보
-        productDTO product =
-                productDAO.productdetail(p_no);
+        String m_id = auth.getName();
+        memberDTO member = memberdao.findById(m_id);
+        int m_no = member.getM_no();
 
-        // 상품 상세정보 + 상세 이미지
-        List<product_detailDTO> productDetails =
-                productDAO.product_detailList(p_no);
+        productDTO product = productDAO.productdetail(p_no);
+        List<product_detailDTO> productDetails = productDAO.product_detailList(p_no);
+
+        // 후기 페이징 처리
+        int recordPerPage = 10;
+        int pageBlock = 10;
+        int offset = (reviewPage - 1) * recordPerPage;
+
+        int reviewCount = reviewdao.reviewListCount(p_no);
+        List<reviewDTO> reviewList = reviewdao.reviewList(p_no, offset, recordPerPage);
+
+        int reviewTotalPage = (int) Math.ceil((double) reviewCount / recordPerPage);
+        int reviewStartPage = ((reviewPage - 1) / pageBlock) * pageBlock + 1;
+        int reviewEndPage = reviewStartPage + pageBlock - 1;
+        if (reviewEndPage > reviewTotalPage) {
+            reviewEndPage = reviewTotalPage;
+        }
 
         model.addAttribute("product", product);
         model.addAttribute("productDetails", productDetails);
-
+        model.addAttribute("reviewList", reviewList);
+        model.addAttribute("reviewCount", reviewCount);
+        model.addAttribute("reviewPage", reviewPage);
+        model.addAttribute("reviewTotalPage", reviewTotalPage);
+        model.addAttribute("reviewStartPage", reviewStartPage);
+        model.addAttribute("reviewEndPage", reviewEndPage);
+        model.addAttribute("reviewPrev", reviewStartPage > 1);
+        model.addAttribute("reviewNext", reviewEndPage < reviewTotalPage);
+        model.addAttribute("loginNo", m_no);
         return "product/productDetail";
     }
     

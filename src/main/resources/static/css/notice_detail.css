@@ -1,0 +1,224 @@
+@charset "UTF-8";
+
+/* =========================================================
+   0. 공통 리셋 및 스크롤바 틀어짐 방지
+========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    overflow-y: scroll;
+}
+
+body {
+    width: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #333333;
+    background-color: #ffffff;
+    overflow-x: hidden;
+}
+
+/* =========================================================
+   1. 상세보기 전체 감싸는 영역
+========================================================= */
+
+.notice-detail-wrapper {
+    width: 900px;
+    max-width: calc(100% - 40px);
+
+    margin: 50px auto 70px;
+    padding: 45px 55px; /* 내부 여백 확대 */
+
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+
+    background-color: #ffffff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.notice-detail-title {
+    margin-bottom: 30px;
+
+    font-size: 24px; /* 글자 크기 확대 (20px -> 24px) */
+    font-weight: 700;
+    color: #222222;
+}
+
+/* =========================================================
+   2. 상세 테이블
+========================================================= */
+
+.notice-detail-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 35px;
+    table-layout: fixed;
+}
+
+.notice-detail-table th {
+    width: 140px; /* 라벨 칸 너비 확대 (120px -> 140px) */
+    padding: 18px 20px; /* 상하좌우 패딩 확대 */
+
+    border-top: 1px solid #dddddd;
+    border-bottom: 1px solid #eeeeee;
+
+    background-color: #fafafa;
+
+    text-align: left;
+    font-size: 15px; /* 폰트 확대 (13px -> 15px) */
+    font-weight: 600;
+    color: #333333;
+
+    vertical-align: middle;
+}
+
+.notice-detail-table td {
+    padding: 18px 20px; /* 상하좌우 패딩 확대 */
+
+    border-top: 1px solid #dddddd;
+    border-bottom: 1px solid #eeeeee;
+
+    font-size: 15px; /* 폰트 확대 (13px -> 15px) */
+    color: #444444;
+    line-height: 1.7;
+
+    word-break: break-all;
+}
+
+.notice-detail-table td pre {
+    font-family: inherit;
+    font-size: 15px; /* pre 태그 내부 글자 크기 확대 */
+    white-space: pre-wrap;
+    word-break: break-all;
+    margin: 0;
+    line-height: 1.8;
+}
+
+/* =========================================================
+   3. 버튼 영역
+========================================================= */
+
+.notice-detail-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+
+    margin-bottom: 35px;
+}
+
+.notice-detail-buttons a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 44px; /* 버튼 높이 확대 (38px -> 44px) */
+    padding: 0 22px; /* 좌우 패딩 확대 */
+
+    border: 1px solid #cccccc;
+    border-radius: 6px;
+
+    background-color: #ffffff;
+    color: #555555;
+
+    font-size: 14px; /* 버튼 폰트 확대 (13px -> 14px) */
+    font-weight: 600;
+
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.notice-detail-buttons a:hover {
+    border-color: #0874df;
+    color: #0874df;
+}
+
+/* =========================================================
+   4. 이전글 / 다음글
+========================================================= */
+
+.prev-next-wrap {
+    border-top: 1px solid #dddddd;
+}
+
+.prev-row,
+.next-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    padding: 16px 20px; /* 패딩 확대 */
+
+    border-bottom: 1px solid #eeeeee;
+
+    font-size: 15px; /* 폰트 확대 (13px -> 15px) */
+}
+
+.prev-next-wrap .label {
+    width: 70px; /* 라벨 너비 확대 */
+    flex-shrink: 0;
+
+    color: #888888;
+    font-weight: 600;
+}
+
+.prev-next-wrap a {
+    color: #333333;
+    text-decoration: none;
+    transition: 0.2s;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.prev-next-wrap a:hover {
+    color: #0874df;
+    text-decoration: underline;
+}
+
+/* =========================================================
+   5. 모바일 반응형 (600px 이하)
+========================================================= */
+
+@media (max-width: 600px) {
+    .notice-detail-wrapper {
+        padding: 25px 20px;
+        margin-top: 30px;
+        margin-bottom: 40px;
+    }
+
+    .notice-detail-title {
+        font-size: 20px;
+    }
+
+    .notice-detail-table th {
+        width: 90px;
+        padding: 12px 10px;
+        font-size: 13px;
+    }
+
+    .notice-detail-table td {
+        padding: 12px 10px;
+        font-size: 13px;
+    }
+
+    .notice-detail-table td pre {
+        font-size: 13px;
+    }
+
+    .notice-detail-buttons a {
+        height: 38px;
+        padding: 0 16px;
+        font-size: 13px;
+    }
+
+    .prev-row,
+    .next-row {
+        font-size: 13px;
+        padding: 12px 10px;
+    }
+}
