@@ -109,13 +109,13 @@ body {
     
 	<div class="text"> 
 		이미지나 주문번호를 클릭하시면 해당 주문에 대한 상세내역을 확인하실 수 있습니다.<br> 
-		개별상품에 대한 배송조회는 상세내역에서 확인하시기 바랍니다. 
 	</div><br><br>
 	
     <table class="orders-table">
         <tr>
-            <th style="width: 100px;"> 이미지</th>
+            <th style="width: 100px;">이미지</th>
 			<th style="width: 180px;">주문번호</th>
+			<th style="width: 180px;">상품명</th>
             <th style="width: 180px;">주문날짜</th>
             <th style="width: 180px;">가격</th>
             <th style="width: 150px;">배송정보</th>
@@ -139,14 +139,24 @@ body {
 							    ${orders.o_no}
 							</a>
                         </td>
-
+                        <!-- 상품 이름 -->
+						<td>
+					    <c:choose>
+					        <c:when test="${orders.product_count > 1}">
+					            ${orders.od_name} 외 ${orders.product_count - 1}건
+					        </c:when>
+					        <c:otherwise>
+					            ${orders.od_name}
+					        </c:otherwise>
+					    </c:choose>
+						</td>
                         <!-- 주문날짜 -->
                         <td>
                             <fmt:formatDate value="${orders.o_date}" pattern="yyyy-MM-dd"/>
                         </td>
 
                         <!-- 가격 -->
-                        <td class="price">${orders.od_price}원</td>
+                        <td class="price">${orders.od_price}원  </td>
 
                         <!-- 배송정보 확인 -->
                         <td>
@@ -170,7 +180,7 @@ body {
             </c:when>
             <c:otherwise>
                 <tr>
-                    <td colspan="5" class="empty">주문내역이 없습니다.</td>
+                    <td colspan="7" class="empty">주문내역이 없습니다.</td>
                 </tr>
             </c:otherwise>
         </c:choose>

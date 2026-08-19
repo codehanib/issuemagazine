@@ -139,22 +139,33 @@ public class paymentController {
     }
 	
 	@PostMapping("/payment/verify")
-    @ResponseBody
-    public String verifyPayment(
-            @RequestBody Map<String, String> request) {
+	@ResponseBody
+	public String verifyPayment(
+	        @RequestBody Map<String, String> request) {
 
-        String impUid = request.get("imp_uid");
-        String merchantUid = request.get("merchant_uid");
+	    String impUid = request.get("imp_uid");
+	    String merchantUid = request.get("merchant_uid");
 
-        System.out.println("imp_uid = " + impUid);
-        System.out.println("merchant_uid = " + merchantUid);
+	    System.out.println("===== 결제 검증 시작 =====");
+	    System.out.println("imp_uid = " + impUid);
+	    System.out.println("merchant_uid = " + merchantUid);
 
-        Map payment =
-                paymentService.getPayment(impUid);
+	    try {
 
-        System.out.println("결제 정보 = " + payment);
+	    	Map payment = paymentService.getPaymentByMerchantUid(merchantUid);
 
-        return "OK";
-    }
+	        System.out.println("===== 포트원 결제 정보 =====");
+	        System.out.println(payment);
+
+	        return "OK";
+
+	    } catch (Exception e) {
+
+	        System.out.println("===== 결제 검증 실패 =====");
+	        e.printStackTrace();
+
+	        return "FAIL";
+	    }
+	}
 	
 }

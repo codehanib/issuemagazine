@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.springboot.issuemagazine.dao.IcartDAO;
 import com.springboot.issuemagazine.dao.IordersDAO;
 import com.springboot.issuemagazine.dao.IproductDAO;
 import com.springboot.issuemagazine.dao.IshipmentDAO;
@@ -34,6 +35,9 @@ public class ordersController {
     @Autowired
     private IshipmentDAO shipmentDao;
     
+    @Autowired
+    private IcartDAO cartDao;
+    
     // 주문 목록
     @RequestMapping("/member/ordersList")
     public String ordersList(
@@ -54,48 +58,57 @@ public class ordersController {
     }
 
 
- // 주문 생성
+    // 주문 생성
     @RequestMapping("/member/ordersInsert")
     public String ordersInsert(
             Authentication authentication,
-            ordersDTO odto,
-            List<orders_detailDTO> oddtoList) {
+            ordersDTO odto) {
 
-        // 현재 로그인한 회원
         String m_id = authentication.getName();
-        // 회원 정보 조회
+
         memberDTO member = memberDao.findById(m_id);
-        // 회원번호 설정
+
         odto.setM_no(member.getM_no());
 
         // 주문 생성
         dao.ordersInsert(odto);
-        // 생성된 주문번호
+
         int o_no = odto.getO_no();
-        // 상품별 주문상세 생성
-        for (orders_detailDTO oddto : oddtoList) {
-            productDTO product = productDao.productdetail(oddto.getP_no());
+
+        // 주문 상세 생성
+        for (orders_detailDTO oddto : odto.getOddtoList()) {
+
+            productDTO product =
+                    productDao.productdetail(oddto.getP_no());
+
             int discountPrice = product.getP_price2();
+
             int quantity = oddto.getOd_quantity();
-            // 최종 가격
+
             int orderPrice = discountPrice * quantity;
+
             oddto.setOd_price(orderPrice);
-            // 같은 주문번호 사용
             oddto.setO_no(o_no);
+
             dao.ordersDetailInsert(oddto);
         }
+
+        // 배송정보
+        shipmentDTO shipment = new shipmentDTO();
+
+        shipment.setO_no(o_no);
+        shipment.setM_no(member.getM_no());
+        shipment.setS_delivery("배송준비중");
+        shipment.setS_d_no("-");
+        shipment.setS_status("상품준비중");
+
+        shipmentDao.shipmentInsert(shipment);
         
-     // 배송정보 자동 등록
-     shipmentDTO shipment = new shipmentDTO();
-
-     shipment.setO_no(o_no);
-     shipment.setM_no(member.getM_no());
-     shipment.setS_delivery("배송준비중");
-     shipment.setS_d_no("-");
-     shipment.setS_status("상품준비중");
-
-     shipmentDao.shipmentInsert(shipment);
-
+        // 주문한 상품 장바구니에서 삭제
+        for (orders_detailDTO oddto : odto.getOddtoList()) {
+            cartDao.cartDelete(oddto.getCart_no());
+        }
+        
         return "redirect:/member/ordersList";
     }
 
@@ -167,6 +180,7 @@ public class ordersController {
         return "admin/adminOrdersList";
     }
     
+    // 관리자 주문관리
     @RequestMapping("/admin/statusUpdate")
     public String statusUpdate(ordersDTO dto) {
     	dao.statusUpdate(dto);
