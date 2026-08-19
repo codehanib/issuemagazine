@@ -144,7 +144,7 @@ body {
                         <td>
 						    <img src="${detail.p_image}" class="product-image" alt="상품 이미지">
 						</td>
-						                        <td>
+						<td>
                             ${detail.od_name}
                         </td>
 

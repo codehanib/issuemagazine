@@ -22,7 +22,8 @@ public class PaymentService {
 
         Map<String, String> body = new HashMap<>();
         body.put("imp_key", "7824385552788271");
-        body.put("imp_secret", "AAAAA");
+        body.put("imp_secret",
+        			"AAAAA");
 
         RestTemplate restTemplate = new RestTemplate();
 
@@ -38,6 +39,10 @@ public class PaymentService {
                         request,
                         Map.class
                 );
+        
+        System.out.println("===== Access Token API 응답 =====");
+        System.out.println(response.getBody());
+
 
         Map responseBody = response.getBody();
 
@@ -81,8 +86,9 @@ public class PaymentService {
                             Map.class
                     );
 
-            System.out.println("PortOne 결제조회 응답 = "
-                    + response.getBody());
+            System.out.println("===== PortOne 결제조회 성공 =====");
+            System.out.println("HTTP 상태 = " + response.getStatusCode());
+            System.out.println("응답 = " + response.getBody());
 
             return response.getBody();
 
@@ -90,6 +96,52 @@ public class PaymentService {
 
             System.out.println("===== 결제 조회 실패 =====");
             System.out.println("impUid = " + impUid);
+            System.out.println("url = " + url);
+            System.out.println("에러 = " + e);
+
+            throw e;
+        }
+    }
+    
+    public Map getPaymentByMerchantUid(String merchantUid) {
+
+        String accessToken = getAccessToken();
+
+        String url =
+                "https://api.iamport.kr/payments/find/"
+                + merchantUid
+                + "/paid";
+
+        System.out.println("===== merchant_uid 결제 조회 =====");
+        System.out.println("merchantUid = " + merchantUid);
+        System.out.println("url = " + url);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Authorization", accessToken);
+
+        HttpEntity<Void> request =
+                new HttpEntity<>(headers);
+
+        try {
+
+            ResponseEntity<Map> response =
+                    restTemplate.exchange(
+                            url,
+                            HttpMethod.GET,
+                            request,
+                            Map.class
+                    );
+
+            System.out.println("===== merchant_uid 조회 성공 =====");
+            System.out.println("HTTP 상태 = " + response.getStatusCode());
+            System.out.println("응답 = " + response.getBody());
+
+            return response.getBody();
+
+        } catch (Exception e) {
+
+            System.out.println("===== merchant_uid 조회 실패 =====");
+            System.out.println("merchantUid = " + merchantUid);
             System.out.println("url = " + url);
             System.out.println("에러 = " + e);
 

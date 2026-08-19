@@ -13,7 +13,7 @@
 <body>
 <%@ include file="header.jsp" %>
 <h2>주문서</h2>
-<form action="/ordersInput" method="post" name="payForm" id="payForm">
+<form action="/member/ordersInsert" method="post" name="payForm" id="payForm">
 	<!-- 결제 타입 -->
 			<input type="hidden"
 		           name="orderType"
@@ -25,11 +25,10 @@
 	<c:choose>
 		<c:when test="${orderType == 'direct'}">
 	<!-- 상품 정보 -->
-			<input type="hidden" name="p_no" value="${p_no}">
-			<input type="hidden" name="p_name" value="${p_name}">
-			<input type="hidden" name="period" value="${period}">
-			<input type="hidden" name="quantity" value="${quantity}">
-			<input type="hidden" name="p_price2" value="${p_price2*quantity}">
+			<input type="hidden" name="oddtoList[0].p_no" value="${p_no}">
+			<input type="hidden" name="oddtoList[0].od_name" value="${p_name}">
+			<input type="hidden" name="oddtoList[0].od_sub_date" value="${period}">
+			<input type="hidden" name="oddtoList[0].od_quantity" value="${quantity}">
 	<!-- 상품 이미지 -->
             <div class="order-product-image">
                 <img src="${p_image}"
@@ -61,8 +60,23 @@
         </c:when>
     	<c:when test="${orderType == 'cart'}">
 			<c:forEach var="cart"
-                       items="${cartList}">
-                <input type="hidden" name="cart_no" value="${cart.cart_no}">
+                       items="${cartList}" varStatus="status">
+			    <input type="hidden"
+			           name="oddtoList[${status.index}].p_no"
+			           value="${cart.p_no}">
+			
+			    <input type="hidden"
+			           name="oddtoList[${status.index}].od_name"
+			           value="${cart.p_name}">
+			
+			    <input type="hidden"
+			           name="oddtoList[${status.index}].od_quantity"
+			           value="${cart.cart_quantity}">
+			           
+			    <input type="hidden"
+				       name="oddtoList[${status.index}].cart_no"
+				       value="${cart.cart_no}">
+			           
                 <div class="order-product">
                     <!-- 상품 이미지 -->
                     <div class="order-product-image">
@@ -170,8 +184,7 @@
             // 카카오페이 테스트 채널
             channelKey:
                 "channel-key-bde14f27-c9f7-4a0a-80f8-a96973609560",
-
-            // 결제수단
+                
             pay_method: "kakaopay",
 
             // 주문번호
@@ -190,10 +203,16 @@
 
         }, function(rsp) {
 
-        	 console.log("PortOne 응답");
-             console.log(rsp);
+        	console.log("===== PortOne 응답 =====");
+            console.log(rsp);
 
-             if (rsp.imp_uid) {
+            console.log("success =", rsp.success);
+            console.log("imp_uid =", rsp.imp_uid);
+            console.log("merchant_uid =", rsp.merchant_uid);
+            console.log("error_code =", rsp.error_code);
+            console.log("error_msg =", rsp.error_msg);
+
+             if (rsp.success && rsp.imp_uid) {
              	// 결제 정보 저장
              	document.getElementById("imp_uid").value = rsp.imp_uid;
              	document.getElementById("merchant_uid").value = rsp.merchant_uid;

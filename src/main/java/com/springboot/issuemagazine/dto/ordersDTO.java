@@ -1,6 +1,7 @@
 package com.springboot.issuemagazine.dto;
 
 import java.util.Date;
+import java.util.List;
 
 import lombok.Data;
 
@@ -17,4 +18,9 @@ public class ordersDTO {
     private String od_name;
     private int od_price;
     private int od_quantity;
+    
+    // 주문 상품 개수
+    private int product_count;
+    
+    private List<orders_detailDTO> oddtoList;
 }
