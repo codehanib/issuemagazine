@@ -25,6 +25,11 @@
 			FROM member 
 			ORDER BY m_no ASC
 	</select>
+	<select id="memberView" resultType="com.springboot.issuemagazine.dto.memberDTO">
+	    SELECT *
+	    FROM member
+	    WHERE m_no = #{m_no}
+	</select>
 	<delete id="memberDelete">
 		delete from member where m_id = #{m_id}
 	</delete>

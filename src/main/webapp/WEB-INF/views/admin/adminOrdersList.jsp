@@ -28,10 +28,25 @@ body {
 
 /* 제목 */
 .title {
+    position: relative;
     font-size: 18px;
     border-bottom: 1px solid #ddd;
     padding-bottom: 10px;
     margin-bottom: 20px;
+    color: #222222;
+    font-weight: 500;
+}
+
+/* 제목 글자 아래 두꺼운 밑줄 */
+.title::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 90px;
+    height: 2px;
+
+    background-color: #222222;
 }
 
 /* 테이블 */
@@ -120,12 +135,12 @@ body {
             <c:when test="${not empty ordersList}">
                 <c:forEach var="orders" items="${ordersList}">
                     <tr>
-                        <!-- 회원번호 -->
-                        <td>
-                            <a href="/member/memberviewForm?m_no=${orders.m_no}">
-        						${orders.m_no}
-    						</a>
-                        </td>
+    					<!-- 회원번호 -->
+						<td>
+							<a href="/admin/memberView?m_no=${orders.m_no}">
+								${orders.m_no}
+							</a>
+						</td>
 
                         <!-- 주문번호 -->
                         <td class="order-number">

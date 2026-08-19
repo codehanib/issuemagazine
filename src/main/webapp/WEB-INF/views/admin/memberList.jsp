@@ -27,10 +27,25 @@ body {
 
 /* 제목 */
 .title {
+    position: relative;
     font-size: 18px;
     border-bottom: 1px solid #ddd;
     padding-bottom: 10px;
     margin-bottom: 20px;
+    color: #222222;
+    font-weight: 500;
+}
+
+/* 제목 글자 아래 두꺼운 밑줄 */
+.title::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 68px;
+    height: 2px;
+
+    background-color: #222222;
 }
 
 /* 회원 테이블 */
@@ -110,7 +125,10 @@ body {
             <c:when test="${not empty memberList}">
                 <c:forEach var="member" items="${memberList}">
                     <tr>
-                        <td class="member-no">${member.m_no}</td>
+                        <td class="member-no">
+                        	<a href="/admin/memberView?m_no=${member.m_no}">
+        						${member.m_no}
+    						</a></td>
                         <td class="member-id">${member.m_id}</td>
                         <td>${member.m_name}</td>
                         <td>${member.m_tel}</td>

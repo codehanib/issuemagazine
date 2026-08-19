@@ -27,10 +27,25 @@ body {
 
 /* 제목 */
 .title {
+    position: relative;
     font-size: 18px;
     border-bottom: 1px solid #ddd;
     padding-bottom: 10px;
     margin-bottom: 20px;
+    color: #222222;
+    font-weight: 500;
+}
+
+/* 제목 글자 아래 두꺼운 밑줄 */
+.title::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 100px;
+    height: 2px;
+
+    background-color: #222222;
 }
 
 /* 테이블 */
@@ -85,7 +100,7 @@ body {
     <table class="orders-table">
 
         <tr>
-            <th style="width: 180px;">배송번호</th>
+            <th style="width: 180px;">주문번호</th>
             <th style="width: 220px;">택배사</th>
             <th style="width: 220px;">운송장번호</th>
             <th style="width: 220px;">배송상태</th>
@@ -99,9 +114,11 @@ body {
 
                     <tr>
 
-                        <!-- 배송번호 -->
+                        <!-- 주문번호 -->
                         <td class="shipment-number">
-                            ${shipment.s_no}
+                            <a href="/member/ordersDetail?o_no=${shipment.o_no}">
+                            	${shipment.o_no}
+                          	</a>
                         </td>
 
                         <!-- 택배사 -->
