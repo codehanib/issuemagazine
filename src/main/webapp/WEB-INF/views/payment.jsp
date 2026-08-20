@@ -669,7 +669,7 @@ body {
                  	  <!-- 가격 -->
                     <div class="order-product-price">
                         <strong>
-                        <fmt:formatNumber value="${cart.p_price * cart.cart_quantity}" pattern="#,###"/>원
+                        <fmt:formatNumber value="${cart.p_price2 * cart.cart_quantity}" pattern="#,###"/>원
                         </strong>
                     </div>
                 </div>
