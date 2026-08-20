@@ -33,9 +33,9 @@
         <div class="main-header">
 
     <!-- 왼쪽 구역 : 검색창 -->
-    <div class="search-area">
+    <div >
 
-        <form action="/productSearch" method="get">
+        <form action="/productSearch" method="get" class="search-area">
             <input type="text" name="keyword" placeholder="매거진 검색">
 
             <button type="submit">
