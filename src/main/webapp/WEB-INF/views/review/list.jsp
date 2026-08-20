@@ -49,7 +49,6 @@
                     </c:otherwise>
                 </c:choose>
 
-                <!-- 후기 제목 행 -->
                 <tr class="review-title-row">
                     <td>${review.r_no}</td>
                     <td><strong>${review.r_title}</strong></td>
@@ -64,7 +63,6 @@
                     </td>
                 </tr>
 
-                <!-- 후기 내용 및 수정/삭제 버튼 행 -->
                 <tr class="review-preview-row">
                     <td colspan="5">
                         <div class="review-content-body">
@@ -97,7 +95,6 @@
         </tbody>
     </table>
 
-    <!-- 페이징 영역 -->
     <div class="pagination">
         <c:if test="${prev}">
             <a href="/review/list?page=${startPage - 1}${p_no != null ? '&p_no='.concat(p_no) : ''}">이전</a>

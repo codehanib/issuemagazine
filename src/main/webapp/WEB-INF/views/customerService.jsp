@@ -17,7 +17,6 @@ body {
     color: #222;
 }
 
-/* 고객센터 전체 */
 .info-area {
     width: 90%;
     max-width: 1100px;
@@ -29,7 +28,6 @@ body {
     gap: 20px;
 }
 
-/* 각각의 박스 */
 .info-area > div {
     flex: 1;
 
@@ -42,7 +40,6 @@ body {
     background-color: #fff;
 }
 
-/* 제목 */
 .info-area h3 {
     margin: 0 0 25px;
 
@@ -55,7 +52,6 @@ body {
     font-weight: normal;
 }
 
-/* 링크 */
 .info-area a {
     display: block;
 
@@ -68,17 +64,14 @@ body {
     font-size: 13px;
 }
 
-/* 링크 마우스 올렸을 때 */
 .info-area a:hover {
     text-decoration: underline;
 }
 
-/* 공지사항 */
 .info-area > div:first-child a {
     margin-top: 12px;
 }
 
-/* 배송안내 / 1:1 문의 */
 .info-area > div:nth-child(2),
 .info-area > div:nth-child(3) {
     line-height: 1.8;
@@ -86,7 +79,6 @@ body {
     font-size: 13px;
 }
 
-/* 배송안내 / 문의 링크 */
 .info-area > div:nth-child(2) a,
 .info-area > div:nth-child(3) a {
     margin-top: 25px;

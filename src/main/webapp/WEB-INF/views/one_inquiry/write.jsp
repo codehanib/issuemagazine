@@ -7,10 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>1:1 문의 등록</title>
-<%-- 공지사항 CSS 연결 --%>
 <link rel="stylesheet" href="/css/notice_detail.css">
 <style>
-    /* notice_detail.css 기반 폼 전용 스타일 추가 */
     .notice-form-group {
         margin-bottom: 24px;
         text-align: left;
@@ -92,7 +90,6 @@
     <h2 class="notice-detail-title">1:1 문의 등록</h2>
 
     <form name="one_inquiry" method="post" action="/one_inquiry/write">
-        <%-- CSRF 토큰 --%>
         <sec:csrfInput/>
 
         <div class="notice-form-group">
@@ -116,9 +113,7 @@
             <textarea name="oi_content" class="notice-form-textarea" rows="7" placeholder="문의하실 내용을 상세히 적어주세요." required></textarea>
         </div>
 
-        <%-- 상품 연동 파라미터 (전달받은 p_no가 있으면 우선 적용, 없으면 기본 2037 사용) --%>
-        <input type="hidden" name="p_no" value="${param.p_no != null ? param.p_no : 2037}">
-
+		<input type="hidden" name="p_no" value="${param.p_no}">
         <div class="notice-write-buttons">
             <a href="javascript:history.back()">취소</a>
             <button type="submit">등록하기</button>

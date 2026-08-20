@@ -39,15 +39,13 @@
             </select>
         </div>
 
-        <!-- 내용 입력 -->
         <div class="notice-form-group">
             <label class="notice-form-label">내용</label>
             <textarea name="oi_content" class="notice-form-textarea" placeholder="내용을 입력해주세요." required>${dto.oi_content}</textarea>
         </div>
 
-        <!-- 하단 버튼 영역 -->
         <div class="notice-write-buttons">
-            <a href="javascript:history.back()" class="btn-cancel">취소</a>
+            <a href="/one_inquiry/list" class="btn-cancel">취소</a>
             <button type="submit" class="btn-submit">수정</button>
         </div>
     </form>
