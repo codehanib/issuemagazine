@@ -1,66 +1,218 @@
-/*회원가입 전체 폼 */
-.join-form {
-    width: 850px;
-    margin: 50px auto 70px;
+/* =========================
+   기본 초기화
+========================= */
 
-    padding: 40px 50px;
-
-    border: 1px solid #dddddd;
-    border-radius: 10px;
-
-    background-color: #ffffff;
-
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/*main-title */
-.join-main-title,
-.join-main-text {
+
+/* =========================
+   회원가입 전체 배경
+========================= */
+.join-main {
+    position: relative;
+
+    width: 100%;
+    min-height: 100vh;
+
+    padding: 35px 20px 100px;
+
+    /* 로그인폼과 동일한 배경 */
+    background: linear-gradient(135deg, #f8faff, #eef2f8);
+
+    overflow: hidden;
+}
+
+
+/* =========================
+   배경 장식 원
+========================= */
+
+/* 왼쪽 위 원 */
+.join-main::before {
+    content: "";
+
+    position: absolute;
+
+    top: -70px;
+    left: -70px;
+
+    width: 220px;
+    height: 220px;
+
+    border-radius: 50%;
+
+    background: rgba(70, 130, 255, 0.08);
+}
+
+
+/* 오른쪽 아래 원 */
+.join-main::after {
+    content: "";
+
+    position: absolute;
+
+    right: -90px;
+    bottom: -90px;
+
+    width: 260px;
+    height: 260px;
+
+    border-radius: 50%;
+
+    background: rgba(70, 130, 255, 0.08);
+}
+
+
+/* =========================
+   점무늬 장식
+========================= */
+
+.join-dot {
+    position: absolute;
+
+    width: 130px;
+    height: 130px;
+
+    background-image: radial-gradient(
+        #c8d8f3 1.5px,
+        transparent 1.5px
+    );
+
+    background-size: 14px 14px;
+
+    opacity: 0.8;
+
+    z-index: 0;
+
+    pointer-events: none;
+}
+
+
+/* 로그인폼과 동일한 왼쪽 점무늬 */
+.dot-left {
+    top: 110px;
+    left: 70px;
+}
+
+
+/* 로그인폼과 동일한 오른쪽 점무늬 */
+.dot-right {
+    right: 90px;
+    bottom: 90px;
+}
+
+/* =========================
+   회원가입 제목 영역
+========================= */
+
+.join-title {
+    position: relative;
+    z-index: 1;
+    width: 550px;
+    margin: 0 auto;
     text-align: center;
 }
 
 .join-main-title {
-    margin-top: 45px;
+    display: inline-block;
+    margin: 0;
+    padding-bottom: 12px;
+    color: #222222;
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    border-bottom: 2px solid #222222;
 }
 
 .join-main-text {
-    margin-top: 10px;
-    margin-bottom: 30px;
+    margin: 14px 0 30px;
+    color: #888888;
+    font-size: 14px;
+    line-height: 1.6;
 }
 
-/* 기존 table */
+
+/* ========================================
+   회원가입 전체 폼
+======================================== */
+
+.join-form {
+    position: relative;
+
+    z-index: 1;
+
+    width: 580px;
+
+    margin: 0 auto;
+
+    padding: 30px 45px 40px;
+
+    /* 기존 이상한 테두리 제거 */
+    border: none;
+
+    border-radius: 18px;
+
+    background-color: #ffffff;
+
+    /* 로그인 카드와 동일한 그림자 */
+    box-shadow: 0 14px 35px rgba(0, 0, 0, 0.08);
+}
+
+
+/* ========================================
+   회원가입 테이블
+======================================== */
+
 .join-form table {
     width: 100%;
 
     border-collapse: separate;
-    border-spacing: 0 12px;
+
+    border-spacing: 0 7px;
 }
+
 
 /* 각 입력 한 줄 */
+
 .join-form tr {
-    height: 50px;
+    height: 48px;
 }
 
-/* 왼쪽 제목 */
-.join-form td:first-child {
-    width: 150px;
 
-    color: #222222;
+/* 왼쪽 제목 */
+
+.join-form td:first-child {
+    width: 125px;
+
+    padding-right: 15px;
+
+    color: #333333;
 
     font-size: 14px;
+
     font-weight: 600;
 
     vertical-align: middle;
 }
 
-/* 오른쪽 입력영역 */
+
+/* 오른쪽 입력 영역 */
+
 .join-form td:nth-child(2) {
     width: auto;
 
     vertical-align: middle;
 }
 
-/* input / select 공통 */
+
+/* ========================================
+   input / select 공통
+======================================== */
+
 .join-form input[type="text"],
 .join-form input[type="password"],
 .join-form select {
@@ -68,92 +220,194 @@
 
     padding: 0 13px;
 
-    border: 1px solid #d5d9df;
-    border-radius: 5px;
+    border: 1px solid #d9dde3;
+
+    border-radius: 6px;
 
     background-color: #ffffff;
+
+    color: #333333;
 
     font-size: 14px;
 
     outline: none;
+
+    box-sizing: border-box;
+
+    transition: all 0.2s ease;
 }
 
-/* 기본 text/password는 넓게 */
+
+/* 기본 text/password */
+
 .join-form input[type="text"],
 .join-form input[type="password"] {
     width: 100%;
 }
 
+
+/* placeholder */
+
+.join-form input::placeholder {
+    color: #b5b9bf;
+}
+
+
 /* 포커스 */
+
 .join-form input[type="text"]:focus,
 .join-form input[type="password"]:focus,
 .join-form select:focus {
     border-color: #0874df;
 
-    box-shadow: 0 0 0 2px rgba(8, 116, 223, 0.08);
-
+    box-shadow: 0 0 0 3px rgba(8, 116, 223, 0.08);
 }
 
+
+/* ========================================
+   우편번호
+======================================== */
+
+.join-address input[name="m_zipno"] {
+    width: 150px;
+}
+
+
 /* 우편번호 버튼 */
+
 .join-form input[type="button"] {
     height: 44px;
 
-    padding: 0 18px;
+    margin-left: 5px;
+
+    padding: 0 15px;
 
     border: 1px solid #0874df;
-    border-radius: 5px;
+
+    border-radius: 6px;
 
     background-color: #ffffff;
 
     color: #0874df;
 
+    font-size: 13px;
+
     font-weight: 600;
 
     cursor: pointer;
+
+    transition: all 0.2s ease;
 }
+
 
 /* 우편번호 버튼 hover */
-.join-form input[type="button"]:hover{
+
+.join-form input[type="button"]:hover {
     background-color: #0874df;
 
-    color: #ffffff
+    color: #ffffff;
 }
 
-/* 맨 아래 버튼 영역 */
+
+/* 주소 입력 */
+
+.join-address + tr input,
+.join-form input[name="m_addr"],
+.join-form input[name="m_addr2"] {
+    width: 100%;
+}
+
+
+/* ========================================
+   휴대전화
+======================================== */
+
+.join-form select {
+    width: 95px;
+}
+
+
+.join-form input[name="m_tel2"],
+.join-form input[name="m_tel3"] {
+    width: 95px;
+}
+
+
+/* ========================================
+   이메일
+======================================== */
+
+.join-email input[name="m_email"] {
+    width: 180px;
+}
+
+
+.join-email select {
+    width: 140px;
+}
+
+
+/* ========================================
+   하단 버튼 영역
+======================================== */
+
 .join-form > div {
-    margin-top: 30px;
+    margin-top: 20px;
 
+    padding-top: 25px;
+    border-top: 1px solid #eeeeee;
     display: flex;
-
     justify-content: center;
-
-    gap: 12px;
+    gap: 10px;
 }
 
-/* 취소/회원가입 */
+
+/* ========================================
+   회원가입 / 취소 버튼
+======================================== */
+
 .join-form input[type="reset"],
 .join-form input[type="submit"] {
-    width: 170px;
+    width: 165px;
+
     height: 48px;
 
-    border-radius: 5px;
+    border-radius: 6px;
 
     font-size: 14px;
+
     font-weight: 600;
 
     cursor: pointer;
+
+    transition: all 0.2s ease;
 }
 
-/* 취소 */
+
+/* ========================================
+   취소 버튼
+======================================== */
+
 .join-form input[type="reset"] {
-    border: 1px solid #cccccc;
+    border: 1px solid #d5d9df;
 
     background-color: #ffffff;
 
     color: #555555;
 }
 
-/* 회원가입 */
+
+.join-form input[type="reset"]:hover {
+    background-color: #f5f6f8;
+
+    border-color: #c5c9cf;
+}
+
+
+/* ========================================
+   회원가입 버튼
+======================================== */
+
 .join-form input[type="submit"] {
     border: 1px solid #0874df;
 
@@ -162,30 +416,56 @@
     color: #ffffff;
 }
 
+
 .join-form input[type="submit"]:hover {
     background-color: #0066c8;
+
+    border-color: #0066c8;
+
+    transform: translateY(-1px);
+
+    box-shadow: 0 4px 10px rgba(8, 116, 223, 0.2);
 }
 
-/* 우편번호 */
-.join-address input[name="m_zipno"] {
-    width: 230px;
-}
 
-/* 휴대전화 */
-.join-form select {
-    width: 100px;
-}
+/* ========================================
+   반응형
+======================================== */
 
-.join-form input[name="m_tel2"],
-.join-form input[name="m_tel3"] {
-    width: 180px;
-}
+@media (max-width: 650px) {
 
-/* 이메일 */
-.join-email input[name="m_email"] {
-    width: 280px;
-}
+    .join-main {
+        padding: 40px 15px 70px;
+    }
 
-.join-email select {
-    width: 180px;
+
+    .join-title,
+    .join-form {
+        width: 100%;
+    }
+
+
+    .join-form {
+        padding: 30px 25px 35px;
+    }
+
+
+    .join-main-title {
+        font-size: 26px;
+    }
+
+
+    .join-form td:first-child {
+        width: 100px;
+    }
+
+
+    .join-email input[name="m_email"] {
+        width: 150px;
+    }
+
+
+    .join-email select {
+        width: 120px;
+    }
 }

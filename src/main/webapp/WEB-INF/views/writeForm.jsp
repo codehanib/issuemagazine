@@ -19,7 +19,8 @@
 
 	
 	<main class="join-main">
-	
+		    <div class="join-dot dot-left"></div>
+    		<div class="join-dot dot-right"></div>
 		<div class="join-box">
 		
 			<div class="join-title">

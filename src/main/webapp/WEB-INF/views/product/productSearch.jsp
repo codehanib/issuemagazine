@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>상품리스트보기</title>
+<title>상품 검색 결과 페이지</title>
     <link rel="stylesheet" href="/css/style.css">
 <style>
 /* =========================================================
@@ -351,26 +350,6 @@
                     등록 제품 : ${productCount} 개
                 </div>
 
-                <!-- 정렬 -->
-                <div class="product-sort">
-
-                    <a href="/product/list?page=1&c_no=${c_no}&sort=low">
-					    낮은가격순
-					</a>
-
-                    <span>|</span>
-
-                    <a href="/product/list?page=1&c_no=${c_no}&sort=high">
-					    높은가격순
-					</a>
-					
-                    <span>|</span>
-
-                    <a href="/product/list?sort=pno">
-                        최신순
-                    </a>
-
-                </div>
 
             </div>
 
@@ -408,13 +387,13 @@
 			            <!-- 정가 -->
 			            <div class="list-original-price">
 			                <del>
-			                    <fmt:formatNumber value="${product.p_price}" pattern="#,###"/>원
+			                    ${product.p_price}원
 			                </del>
 			            </div>
 			
 			            <!-- 할인가 -->
 			            <div class="list-sale-price">
-			                <fmt:formatNumber value="${product.p_price2}" pattern="#,###"/>원
+			                ${product.p_price2}원
 			            </div>
 			
 			

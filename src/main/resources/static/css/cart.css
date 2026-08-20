@@ -1108,7 +1108,7 @@ main {
 .cart_title::after {
     content: "";
 
-    width: 85px;
+    width: 100px;
     height: 2px;
 
     margin-top: 14px;
