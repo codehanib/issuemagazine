@@ -28,7 +28,7 @@
             </div>
 
             <div class="notice-delete-buttons">
-                <a href="javascript:history.back()" class="btn-cancel">취소</a>
+                <a href="/one_inquiry/list" class="btn-cancel">취소</a>
                 <button type="submit" class="btn-submit">확인</button>
             </div>
         </form>

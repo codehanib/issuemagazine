@@ -529,3 +529,18 @@ body {
 .notice-delete-buttons .btn-delete-submit:hover {
     background-color: #c82333 !important;
 }
+/* =========================================================
+   추가: 후기 목록 별점 표시 (읽기 전용, .star-rating과 별개)
+========================================================= */
+.product-review .star-display {
+    font-size: 16px;
+    letter-spacing: 2px;
+}
+
+.product-review .star-display span {
+    color: var(--border-color, #e5e8eb);
+}
+
+.product-review .star-display span.filled {
+    color: #ffb800;
+}

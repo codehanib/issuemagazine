@@ -156,6 +156,10 @@ public class productController {
             Model model) {
 
         List<productDTO> productList = productDAO.productSearch(keyword);
+        List<noticeDTO> noticeList =
+	            noticedao.noticeSearch(null, null, 0, 3);
+
+	    model.addAttribute("noticeList", noticeList);
 
         model.addAttribute("productList", productList);
         model.addAttribute("keyword", keyword);
