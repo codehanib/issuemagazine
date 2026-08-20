@@ -57,6 +57,7 @@
         font-size: 12px;
         font-weight: 600;
         border-radius: 12px;
+         white-space: nowrap;
     }
     .badge-completed {
         background-color: #e8f5e9;

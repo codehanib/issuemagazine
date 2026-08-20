@@ -12,6 +12,7 @@
     <title>ISSUEMAGAZINE</title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/product-detail.css">
+    <link rel="stylesheet" href="/css/review.css">
 	<style>
 		.btn-write {
 		    display: inline-block;

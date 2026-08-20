@@ -31,8 +31,7 @@
             <input type="hidden" name="oi_no" value="${dto.oi_no}">
 
             <div class="notice-delete-buttons">
-                <a href="javascript:history.back()" class="btn-cancel">취소</a>
-                <!-- 버튼에 인라인 스타일 직접 지정 -->
+                <a href="/one_inquiry/list" class="btn-cancel">취소</a>
                 <button type="submit" class="btn-delete-submit" style="background-color: #dc3545 !important; color: #ffffff !important; border: none !important; box-shadow: 0 4px 14px rgba(220, 53, 69, 0.25) !important;">삭제하기</button>
             </div>
         </form>

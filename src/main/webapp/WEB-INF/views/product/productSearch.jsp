@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -386,14 +388,12 @@
 			
 			            <!-- 정가 -->
 			            <div class="list-original-price">
-			                <del>
-			                    ${product.p_price}원
-			                </del>
+			                <span>정가 : </span><del><fmt:formatNumber value="${product.p_price}" pattern="#,###" />원</del>
 			            </div>
 			
 			            <!-- 할인가 -->
 			            <div class="list-sale-price">
-			                ${product.p_price2}원
+			                <span>판매가 : </span><strong><fmt:formatNumber value="${product.p_price2}" pattern="#,###" />원</strong>
 			            </div>
 			
 			
