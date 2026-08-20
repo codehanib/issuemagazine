@@ -33,16 +33,16 @@ body {
     padding-bottom: 10px;
     margin-bottom: 20px;
     color: #222222;
-    font-weight: 500;
+    font-size: 28px;
+    font-weight: 600;
 }
 
-/* 제목 글자 아래 두꺼운 밑줄 */
 .title::after {
     content: "";
     position: absolute;
     left: 0;
     bottom: -1px;
-    width: 100px;
+    width: 150px;
     height: 2px;
 
     background-color: #222222;
@@ -58,8 +58,8 @@ body {
 /* 헤더 */
 .orders-table th {
     height: 42px;
-    font-size: 12px;
-    font-weight: normal;
+    font-size: 14px;
+    font-weight: bold;
     text-align: center;
     border-bottom: 1px solid #ddd;
 }
@@ -67,14 +67,19 @@ body {
 /* 내용 */
 .orders-table td {
     height: 70px;
-    font-size: 12px;
+    font-size: 14px;
     text-align: center;
     border-bottom: 1px solid #ddd;
 }
 
 /* 배송번호 */
-.shipment-number {
+.shipment-number a {
     color: #222;
+    text-decoration: none;
+}
+
+.shipment-number a:hover {
+    color: #1877F2;
 }
 
 /* 데이터가 없을 때 */
@@ -83,6 +88,8 @@ body {
     text-align: center !important;
     color: #999;
 }
+.text { font-size: 14px; color: #aaa; line-height: 1.6; }
+
 </style>
 
 </head>
@@ -96,7 +103,10 @@ body {
     <div class="title">
         배송정보확인
     </div>
-
+    <br>
+	<div class="text"> 
+		주문번호를 클릭하시면 해당 주문에 대한 상세내역을 확인하실 수 있습니다.<br> 
+	</div><br><br>
     <table class="orders-table">
 
         <tr>

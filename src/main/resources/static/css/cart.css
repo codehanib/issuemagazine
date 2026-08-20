@@ -50,12 +50,11 @@ button {
 ========================================================= */
 
 main {
-    width: 1200px;
-    max-width: calc(100% - 60px);
+    width: 90%;
+    max-width: 1100px;
 
-    margin: 0 auto;
+    margin: 40px auto 80px;
 }
-
 
 
 /* =========================================================
@@ -1089,35 +1088,27 @@ main {
 /* =========================================================
    13. 장바구니 페이지
 ========================================================= */
-
 /* 장바구니 제목 */
 .cart_title {
-    margin: 45px 0 30px;
-
-    padding-bottom: 15px;
-
-    border-bottom: 1px solid #dddddd;
-
-    color: #222222;
-
+    position: relative;
+    width: 100%;
+    padding-bottom: 12px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #ddd;
+    color: #222;
     font-size: 28px;
     font-weight: 600;
 }
 
-
 .cart_title::after {
     content: "";
-
-    width: 100px;
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 115px;
     height: 2px;
-
-    margin-top: 14px;
-
-    display: block;
-
     background-color: #222222;
 }
-
 
 /* 장바구니 전체 박스 */
 .cart_box {
@@ -1469,8 +1460,8 @@ main {
         width: auto;
         max-width: none;
 
-        margin-left: 20px;
-        margin-right: 20px;
+        margin-left: 30px;
+        margin-right: 30px;
     }
 
 
@@ -1562,36 +1553,46 @@ main {
 	    text-align: center;
 	    white-space: nowrap;
 	}
-	
-	
-	.quantity-btn {
-	    width: 32px;
-	    height: 32px;
-	
-	    border: 1px solid #d5d9df;
-	    border-radius: 5px;
-	
-	    background-color: #ffffff;
-	    color: #333333;
-	
-	    font-size: 18px;
-	    font-weight: 600;
-	
-	    cursor: pointer;
-	}
-	
-	.quantity-btn:hover {
-	    border-color: #0874df;
-	    color: #0874df;
-	}
+
 	
 	.quantity-text {
 	    min-width: 45px;
 	    display: inline-block;
-	
 	    text-align: center;
-	
 	    font-size: 14px;
 	    font-weight: 500;
 	}
+}
+
+
+/* 장바구니 수량 버튼 */
+.cart-quantity-cell {
+    text-align: center;
+    white-space: nowrap;
+}
+
+.quantity-btn {
+    width: 25px !important;
+    height: 25px !important;
+    padding: 0 !important;
+    border: 1px solid #d5d9df !important;
+    border-radius: 5px;
+    background-color: #ffffff;
+    color: #333333;
+    font-size: 18px;
+    font-weight: 400;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+.quantity-btn:hover {
+    border-color: #0874df;
+    color: #0874df;
+}
+
+
+body main {
+    width: 90% !important;
+    max-width: 1100px !important;
+    margin: 40px auto 80px !important;
 }

@@ -25,7 +25,6 @@ body {
     margin: 40px auto;
 }
 
-/* 제목 */
 .title {
     position: relative;
     font-size: 18px;
@@ -33,53 +32,48 @@ body {
     padding-bottom: 10px;
     margin-bottom: 20px;
     color: #222222;
-    font-weight: 500;
+    font-size: 28px;
+    font-weight: 600;
 }
 
-/* 제목 글자 아래 두꺼운 밑줄 */
 .title::after {
     content: "";
     position: absolute;
     left: 0;
     bottom: -1px;
-    width: 74px;
+    width: 115px;
     height: 2px;
 
     background-color: #222222;
 }
 
-/* 테이블 */
 .wishlist-table {
     width: 100%;
     border-collapse: collapse;
     border-top: 1px solid #ddd;
 }
 
-/* 헤더 */
 .wishlist-table th {
     height: 42px;
-    font-size: 12px;
-    font-weight: normal;
+    font-size: 14px;
+    font-weight:bold;
     text-align: center;
     border-bottom: 1px solid #ddd;
 }
 
-/* 내용 */
 .wishlist-table td {
     height: 100px;
-    font-size: 12px;
+    font-size: 14px;
     text-align: center !important;
     border-bottom: 1px solid #ddd;
 }
 
-/* 이미지 */
 .product-image {
     width: 60px;
     height: 75px;
     object-fit: cover;
 }
 
-/* 상품명 */
 .product-name {
     text-align: left !important;
     padding-left: 10px;
@@ -94,33 +88,35 @@ body {
     text-decoration: underline;
 }
 
-/* 가격 */
+
 .price {
     text-align: right !important;
     padding-right: 20px;
 }
 
-/* 삭제 버튼 */
 .delete-btn {
-    width: 45px;
-    height: 25px;
-    border: 1px solid #bbb;
+    width: 70px;
+    height: 27px;
+    border: 1px solid #0874df;
+    color: #0874df;
     background: white;
-    font-size: 11px;
+    font-size: 13px;
     cursor: pointer;
+    border-radius: 6px;
 }
 
 .delete-btn:hover {
-    background: #f5f5f5;
+    background-color: #f1f7ff;
+    border-color: #0874df;
+    color: #0874df;
 }
 
-/* 데이터가 없을 때 */
 .empty {
     height: 120px !important;
     text-align: center !important;
     color: #999;
 }
-.text { font-size: 13px; color: #aaa; line-height: 1.6; }
+.text { font-size: 14px; color: #aaa; line-height: 1.6; }
 </style>
 
 </head>
@@ -132,9 +128,10 @@ body {
     <div class="title">
         관심 상품
     </div>
+    <br>
 	<div class="text"> 
 		이미지나 주문번호를 클릭하시면 상품 상세를 확인하실 수 있습니다.<br> 
-	</div><br>
+	</div><br><br>
     <table class="wishlist-table">
 
         <tr>

@@ -236,7 +236,7 @@ public class memberController {
 
 		    dao.memberUpdate(dto);
 
-		    return "redirect:/main";
+		    return "redirect:/member/memberviewForm";
 		}
 		
 		@RequestMapping("/member/updateForm")
