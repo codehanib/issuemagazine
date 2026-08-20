@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -145,6 +146,22 @@ public class productController {
         model.addAttribute("reviewNext", reviewEndPage < reviewTotalPage);
         model.addAttribute("loginNo", m_no);
         return "product/productDetail";
+    }
+    
+    
+    
+    @RequestMapping("/productSearch")
+    public String productSearch(
+            @RequestParam("keyword") String keyword,
+            Model model) {
+
+        List<productDTO> productList = productDAO.productSearch(keyword);
+
+        model.addAttribute("productList", productList);
+        model.addAttribute("keyword", keyword);
+        model.addAttribute("productCount", productList.size());
+
+        return "product/productSearch";
     }
     
 }
