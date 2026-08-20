@@ -32,19 +32,19 @@
 					<table width="500">
 						<tr>
 							<td>아이디 </td>
-							<td><input type="text" name="m_id" placeholder="ID"></td>
+							<td><input type="text" name="m_id" placeholder="아이디는 영문과 숫자 조합으로 4~16자리"></td>
 						</tr>
 						<tr>
 							<td>비밀번호 </td>
-							<td><input type="password" name="m_passwd" placeholder="PASSWORD"></td>
+							<td><input type="password" name="m_passwd" placeholder="영문, 숫자, 특수문자를 포함하여 8~16자리"></td>
 						</tr>
 						<tr>
 							<td>비밀번호 확인</td>
-							<td><input type="password" name="m_passwd2"></td>
+							<td><input type="password" name="m_passwd2" placeholder="영문, 숫자, 특수문자를 포함하여 8~16자리"></td>
 						</tr>
 						<tr>
 							<td>이름 </td>
-							<td><input type="text" name="m_name"></td>
+							<td><input type="text" name="m_name" placeholder="이름을 입력해주세요"></td>
 						</tr>
 						<tr class="join-address">
 							<td>주소 </td>
@@ -68,15 +68,15 @@
 									<option value="017">017</option>
 									<option value="018">018</option>
 									<option value="019">019</option>
-							</select>
-								<input type="text" name="m_tel2" size="4" maxlength="4"> - 
-								<input type="text" name="m_tel3" size="4" maxlength="4">
+							</select> -
+								<input type="text" name="m_tel2" size="4" maxlength="4" placeholder="0000"> - 
+								<input type="text" name="m_tel3" size="4" maxlength="4" placeholder="0000">
 							</td>
 						</tr>
 						<tr class="join-email">
 							<td>이메일 </td>
 							<td>
-								<input type="text" name="m_email">@
+								<input type="text" name="m_email" placeholder="이메일을 입력해주세요">@
 								<select name="m_email2">
 									<option value="">선택</option>
 									<option value="naver.com">naver.com</option>

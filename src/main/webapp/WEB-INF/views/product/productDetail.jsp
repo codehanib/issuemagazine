@@ -12,6 +12,27 @@
     <title>ISSUEMAGAZINE</title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/product-detail.css">
+	<style>
+		.btn-write {
+		    display: inline-block;
+		    padding: 7px 15px;
+		    background-color: #0874df;
+		    color: #ffffff !important;
+		    font-size: 13px;
+		    font-weight: bold;
+		    text-decoration: none;
+		    border: none;
+		    border-radius: 4px;
+		    cursor: pointer;
+		    transition: background-color 0.2s ease;
+				}
+
+/* 마우스 올렸을 때 효과 */
+.btn-write:hover {
+    background-color: #005bb5;
+}
+	
+	</style>
 </head>
 <body>
 	<%@ include file="../header.jsp" %>
@@ -121,10 +142,10 @@
                 <!-- 가격 -->
                 <div class="product-price">
                 	<div class="sale-price">
-	                   <span>판매가 : </span><strong>${product.p_price2}원</strong>
+	                   <span>판매가 : </span><strong><fmt:formatNumber value="${product.p_price2}" pattern="#,###" />원</strong>
 					</div>
 					<div class="original-price">
-	                   <span>정가 : </span><del>${product.p_price}원</del>
+	                   <span>정가 : </span><del><fmt:formatNumber value="${product.p_price}" pattern="#,###" />원</del>
 	                </div>
                 </div>
                 <!-- ==========================
