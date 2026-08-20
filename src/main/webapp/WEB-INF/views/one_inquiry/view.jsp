@@ -2,12 +2,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>1:1 문의 상세보기</title>
-<!-- 리뷰 CSS 연결 -->
 <link rel="stylesheet" href="/css/review.css">
 </head>
 <body>
@@ -18,7 +18,6 @@
         <h2 class="notice-detail-title">1:1 문의 상세보기</h2>
     </div>
 
-    <%-- ===================== 문의 상세 정보 테이블 ===================== --%>
     <table class="review-table">
         <colgroup>
             <col style="width: 15%;">
@@ -37,7 +36,9 @@
                 <th>작성자</th>
                 <td style="text-align: left;">${dto.m_id}</td>
                 <th>작성일</th>
-                <td style="text-align: left;">${dto.oi_reg_date}</td>
+<td style="text-align: left; font-weight: 700;">
+    <fmt:formatDate value="${dto.oi_reg_date}" pattern="yyyy-MM-dd"/>
+</td>
             </tr>
             <tr class="review-title-row">
                 <th>문의번호</th>
@@ -59,10 +60,8 @@
         </tbody>
     </table>
 
-    <%-- ===================== 답변 영역 ===================== --%>
     <div style="margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--border-color);">
         <c:choose>
-            <%-- 이미 답변이 등록된 경우: 답변 내용 표시 --%>
             <c:when test="${not empty dto.oi_answer}">
                 <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 16px; color: var(--text-primary);">답변 내용</h3>
                 <div class="review-content-body" style="background-color: var(--primary-light); border-color: rgba(8, 116, 223, 0.15); min-height: 100px;">
@@ -70,7 +69,6 @@
                 </div>
             </c:when>
 
-            <%-- 답변이 없는 경우: 관리자에게만 답변 입력 폼 노출 --%>
             <c:otherwise>
                 <sec:authorize access="hasRole('ADMIN')">
                     <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 16px; color: var(--text-primary);">답변 작성</h3>
@@ -95,14 +93,12 @@
         </c:choose>
     </div>
 
-    <%-- ===================== 하단 버튼 영역 ===================== --%>
     <div class="notice-write-buttons" style="margin-top: 40px; justify-content: space-between; align-items: center;">
         <div>
             <a href="/one_inquiry/list" class="btn-cancel">목록으로</a>
         </div>
         
         <div>
-            <%-- 작성자 본인만 수정/삭제 가능 --%>
             <sec:authentication property="principal.username" var="loginId" />
             <c:if test="${loginId == dto.m_id}">
                 <a href="/one_inquiry/updateForm?oi_no=${dto.oi_no}" class="btn-cancel" style="margin-right: 6px;">수정</a>

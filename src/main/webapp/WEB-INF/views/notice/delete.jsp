@@ -9,7 +9,6 @@
 <title>공지 삭제</title>
 <link rel="stylesheet" href="/css/notice_detail.css">
 <style>
-    /* notice_detail.css 기반 삭제 확인 폼 전용 스타일 */
     .notice-delete-box {
         text-align: center;
         padding: 10px 0 20px;
@@ -87,7 +86,6 @@
         </div>
 
         <form method="post" action="/notice/delete">
-            <%-- CSRF 토큰 추가 (POST 요청 403 Forbidden 방지) --%>
             <sec:csrfInput/>
             
             <input type="hidden" name="n_no" value="${dto.n_no}">

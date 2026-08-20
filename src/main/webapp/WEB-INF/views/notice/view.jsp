@@ -25,8 +25,7 @@
             <td>${dto.n_title}</td>
         </tr>
         <tr>
-            <th>내용</th>
-            <td><pre>${dto.n_content}</pre></td>
+            <td colspan=2>${dto.n_content}</td>
         </tr>
         <tr>
             <th>작성일</th>
