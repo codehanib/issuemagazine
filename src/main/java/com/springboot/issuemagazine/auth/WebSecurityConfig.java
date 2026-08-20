@@ -23,10 +23,10 @@ public class WebSecurityConfig {
 			.authorizeHttpRequests(request -> request
 					.dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll() // 내부 포워드 요청 허용
 					.requestMatchers("/","/writeForm","/loginForm","/jusoPopup","/memberInsert",
-									"/product/**").permitAll()
+									"/product/**","/header","/footer","/main","/customerService2","/product/productDetail","/product/productList").permitAll()
 					
 					// WebSecurityConfig.java 내 authorizeHttpRequests 부분
-					.requestMatchers("/notice/list", "/notice/view").permitAll()               // 공지 목록/보기는 누구나 가능
+					.requestMatchers("/notice/list", "/notice/view","/product/productDetail").permitAll()               // 공지 목록/보기는 누구나 가능
 					.requestMatchers("/notice/write*", "/notice/update*", "/notice/delete*").hasRole("ADMIN") // 공지 작성/수정/삭제는 관리자만 가능
 										
 					.requestMatchers("/css/**","/js/**","/images/**").permitAll() // 정적 리소스 모두 허용
@@ -39,7 +39,7 @@ public class WebSecurityConfig {
 		
 		// 로그인
 		http.formLogin((formLogin) -> formLogin
-				.loginPage("/loginForm") // 로그인페이지 경로
+				.loginPage("/main") // 로그인페이지 경로
 				.loginProcessingUrl("/j_spring_security_check")
 				.defaultSuccessUrl("/")
 				.failureUrl("/loginError") // 로그인 실패했을때 가는 페이지
