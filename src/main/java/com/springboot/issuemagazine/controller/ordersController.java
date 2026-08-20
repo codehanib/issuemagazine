@@ -98,9 +98,9 @@ public class ordersController {
 
         shipment.setO_no(o_no);
         shipment.setM_no(member.getM_no());
-        shipment.setS_delivery("배송준비중");
+        shipment.setS_delivery("-");
         shipment.setS_d_no("-");
-        shipment.setS_status("상품준비중");
+        shipment.setS_status("배송준비중");
 
         shipmentDao.shipmentInsert(shipment);
         

@@ -26,13 +26,28 @@ body {
 
 /* 제목 */
 .title {
+    position: relative;
     font-size: 18px;
     border-bottom: 1px solid #ddd;
     padding-bottom: 10px;
     margin-bottom: 20px;
+    color: #222222;
+    font-size: 28px;
+    font-weight: 600;
 }
 
-.text { font-size: 13px; color: #aaa; line-height: 1.6; }
+.title::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 172px;
+    height: 2px;
+
+    background-color: #222222;
+}
+
+.text { font-size: 14px; color: #aaa; line-height: 1.6; }
 
 /* 테이블 */
 .orders-table {
@@ -40,12 +55,15 @@ body {
     border-collapse: collapse;
     border-top: 1px solid #ddd;
 }
+.orders-table a {
+    text-decoration: none;
+}
 
 /* 헤더 */
 .orders-table th {
     height: 42px;
-    font-size: 12px;
-    font-weight: normal;
+    font-size: 14px;
+    font-weight: bold;
     text-align: center;
     border-bottom: 1px solid #ddd;
 }
@@ -53,7 +71,7 @@ body {
 /* 내용 */
 .orders-table td {
     height: 100px;
-    font-size: 12px;
+    font-size: 14px;
     text-align: center;
     border-bottom: 1px solid #ddd;
 }
@@ -65,24 +83,28 @@ body {
     object-fit: cover;
 }
 
-/* 가격 */
 .price {
-    text-align: right !important;
-    padding-right: 30px;
+    text-align: center !important;
+    padding-right: 0;
 }
 
 /* 확인 버튼 */
 .check-btn {
-    width: 60px;
-    height: 25px;
-    border: 1px solid #bbb;
-    background: white;
-    font-size: 11px;
+    width: 70px;
+    height: 27px;
+    border: 1px solid #0874df;
+    border-radius: 6px;
+    background-color: #ffffff;
+    color: #0874df;
+    font-size: 13px;
     cursor: pointer;
+    transition: 0.2s;
 }
 
 .check-btn:hover {
-    background: #f5f5f5;
+    background-color: #f1f7ff;
+    border-color: #0874df;
+    color: #0874df;
 }
 
 /* 주문번호 */
@@ -96,6 +118,28 @@ body {
     text-align: center !important;
     color: #999;
 }
+
+/* 주문번호 hover */
+.order-number a {
+    color: #222;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.order-number a:hover {
+    color: #0874df;
+}
+/* 상품명 */
+.orders-table td:nth-child(3) a {
+    color: #222;
+    transition: 0.2s;
+}
+
+.orders-table td:nth-child(3) a:hover {
+    color: #0874df;
+    text-decoration: none;
+}
+
 </style>
 
 </head>
@@ -106,9 +150,9 @@ body {
     <div class="title">
         주문 내역 조회
     </div>
-    
+    <br>
 	<div class="text"> 
-		이미지나 주문번호를 클릭하시면 해당 주문에 대한 상세내역을 확인하실 수 있습니다.<br> 
+		이미지, 주문번호, 상품명을 클릭하시면 해당 주문에 대한 상세내역을 확인하실 수 있습니다.<br> 
 	</div><br><br>
 	
     <table class="orders-table">
@@ -141,14 +185,16 @@ body {
                         </td>
                         <!-- 상품 이름 -->
 						<td>
-					    <c:choose>
-					        <c:when test="${orders.product_count > 1}">
-					            ${orders.od_name} 외 ${orders.product_count - 1}건
-					        </c:when>
-					        <c:otherwise>
-					            ${orders.od_name}
-					        </c:otherwise>
-					    </c:choose>
+						<a href="/member/ordersDetail?o_no=${orders.o_no}">
+						    <c:choose>
+						        <c:when test="${orders.product_count > 1}">
+						            ${orders.od_name} 외 ${orders.product_count - 1}건
+						        </c:when>
+						        <c:otherwise>
+						            ${orders.od_name}
+						        </c:otherwise>
+						    </c:choose>
+					    </a>
 						</td>
                         <!-- 주문날짜 -->
                         <td>

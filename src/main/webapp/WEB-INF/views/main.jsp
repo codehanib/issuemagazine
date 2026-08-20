@@ -476,7 +476,7 @@
                 궁금하신 점이 있으신가요?<br>
                 친절하게 안내해 드립니다.
 
-                <a href="/one_inquiry/write">
+                <a href="/one_inquiry/writeForm">
                     문의하기
                 </a>
 

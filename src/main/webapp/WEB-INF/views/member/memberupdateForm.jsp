@@ -37,13 +37,13 @@ body {
 /* 제목 영역 */
 .update-title {
     text-align: center;
-    margin-bottom: 35px;
+    margin-bottom: 20px;
 }
 
 .update-title h3 {
     margin: 0 0 10px;
-    font-size: 22px;
-    font-weight: 500;
+    font-size: 25px;
+    font-weight: 600;
 }
 
 /* 수정 폼 */
@@ -64,7 +64,7 @@ body {
     height: 55px;
     padding-left: 20px;
     background: #fafafa;
-    font-size: 13px;
+    font-size: 14px;
     border-bottom: 1px solid #eee;
 }
 
@@ -72,7 +72,7 @@ body {
 .update-table td:last-child {
     height: 55px;
     padding: 10px 15px;
-    font-size: 13px;
+    font-size: 14px;
     border-bottom: 1px solid #eee;
 }
 
@@ -82,7 +82,7 @@ body {
     height: 34px;
     padding: 0 10px;
     border: 1px solid #ddd;
-    font-size: 12px;
+    font-size: 14px;
     outline: none;
 }
 
@@ -106,7 +106,7 @@ body {
     padding: 0 8px;
     border: 1px solid #ddd;
     background: white;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 /* 비밀번호 */
@@ -121,7 +121,7 @@ body {
 
 /* 주소 */
 .update-table input[name="m_addr"] {
-    width: 300px;
+    width: 340px;
 }
 
 /* 상세주소 */
@@ -137,7 +137,7 @@ body {
     border: 1px solid #1877F2;
     color: #1877F2;
    	background-color: white;
-    font-size: 12px;
+    font-size: 14px;
     cursor: pointer;
 }
 
@@ -169,12 +169,15 @@ body {
     height: 38px;
     border: 1px solid #bbb;
     background: white;
-    font-size: 12px;
+    font-size: 14px;
     cursor: pointer;
 }
 
-.update-buttons input:hover {
-    background: #f5f5f5;
+/* 수정취소 hover */
+.update-buttons input:first-child:hover {
+    background: #F5FBFF;
+    border-color: #1877F2;
+    color: #1877F2;
 }
 
 .update-blue{
@@ -182,8 +185,11 @@ body {
     color: white !important;
     border: 1px solid #1877F2 !important;
 }
-
-
+.update-blue:hover {
+    background-color: #155ed4 !important;
+    border-color: #155ed4 !important;
+    color: white !important;
+}
 
 </style>
 

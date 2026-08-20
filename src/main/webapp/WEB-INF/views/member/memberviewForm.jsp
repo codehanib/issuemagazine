@@ -32,16 +32,16 @@ body {
     padding-bottom: 10px;
     margin-bottom: 20px;
     color: #222222;
-    font-weight: 500;
+    font-size: 28px;
+    font-weight: 600;
 }
 
-/* 제목 글자 아래 두꺼운 밑줄 */
 .title::after {
     content: "";
     position: absolute;
     left: 0;
     bottom: -1px;
-    width: 68px;
+    width: 105px;
     height: 2px;
 
     background-color: #222222;
@@ -60,7 +60,7 @@ body {
     height: 50px;
     background-color: #fafafa;
     border-bottom: 1px solid #ddd;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: normal;
     text-align: left;
     padding-left: 20px;
@@ -70,7 +70,7 @@ body {
 .member-info td {
     height: 50px;
     border-bottom: 1px solid #ddd;
-    font-size: 13px;
+    font-size: 14px;
     padding-left: 20px;
 }
 
@@ -86,7 +86,7 @@ body {
     width: 180px;
     padding: 10px 20px;
     margin: 0 3px;
-    font-size: 12px;
+    font-size: 14px;
     text-decoration: none;
     text-align: center;
     cursor: pointer;

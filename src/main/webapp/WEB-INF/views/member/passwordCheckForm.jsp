@@ -87,15 +87,12 @@ body::after {
 
 .page-wrapper {
     min-height: 100vh;
-
     display: flex;
-
     justify-content: center;
     align-items: center;
-
     position: relative;
-
     z-index: 10;
+    transform: translateY(-50px);
 }
 
 

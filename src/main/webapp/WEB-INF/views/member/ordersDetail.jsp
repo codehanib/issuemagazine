@@ -35,16 +35,16 @@ body {
     padding-bottom: 10px;
     margin-bottom: 20px;
     color: #222222;
-    font-weight: 500;
+    font-size: 28px;
+    font-weight: 600;
 }
 
-/* 제목 글자 아래 두꺼운 밑줄 */
 .title::after {
     content: "";
     position: absolute;
     left: 0;
     bottom: -1px;
-    width: 110px;
+    width: 172px;
     height: 2px;
 
     background-color: #222222;
@@ -52,7 +52,7 @@ body {
 
 /* 안내문 */
 .text {
-    font-size: 13px;
+    font-size: 14px;
     color: #aaa;
     line-height: 1.6;
 }
@@ -67,8 +67,8 @@ body {
 /* 헤더 */
 .orders-table th {
     height: 42px;
-    font-size: 12px;
-    font-weight: normal;
+    font-size: 14px;
+    font-weight: bold;
     text-align: center;
     border-bottom: 1px solid #ddd;
 }
@@ -76,7 +76,7 @@ body {
 /* 내용 */
 .orders-table td {
     height: 100px;
-    font-size: 12px;
+    font-size: 14px;
     text-align: center;
     border-bottom: 1px solid #ddd;
 }
@@ -90,8 +90,8 @@ body {
 
 /* 가격 */
 .price {
-    text-align: right !important;
-    padding-right: 30px;
+    text-align: center !important;
+    padding-right: 0;
 }
 
 /* 총 가격 */
@@ -103,14 +103,14 @@ body {
 
 /* 총 가격 금액 */
 .total-price {
-    text-align: right !important;
-    padding-right: 30px;
-    font-size: 14px !important;
+    text-align: center !important;
+    padding-right: 0;
+    font-size: 15px !important;
 }
 
 /* 주문번호 */
 .order-number {
-    font-size: 13px;
+    font-size: 14px;
 }
 
 /* 데이터가 없을 때 */
@@ -132,7 +132,7 @@ body {
     <div class="title">
         주문 상세 내역
     </div>
-
+	<br>
     <div class="text">
         주문하신 상품의 상세 내역을 확인하실 수 있습니다.
     </div>
@@ -142,7 +142,7 @@ body {
     <table class="orders-table">
         <tr>
             <th style="width: 150px;">이미지</th>
-            <th style="width: 250px;">상품이름</th>
+            <th style="width: 250px;">제품이름</th>
             <th style="width: 180px;">구독기간</th>
             <th style="width: 120px;">수량</th>
             <th style="width: 200px;">가격</th>
@@ -159,7 +159,7 @@ body {
                         <td>
 						    <img src="${detail.p_image}" class="product-image" alt="상품 이미지">
 						</td>
-						<td>
+						                        <td>
                             ${detail.od_name}
                         </td>
 

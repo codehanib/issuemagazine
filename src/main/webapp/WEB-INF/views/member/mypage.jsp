@@ -36,21 +36,26 @@ body {
 /* =========================================================
    제목
 ========================================================= */
-
 .mypage-title {
+    position: relative;
+    width: 100%;
     padding-bottom: 12px;
-
     margin-bottom: 30px;
-
     border-bottom: 1px solid #ddd;
-
     color: #222;
-
-    font-size: 18px;
-    font-weight: 500;
+    font-size: 28px;
+    font-weight: 600;
 }
 
-
+.mypage-title::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 115px;
+    height: 2px;
+    background-color: #222222;
+}
 /* =========================================================
    회원 정보 영역
 ========================================================= */
@@ -104,8 +109,8 @@ body {
 
     color: #0874df;
 
-    font-size: 38px;
-    font-weight: bold;
+    font-size: 40px;
+    font-weight: 700;
 
     letter-spacing: -1px;
 }
@@ -125,7 +130,7 @@ body {
 
     color: #666;
 
-    font-size: 13px;
+    font-size: 14px;
 
     line-height: 1.8;
 }
@@ -152,7 +157,7 @@ body {
 
     color: #555;
 
-    font-size: 13px;
+    font-size: 14px;
 
     line-height: 1.4;
 }
@@ -261,7 +266,7 @@ body {
 
     color: #222;
 
-    font-size: 25px;
+    font-size: 30px;
     font-weight: 600;
 
     letter-spacing: -0.5px;
@@ -273,7 +278,7 @@ body {
 
     color: #777;
 
-    font-size: 13px;
+    font-size: 15px;
     font-weight: normal;
 }
 
