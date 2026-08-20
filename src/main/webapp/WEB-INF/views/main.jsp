@@ -25,7 +25,7 @@
 
 <body>
 
-	<jsp:include page="header.jsp"/>
+	<%@ include file="header.jsp" %>
 	<iframe name="cartFrame" style="display:none;"></iframe>
 
     <main>
@@ -494,7 +494,7 @@
          FOOTER
     =================================================== -->
    
-   <jsp:include page="footer.jsp"/>
+   <%@ include file="footer.jsp" %>
    
        <!-- 메인 자동 배너  -->
     <script src="/js/main.js"></script>
