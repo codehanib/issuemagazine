@@ -6,32 +6,40 @@
 <mapper namespace="com.springboot.issuemagazine.dao.IproductDAO">
 
     <!-- 상품 전체 목록 -->
-    <select id="productList" resultType="com.springboot.issuemagazine.dto.productDTO">
-        SELECT *
-        FROM product
-        <choose>
-
-            <!-- 낮은 가격순 -->
-            <when test="sort == 'low'">
-                ORDER BY p_price2 ASC
-            </when>
-
-            <!-- 높은 가격순 -->
-            <when test="sort == 'high'">
-                ORDER BY p_price2 DESC
-            </when>
-
-            <!-- 기본값 : 낮은 가격순 -->
-            <otherwise>
-                ORDER BY p_price2 ASC
-            </otherwise>
-
-        </choose>
-        OFFSET #{start} ROWS
-        FETCH NEXT #{pageSize} ROWS ONLY
-
-    </select>
+    <select id="productList"
+        resultType="com.springboot.issuemagazine.dto.productDTO">
 	
+	    SELECT *
+	    FROM product
+	
+	    <choose>
+	
+	        <!-- 상품번호순 -->
+	        <when test="sort == 'pno'">
+	            ORDER BY p_no ASC
+	        </when>
+	
+	        <!-- 낮은 가격순 -->
+	        <when test="sort == 'low'">
+	            ORDER BY p_price2 ASC
+	        </when>
+	
+	        <!-- 높은 가격순 -->
+	        <when test="sort == 'high'">
+	            ORDER BY p_price2 DESC
+	        </when>
+	
+	        <!-- 기본값 -->
+	        <otherwise>
+	            ORDER BY p_no ASC
+	        </otherwise>
+	
+	    </choose>
+	
+	    OFFSET #{start} ROWS
+	    FETCH NEXT #{pageSize} ROWS ONLY
+	
+	</select>
 	
 	<!-- 메인 상품 목록 : 제품번호 순 -->
 	<select id="mainProductList"
@@ -122,4 +130,17 @@
         WHERE p_no = #{p_no}
     </delete>
 
+	
+	<select id="productSearch"
+	        resultType="com.springboot.issuemagazine.dto.productDTO">
+	    SELECT 
+	        p_no,
+	        p_name,
+	        p_price,
+	        p_price2,
+	        p_image
+	    FROM product
+	    WHERE p_name LIKE '%' || #{keyword} || '%'
+	    ORDER BY p_no DESC
+	</select>
 </mapper>
