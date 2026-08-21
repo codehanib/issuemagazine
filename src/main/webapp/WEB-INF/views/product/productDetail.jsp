@@ -188,7 +188,7 @@
                             <label for="period">
                                 구독기간
                             </label>
-                            <select id="period" name="period">
+                            <select id="period" name="cart_sub_date">
                                 <option value="12">
 			                        1년 (12회)
 			                    </option>

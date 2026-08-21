@@ -10,14 +10,16 @@
             cart_quantity,
             cart_price,
             m_no,
-            p_no
+            p_no,
+            cart_sub_date
 		)
 		values(
 		cart_seq.nextval,
 		#{cart_quantity},
         #{cart_price},
         #{m_no},
-        #{p_no}
+        #{p_no},
+        #{cart_sub_date}
 		)
 	</insert>
 	
@@ -28,6 +30,7 @@
 			c.cart_quantity,
         	c.m_no,
         	c.p_no,
+        	c.cart_sub_date,
         	p.p_name,
         	p.p_price2,
         	p.p_image
