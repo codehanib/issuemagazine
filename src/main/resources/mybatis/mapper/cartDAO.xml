@@ -19,7 +19,7 @@
         #{cart_price},
         #{m_no},
         #{p_no},
-        #{cart_sub_date}
+        #{cart_sub_date,jdbcType=TIMESTAMP}
 		)
 	</insert>
 	
