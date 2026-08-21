@@ -18,31 +18,32 @@ public class WebSecurityConfig {
 	
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
-		http.csrf((csrf) -> csrf.disable()) // CSRF 보호 비활성화
-			.cors((cors) -> cors.disable()) // CORS 비활성화
+		http.csrf((csrf) -> csrf.disable())
+			.cors((cors) -> cors.disable())
 			.authorizeHttpRequests(request -> request
-					.dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll() // 내부 포워드 요청 허용
+					.dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
 					.requestMatchers("/","/writeForm","/loginForm","/jusoPopup","/memberInsert",
 									"/product/**","/header","/footer","/main","/customerService2","/product/productDetail","/product/productList").permitAll()
 					
-					// WebSecurityConfig.java 내 authorizeHttpRequests 부분
-					.requestMatchers("/notice/list", "/notice/view","/product/productDetail").permitAll()               // 공지 목록/보기는 누구나 가능
-					.requestMatchers("/notice/write*", "/notice/update*", "/notice/delete*").hasRole("ADMIN") // 공지 작성/수정/삭제는 관리자만 가능
+					.requestMatchers("/notice/list", "/notice/view","/product/productDetail").permitAll()
+					.requestMatchers("/notice/write*", "/notice/update*", "/notice/delete*").hasRole("ADMIN")
 										
-					.requestMatchers("/css/**","/js/**","/images/**").permitAll() // 정적 리소스 모두 허용
-					.requestMatchers("/guest/**").permitAll() // guest 폴더는 모두 허용 (게스트페이지)
-					.requestMatchers("/member/**").hasAnyRole("USER","ADMIN") // member 폴더는 USER, ADMIN만 허용 (회원페이지)
-					.requestMatchers("/admin/**").hasAnyRole("ADMIN") // admin 폴더는 ADMIN만 허용 (관리자페이지)
-					.anyRequest().authenticated() // 나머지는 모두 인증 필요
+					// [수정] .webp 등 다양한 이미지 확장자 및 루트 정적 파일/업로드 경로 추가
+					.requestMatchers("/css/**", "/js/**", "/images/**", "/*.webp", "/*.jpg", "/*.png", "/upload/**").permitAll() 
+					.requestMatchers("/guest/**").permitAll()
+					.requestMatchers("/member/**").hasAnyRole("USER","ADMIN")
+					.requestMatchers("/admin/**").hasAnyRole("ADMIN")
+					.anyRequest().authenticated()
 			);
 			
 		
 		// 로그인
 		http.formLogin((formLogin) -> formLogin
-				.loginPage("/main") // 로그인페이지 경로
+				.loginPage("/main")
 				.loginProcessingUrl("/j_spring_security_check")
-				.defaultSuccessUrl("/")
-				.failureUrl("/loginError") // 로그인 실패했을때 가는 페이지
+				// [수정] 두 번째 인자로 true를 전달하여 로그인 후 이전 요청을 무시하고 무조건 "/" 로 이동시킵니다.
+				.defaultSuccessUrl("/", true) 
+				.failureUrl("/loginError")
 				.usernameParameter("m_id")
 				.passwordParameter("m_passwd")
 				.permitAll()
@@ -55,8 +56,6 @@ public class WebSecurityConfig {
 				.permitAll()
 				);
 		
-		
 		return http.build();
 	}
-
 }
