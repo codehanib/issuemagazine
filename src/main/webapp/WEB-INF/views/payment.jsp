@@ -946,7 +946,7 @@ body {
                      console.log("서버 응답:", result);
 
                      alert(
-                         "결제 검증 요청 완료\n\n" +
+                         "결제에 성공했습니다. \n\n" +
                          "imp_uid : " + rsp.imp_uid + "\n" +
                          "서버 응답 : " + result
                      );
