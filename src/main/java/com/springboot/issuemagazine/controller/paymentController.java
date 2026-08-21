@@ -44,7 +44,7 @@ public class paymentController {
 					    String p_name,
 					    @RequestParam(value = "quantity", required = false)
 					    Integer quantity,
-					    @RequestParam(value = "period", required = false)
+					    @RequestParam(value = "cart_sub_date", required = false)
 					    String period,
 					    @RequestParam(value = "p_price2", required = false)
 					    Integer p_price2,

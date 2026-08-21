@@ -12,4 +12,5 @@ public class cartDTO {
 	private String p_name;
 	private int p_price2;
 	private String P_image;
+	private String cart_sub_date;
 }

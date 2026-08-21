@@ -15,6 +15,17 @@
     box-sizing: border-box;
 }
 
+.check-btn {
+    width: 70px;
+    height: 27px;
+    border: 1px solid #0874df;
+    border-radius: 6px;
+    background-color: #ffffff;
+    color: #0874df;
+    font-size: 13px;
+    cursor: pointer;
+    transition: 0.2s;
+}
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -146,6 +157,7 @@ body {
             <th style="width: 180px;">구독기간</th>
             <th style="width: 120px;">수량</th>
             <th style="width: 200px;">가격</th>
+            <th style="width: 200px;">후기</th>
         </tr>
 
 
@@ -164,7 +176,7 @@ body {
                         </td>
 
                         <td>
-					    	${detail.od_sub_date}
+					    	${detail.od_sub_date} 개월
 						</td>
 					     <td>
                             ${detail.od_quantity}
@@ -174,12 +186,18 @@ body {
                                 value="${detail.od_price}"
                                 pattern="#,###"/>원
                         </td>
+                        <td>
+					<form action="/review/writeForm" method="post" name="goReview" style="margin: 0;">
+                    <input type="hidden" name="p_no" value="${detail.p_no}">
+                    <button type="submit" class="check-btn">후기 쓰기</button>
+                </form>
+                </td>
                     </tr>
                 </c:forEach>
 
 					<tr class="total-row">
 					
-					    <td colspan="4">
+					    <td colspan="5">
 					        총 가격
 					    </td>
 					

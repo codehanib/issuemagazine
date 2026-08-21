@@ -28,6 +28,7 @@
                     <th>선택</th>
                     <th>상품정보</th>
                     <th>수량</th>
+                    <th>구독기간</th>
                     <th>가격</th>
                 </tr>
             </thead>
@@ -73,6 +74,25 @@
 							    </button>
 							
 							</td>
+				   <!-- 구독 기간 -->
+							<td>
+							<div>
+                            <select id="period" name="period">
+                                <option value="12">
+			                        1년 (12회)
+			                    </option>
+			                    <option value="6">
+			                        6개월
+			                    </option>
+			                    <option value="3">
+			                        3개월
+			                    </option>
+			                    <option value="1">
+			                        1개월
+			                    </option>
+                            </select>
+                        </div>
+                        </td>
                         <!-- 가격 -->
                         <td>
                             <fmt:formatNumber value="${cart.p_price2}" pattern="#,###" />원

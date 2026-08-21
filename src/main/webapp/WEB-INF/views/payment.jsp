@@ -639,6 +639,8 @@ body {
 			    <input type="hidden"
 				       name="oddtoList[${status.index}].cart_no"
 				       value="${cart.cart_no}">
+				<input type="hidden"
+						name="oddtoList[${status.index}].od_sub_date" value="${cart.cart_sub_date}">
 	<!-- 상품 카드 -->
 	<div class="order-product">	       
                     <!-- 상품 이미지 -->
@@ -656,7 +658,7 @@ body {
                             상품번호 : ${cart.p_no}
                         </p>
                         <p class="product-detail">
-                    		구독기간 : 12 개월
+                    		구독기간 : ${cart.cart_sub_date} 개월
                		    </p>
                     </div>
                     <!-- 수량 -->
