@@ -11,29 +11,23 @@
 	
 	    SELECT *
 	    FROM product
-	
 	    <choose>
-	
 	        <!-- 상품번호순 -->
 	        <when test="sort == 'pno'">
 	            ORDER BY p_no ASC
 	        </when>
-	
 	        <!-- 낮은 가격순 -->
 	        <when test="sort == 'low'">
 	            ORDER BY p_price2 ASC
 	        </when>
-	
 	        <!-- 높은 가격순 -->
 	        <when test="sort == 'high'">
 	            ORDER BY p_price2 DESC
 	        </when>
-	
 	        <!-- 기본값 -->
 	        <otherwise>
 	            ORDER BY p_no ASC
 	        </otherwise>
-	
 	    </choose>
 	
 	    OFFSET #{start} ROWS
@@ -143,4 +137,52 @@
 	    WHERE p_name LIKE '%' || #{keyword} || '%'
 	    ORDER BY p_no DESC
 	</select>
+
+<!-- 상품 등록 (번호 자동 부여) -->
+<insert id="productInsert" parameterType="com.springboot.issuemagazine.dto.productDTO">
+    
+    <selectKey keyProperty="p_no" resultType="int" order="BEFORE">
+        SELECT NVL(MAX(p_no), 2000) + 1 FROM product
+    </selectKey>
+
+    INSERT INTO product (
+        p_no,        
+        c_no,
+        p_code,
+        p_name,
+        p_price,
+        p_price2,
+        p_publisher,
+        p_country,
+        p_image,
+        p_reg_date
+    ) VALUES (
+        #{p_no},      
+        #{c_no},
+        #{p_code},
+        #{p_name},
+        #{p_price},
+        #{p_price2},
+        #{p_publisher},
+        #{p_country},
+        #{p_image},
+        SYSDATE
+    )
+</insert>
+	
+    <!-- 상품 수정 -->
+  <update id="productUpdate" parameterType="com.springboot.issuemagazine.dto.productDTO">
+    UPDATE product
+    SET 
+        c_no = #{c_no},
+        p_code = #{p_code},
+        p_name = #{p_name},
+        p_price = #{p_price},
+        p_price2 = #{p_price2},
+        p_publisher = #{p_publisher},
+        p_country = #{p_country},
+        p_image = #{p_image}
+    WHERE p_no = #{p_no}
+</update>
+
 </mapper>

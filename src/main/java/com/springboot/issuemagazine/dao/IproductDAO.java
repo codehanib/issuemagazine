@@ -42,7 +42,15 @@ public interface IproductDAO {
 	// 카테고리별 상품 개수
 	public int productCountCategory(@Param("c_no") int c_no);
 	
-	//검색창
+	// 검색창
 	public List<productDTO> productSearch(String keyword);
+	
+	// 상품 등록 insert
+	public int productInsert(productDTO dto);
+
+	//  상품 수정 update
+	public int productUpdate(productDTO dto);
+	
+	
 	
 }
