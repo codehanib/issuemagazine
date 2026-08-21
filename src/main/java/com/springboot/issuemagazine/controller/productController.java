@@ -7,6 +7,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -149,7 +151,7 @@ public class productController {
     }
     
     
-    
+    // 상품 검색 컨트롤러
     @RequestMapping("/productSearch")
     public String productSearch(
             @RequestParam("keyword") String keyword,
@@ -167,5 +169,110 @@ public class productController {
 
         return "product/productSearch";
     }
+ 
+
+    // ==================== 상품 추가 (등록) ====================
     
+    // 상품 등록 폼 페이지 이동 
+    @GetMapping({"/admin/productWrite", "/product/write"})
+    public String productWriteForm() {
+        return "product/productWrite"; 
+    }
+
+    // 상품 등록 처리
+    @PostMapping("/product/insert")
+    public String productInsert(@ModelAttribute productDTO dto) {
+
+        productDAO.productInsert(dto);
+        return "redirect:/admin/productList";
+    }
+    // ==================== 상품 수정 ====================
+    
+    // 상품 수정 폼 페이지 이동
+    @GetMapping("/product/update")
+    public String productUpdateForm(@RequestParam("p_no") int p_no, Model model) {
+        productDTO product = productDAO.productdetail(p_no);
+        model.addAttribute("product", product);
+        return "product/productUpdateForm";
+    }
+
+    // 상품 수정 처리
+    @PostMapping("/product/update")
+    public String productUpdate(@ModelAttribute productDTO dto) {
+        productDAO.productUpdate(dto);
+        return "redirect:/product/detail?p_no=" + dto.getP_no();
+    }
+
+    // ==================== 상품 삭제 ====================
+    
+    // 상품 삭제 처리
+    @RequestMapping("/product/delete")
+    public String productDelete(@RequestParam("p_no") int p_no) {
+        productDAO.productDelete(p_no);
+        return "redirect:/admin/productList";
+    }
+    
+    // ==================== 관리자 상품 목록 페이지 ====================
+ // 1. 관리자 상품 메뉴/안내 페이지 이동
+    @RequestMapping("/admin/productMenu")
+    public String adminProductMenu() {
+        return "admin/adminProductMenu"; // 카드 4개 있는 메뉴 JSP
+    }
+
+    // 2. 실제 상품 목록 조회 페이지 (수정/삭제 버튼이 있는 곳)
+    @RequestMapping("/admin/productList")
+    public String adminProductList(
+            @RequestParam(value = "page", defaultValue = "1") int page,
+            @RequestParam(value = "c_no", required = false) Integer c_no,
+            @RequestParam(value = "sort", defaultValue = "pno") String sort,
+            Model model) {
+
+        int pageSize = 10;
+        int start = (page - 1) * pageSize;
+
+        List<productDTO> productList;
+        int productCount;
+
+        if (c_no != null) {
+            productList = productDAO.productListCategory(c_no, start, pageSize, sort);
+            productCount = productDAO.productCountCategory(c_no);
+        } else {
+            productList = productDAO.productList(start, pageSize, sort);
+            productCount = productDAO.productCount();
+        }
+
+        int totalPage = (int) Math.ceil((double) productCount / pageSize);
+        int pageBlock = 10;
+        int startPage = ((page - 1) / pageBlock) * pageBlock + 1;
+        int endPage = startPage + pageBlock - 1;
+
+        if (endPage > totalPage) endPage = totalPage;
+
+        model.addAttribute("productList", productList);
+        model.addAttribute("productCount", productCount);
+        model.addAttribute("page", page);
+        model.addAttribute("totalPage", totalPage);
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
+        model.addAttribute("c_no", c_no);
+        model.addAttribute("sort", sort);
+
+        return "admin/adminProductList";
+    }
+    
+    // 관리자 페이지 검색창
+    @RequestMapping("/admin/productSearch")
+    public String adminProductSearch(@RequestParam("keyword") String keyword, Model model) {
+        
+        List<productDTO> productList = productDAO.productSearch(keyword);
+        
+        model.addAttribute("productList", productList);
+        model.addAttribute("keyword", keyword);
+        model.addAttribute("productCount", productList.size());
+        
+        return "admin/adminProductList"; 
+    }
+
+    
+
 }

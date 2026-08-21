@@ -439,7 +439,7 @@ body {
 
 
         <!-- 상품관리 -->
-        <a href="/product/list" class="mypage-menu-item">
+        <a href="/admin/productMenu" class="mypage-menu-item">
 
             <div class="mypage-menu-title">
                 product
@@ -447,7 +447,7 @@ body {
             </div>
 
             <div class="mypage-menu-desc">
-                상품 목록을 확인하실 수 있습니다.
+                상품 목록을 수정,삭제,추가하여 관리할 수 있습니다.
             </div>
 
         </a>
