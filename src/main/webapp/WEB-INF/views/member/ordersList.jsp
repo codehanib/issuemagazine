@@ -164,6 +164,7 @@ body {
             <th style="width: 180px;">가격</th>
             <th style="width: 150px;">배송정보</th>
             <th style="width: 150px;">주문취소</th>
+            <th style="width: 150px;">후기</th>
         </tr>
         <c:choose>
             <c:when test="${not empty ordersList}">
@@ -222,6 +223,13 @@ body {
 					        }">
 					    	주문취소
 						</button>
+                        </td>
+                        <td>
+					    	
+					    	<form action="/review/writeForm" method="post" name="goReview" style="margin: 0;">
+                    <input type="hidden" name="p_no" value="${orders.p_no}">
+                    <button type="submit" class="check-btn">후기 쓰기</button>
+                </form>
                         </td>
                     </tr>
                 </c:forEach>

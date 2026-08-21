@@ -542,11 +542,6 @@
         <section class="product-review" id="product-review">
             <div class="review-header">
                 <h3 class="notice-detail-title">상품 사용 후기 (${reviewCount})</h3>
-                <form action="/review/writeForm" method="post" name="goReview" style="margin: 0;">
-                    <sec:csrfInput/>
-                    <input type="hidden" name="p_no" value="${product.p_no}">
-                    <button type="submit" class="btn-write">사용후기 쓰기</button>
-                </form>
             </div>
 
             <table class="review-table">

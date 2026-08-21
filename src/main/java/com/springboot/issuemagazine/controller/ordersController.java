@@ -1,5 +1,6 @@
 package com.springboot.issuemagazine.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.springboot.issuemagazine.dao.IcartDAO;
@@ -14,10 +16,12 @@ import com.springboot.issuemagazine.dao.IordersDAO;
 import com.springboot.issuemagazine.dao.IproductDAO;
 import com.springboot.issuemagazine.dao.IshipmentDAO;
 import com.springboot.issuemagazine.dao.memberDAO;
+import com.springboot.issuemagazine.dao.reviewDAO;
 import com.springboot.issuemagazine.dto.memberDTO;
 import com.springboot.issuemagazine.dto.ordersDTO;
 import com.springboot.issuemagazine.dto.orders_detailDTO;
 import com.springboot.issuemagazine.dto.productDTO;
+import com.springboot.issuemagazine.dto.reviewDTO;
 import com.springboot.issuemagazine.dto.shipmentDTO;
 
 @Controller
@@ -25,6 +29,9 @@ public class ordersController {
 
     @Autowired
     private IordersDAO dao;
+    
+    @Autowired
+	private reviewDAO reviewDAO;
 
     @Autowired
     private memberDAO memberDao;
