@@ -77,10 +77,10 @@ Spring Boot를 이용한 웹사이트 구현 팀 프로젝트입니다.
 ## 메뉴 구성
 
 main
-├── views/admin
-├── views/cart
-├── views/member
-├── views/notice
-├── views/one_inquiry
-├── views/product
-└── views/review
+- ├── views/admin
+- ├── views/cart
+- ├── views/member
+- ├── views/notice
+- ├── views/one_inquiry
+- ├── views/product
+- └── views/review
