@@ -27,9 +27,10 @@ public interface IordersDAO {
     );
 
     // 주문 취소
-    public int ordersDelete(
+    public int ordersCancel(
             @Param("m_no") int m_no,
-            @Param("o_no") int o_no);
+            @Param("o_no") int o_no
+    );
     
     
     // 관리자: 전체 주문 목록

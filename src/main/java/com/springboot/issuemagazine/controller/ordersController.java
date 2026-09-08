@@ -156,8 +156,8 @@ public class ordersController {
     }
 
 
-    // 주문 취소
-    @RequestMapping("/member/ordersdelete")
+    // 주문 취소 상태로 "수정"
+    @RequestMapping("/member/ordersCancel")
     public String ordersDelete(
             Authentication authentication,
             @RequestParam("o_no") int o_no) {
@@ -172,7 +172,7 @@ public class ordersController {
         int m_no = member.getM_no();
 
         // 주문 취소
-        dao.ordersDelete(m_no, o_no);
+        dao.ordersCancel(m_no, o_no);
 
         return "redirect:/member/ordersList";
     }
@@ -186,6 +186,7 @@ public class ordersController {
 
         return "admin/adminOrdersList";
     }
+    
     
     // 관리자 주문관리
     @RequestMapping("/admin/statusUpdate")
