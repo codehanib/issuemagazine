@@ -90,7 +90,7 @@ body {
 
 /* 확인 버튼 */
 .check-btn {
-    width: 70px;
+    width: 90px;
     height: 27px;
     border: 1px solid #0874df;
     border-radius: 6px;
@@ -215,15 +215,23 @@ body {
                             </button>
                         </td>
                     	<td>
-							<button type="button"
-					        class="check-btn"
-					        onclick="if(confirm('정말 주문을 취소하시겠습니까?\n취소한 주문은 복구할 수 없습니다.')) {
-					            location.href='/member/ordersdelete?o_no=${orders.o_no}';
-					        }">
-					    	주문취소
-						</button>
-                        </td>
-                    </tr>
+						    <c:choose>
+						        <c:when test="${orders.o_status eq '주문취소'}">
+						            <span>주문취소</span>
+						        </c:when>
+						
+						        <c:otherwise>
+						            <button type="button"
+						                    class="check-btn"
+						                    onclick="if(confirm('정말 주문을 취소하시겠습니까?')) {
+						                        location.href='/member/ordersCancel?o_no=${orders.o_no}';
+						                    }">
+						                주문취소 버튼
+						            </button>
+						        </c:otherwise>
+						    </c:choose>
+						</td>
+					 </tr>
                 </c:forEach>
             </c:when>
             <c:otherwise>

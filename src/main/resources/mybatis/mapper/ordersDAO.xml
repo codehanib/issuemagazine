@@ -99,11 +99,12 @@
 	</select>
 
     <!-- 주문 취소 -->
-    <delete id="ordersDelete">
-	    DELETE FROM orders
+	<update id="ordersCancel">
+	    UPDATE orders
+	    SET o_status = '주문취소'
 	    WHERE o_no = #{o_no}
 	      AND m_no = #{m_no}
-	</delete>
+	</update>
 	
 	<!-- 관리자: 전체 주문 목록 -->
 	<select id="adminOrdersList" resultType="com.springboot.issuemagazine.dto.ordersDTO"> 

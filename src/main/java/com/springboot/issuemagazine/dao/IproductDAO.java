@@ -52,5 +52,4 @@ public interface IproductDAO {
 	public int productUpdate(productDTO dto);
 	
 	
-	
 }
