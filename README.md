@@ -74,14 +74,17 @@ Spring Boot를 활용한 전자잡지 웹사이트 팀 프로젝트입니다.
 - 항상 GitHub에서 최신 파일 pull 후 작업
 
 ## 브랜치
+```text
 main
 └── master
     ├── KEJ  # 김은진
     ├── LDH  # 이동희
     ├── CDI  # 차도일
     └── HHJ  # 홍혜진
+```
 
 ## 프로젝트 구성
+```text
 views
 ├── admin
 ├── cart
@@ -90,6 +93,7 @@ views
 ├── one_inquiry
 ├── product
 └── review
+```
 
 
 
